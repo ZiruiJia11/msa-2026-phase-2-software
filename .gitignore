@@ -2,6 +2,11 @@
 backend/bin/
 backend/obj/
 
+# Local database
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+
 # Node
 frontend/node_modules/
 frontend/dist/
@@ -9,3 +14,13 @@ frontend/dist/
 # Environment
 .env
 .env.local
+frontend/.env
+frontend/.env.local
+backend/.env
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
