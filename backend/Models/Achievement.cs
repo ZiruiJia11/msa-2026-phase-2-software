@@ -1,0 +1,14 @@
+﻿namespace backend.Models;
+
+public class Achievement
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Icon { get; set; } = string.Empty;
+    public AchievementConditionType ConditionType { get; set; }
+    public int ConditionValue { get; set; }
+    public int XpBonus { get; set; }
+
+    public List<UserAchievement> UserAchievements { get; set; } = [];
+}
