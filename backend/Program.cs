@@ -1,10 +1,15 @@
-using backend.Data;
+﻿using backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -17,7 +22,6 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
 
 app.UseHttpsRedirection();
 app.UseCors();

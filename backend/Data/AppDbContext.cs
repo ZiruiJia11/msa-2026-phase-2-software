@@ -7,7 +7,6 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<ScoreEntry> Scores { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<WorkoutQuest> WorkoutQuests { get; set; }
     public DbSet<WorkoutLog> WorkoutLogs { get; set; }
