@@ -1,24 +1,52 @@
-import type { ScoreEntry } from './types'
+﻿import type {
+  CreateWorkoutQuestRequest,
+  UpdateWorkoutQuestRequest,
+  WorkoutQuest,
+} from './types'
 
-const BASE = 'http://localhost:5000/api/scores'
+const BASE = 'http://localhost:5000/api/workoutquests'
 
-export async function getScores(): Promise<ScoreEntry[]> {
-  const res = await fetch(BASE)
-  if (!res.ok) throw new Error('Failed to fetch scores')
+async function parseResponse<T>(res: Response, fallbackMessage: string): Promise<T> {
+  if (!res.ok) {
+    let message = fallbackMessage
+    try {
+      const body = await res.json()
+      if (typeof body.message === 'string') message = body.message
+    } catch {
+      // Keep fallback message when the response has no JSON body.
+    }
+    throw new Error(message)
+  }
+
   return res.json()
 }
 
-export async function createScore(playerName: string, score: number): Promise<ScoreEntry> {
+export async function getWorkoutQuests(includeInactive = false): Promise<WorkoutQuest[]> {
+  const res = await fetch(`${BASE}?includeInactive=${includeInactive}`)
+  return parseResponse<WorkoutQuest[]>(res, 'Failed to fetch workout quests')
+}
+
+export async function createWorkoutQuest(request: CreateWorkoutQuestRequest): Promise<WorkoutQuest> {
   const res = await fetch(BASE, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ playerName, score }),
+    body: JSON.stringify(request),
   })
-  if (!res.ok) throw new Error('Failed to create score')
-  return res.json()
+
+  return parseResponse<WorkoutQuest>(res, 'Failed to create workout quest')
 }
 
-export async function deleteScore(id: number): Promise<void> {
+export async function updateWorkoutQuest(id: number, request: UpdateWorkoutQuestRequest): Promise<WorkoutQuest> {
+  const res = await fetch(`${BASE}/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(request),
+  })
+
+  return parseResponse<WorkoutQuest>(res, 'Failed to update workout quest')
+}
+
+export async function archiveWorkoutQuest(id: number): Promise<void> {
   const res = await fetch(`${BASE}/${id}`, { method: 'DELETE' })
-  if (!res.ok) throw new Error('Failed to delete score')
+  if (!res.ok) throw new Error('Failed to archive workout quest')
 }

@@ -1,18 +1,25 @@
-export default function About() {
+﻿export default function About() {
   return (
-    <div>
-      <h2>About This Demo</h2>
+    <section className="panel about-panel">
+      <p className="eyebrow">Project</p>
+      <h2>FitQuest</h2>
       <p>
-        This is a minimal getting-started example for the MSA 2026 Software Stream.
+        FitQuest is a gamified fitness challenge tracker for the MSA 2026 Software Stream.
       </p>
-      <p>
-        It demonstrates a <strong>.NET 10 backend</strong> connected to a{' '}
-        <strong>React + TypeScript frontend</strong> via a REST API.
-      </p>
-      <p>
-        <strong>This is not submission-worthy.</strong> Use it only to understand how
-        the pieces fit together before building your real project.
-      </p>
-    </div>
+      <div className="summary-grid">
+        <div>
+          <strong>Frontend</strong>
+          <span>React TypeScript</span>
+        </div>
+        <div>
+          <strong>Backend</strong>
+          <span>C# .NET API</span>
+        </div>
+        <div>
+          <strong>Theme</strong>
+          <span>Gamification</span>
+        </div>
+      </div>
+    </section>
   )
 }
