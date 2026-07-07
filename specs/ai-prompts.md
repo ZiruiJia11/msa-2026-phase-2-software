@@ -86,3 +86,70 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This planning step helped keep the backend changes small and understandable.
 - Creating the models as a separate commit makes the Git history clearer for assessment review.
+
+## Prompt 004: WorkoutQuest CRUD backend implementation
+
+### Date
+
+2026-07-07
+
+### Context
+
+- The FitQuest backend already had the first data model slice committed.
+- The next step was to add the first real FitQuest API feature and remove the original demo leaderboard API.
+
+### Prompt Summary
+
+- I asked AI what the next implementation step should be after creating the FitQuest data models.
+- AI recommended building `WorkoutQuest` CRUD endpoints before adding quest completion, XP updates, streaks, achievements, or frontend changes.
+- I asked AI to proceed with that backend section and keep documentation updates for after the implementation checkpoint.
+
+### AI Output Summary
+
+- AI created DTOs for creating, updating, and returning workout quests.
+- AI added `WorkoutQuestsController` with endpoints for listing, reading, creating, updating, and soft deleting quests.
+- AI removed the old demo score model and score controller.
+- AI added string enum JSON handling so API requests and responses can use readable values such as `Cardio` and `Easy`.
+
+### My Decision
+
+- I accepted the recommendation to keep this section focused on CRUD only.
+- I decided to leave quest completion, workout logs, XP profile updates, streak logic, achievements, and frontend integration for later commits.
+
+### Reflection
+
+- Splitting CRUD from completion logic kept the backend easier to test and understand.
+- This also created a clear Git checkpoint for the first real FitQuest API feature.
+
+## Prompt 005: FitQuest Quest Board frontend
+
+### Date
+
+2026-07-07
+
+### Context
+
+- After the demo score API was removed, the old leaderboard frontend showed a backend error because it still called `/api/scores`.
+- I needed the frontend to connect to the new FitQuest `WorkoutQuest` CRUD API.
+
+### Prompt Summary
+
+- I asked AI to replace the old demo leaderboard UI with a FitQuest Quest Board that uses `/api/workoutquests`.
+
+### AI Output Summary
+
+- AI updated the frontend API client and TypeScript types for workout quests.
+- AI replaced the old leaderboard route with a `Quests` page.
+- AI added a form for creating and editing quests.
+- AI added quest cards, summary stats, archive/restore actions, and responsive styling.
+- AI updated the About page to describe FitQuest instead of the demo app.
+
+### My Decision
+
+- I accepted this as the first real FitQuest frontend slice.
+- I kept the frontend focused on quest management only, leaving dashboard, progress, achievements, theme switching, and Zustand for later work.
+
+### Reflection
+
+- This made the app visible as FitQuest for the first time while keeping the scope small.
+- The frontend now matches the backend CRUD feature instead of relying on the removed demo score API.
