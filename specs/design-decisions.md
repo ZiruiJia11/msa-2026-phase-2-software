@@ -64,3 +64,17 @@ This file records key FitQuest project design decisions and the reasons behind t
 - The backend uses soft delete, so archived quests still exist in the API when requested with `includeInactive=true`.
 - Showing archived quests helps confirm that soft delete works.
 - Restore support makes the MVP easier to test and gives users a way to recover archived quests.
+
+## 11. Why Nullable Quest Request Fields Are Handled Explicitly
+
+- The frontend normally sends strings for title and description, but direct API callers can send null values.
+- Without explicit handling, null description values could cause server errors when the backend trims strings.
+- The backend now treats null descriptions as empty strings and validates null titles as missing titles.
+- This keeps API behavior predictable and safer.
+
+## 12. Why SQLite Was Added for Persistent Storage
+
+- The assessment requires data persistence using SQL or NoSQL storage.
+- EF Core InMemory storage was useful for the demo scaffold but data disappeared after backend restarts.
+- SQLite is simple to run locally, works well with EF Core, and does not require external database setup during early development.
+- The local database file is ignored by Git so development data is not committed.

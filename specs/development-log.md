@@ -85,3 +85,35 @@ This file tracks FitQuest development progress over time.
 - Add XP, level, streak, and achievement update logic after CRUD is stable.
 - Add dashboard and progress pages after the core backend loop is ready.
 - Add persistent database storage before final submission.
+
+## 2026-07-10
+
+### Completed
+
+- Reviewed the current FitQuest project state on the active feature branch.
+- Fixed nullable workout quest request handling.
+- Updated create and update DTOs so direct API callers can send null title or description values without causing a server error.
+- Confirmed `description: null` is saved as an empty string.
+- Confirmed `title: null` returns a 400 validation response.
+- Switched the backend from EF Core InMemory storage to SQLite persistent storage.
+- Added a `DefaultConnection` connection string using `Data Source=fitquest.db`.
+- Added startup database creation with `EnsureCreated()`.
+- Confirmed `backend/fitquest.db` is generated locally and ignored by Git.
+- Verified persistence by creating a quest, restarting the backend, and reading the quest again.
+- Created commit `829eaf9 Handle nullable workout quest fields`.
+- Created commit `2a16ce9 Use SQLite persistent storage`.
+- Pushed both commits to `origin/codex/fitquest-data-models`.
+
+### Validation
+
+- `dotnet build` succeeded after the SQLite change.
+- API smoke testing confirmed SQLite persistence across backend restart.
+- NuGet reported a warning for transitive package `SQLitePCLRaw.lib.e_sqlite3`; this is noted as a dependency warning to revisit later.
+
+### Next Steps
+
+- Add quest completion functionality.
+- Create `WorkoutLog` records when quests are completed.
+- Update `UserProfile` XP and level after quest completion.
+- Add streak logic after the completion endpoint is stable.
+- Add achievement unlock logic after logs and profile updates work.

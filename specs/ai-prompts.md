@@ -153,3 +153,37 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This made the app visible as FitQuest for the first time while keeping the scope small.
 - The frontend now matches the backend CRUD feature instead of relying on the removed demo score API.
+
+## Prompt 006: Backend validation and persistent storage
+
+### Date
+
+2026-07-10
+
+### Context
+
+- After reviewing the current FitQuest progress, I wanted to fix small backend quality issues before adding larger gamification features.
+- The backend still needed safer request handling and persistent database storage for the assessment requirements.
+
+### Prompt Summary
+
+- I asked AI to continue with small commits.
+- The first task was to handle nullable `WorkoutQuest` request fields safely.
+- The second task was to replace EF Core InMemory storage with SQLite persistent storage.
+
+### AI Output Summary
+
+- AI updated workout quest request DTOs so `Title` and `Description` can safely receive null input from direct API callers.
+- AI updated the controller to convert null title and description values to empty strings before validation and trimming.
+- AI switched the backend from `UseInMemoryDatabase` to `UseSqlite`.
+- AI added a `DefaultConnection` connection string and startup database creation using `EnsureCreated()`.
+
+### My Decision
+
+- I accepted these as two separate small commits to keep the Git history clear.
+- I kept the generated local SQLite database file out of Git because it is already ignored by `.gitignore`.
+
+### Reflection
+
+- This step improved backend reliability and moved the project closer to the assessment requirement for persistent storage.
+- A NuGet warning remains for a transitive SQLite dependency, but the backend builds and SQLite persistence works locally.
