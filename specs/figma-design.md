@@ -4,8 +4,8 @@ This document records the current Figma design reference for FitQuest.
 
 ## Figma File
 
-- **File name:** FitQuest UX design file
-- **Figma link:** https://www.figma.com/design/Cvsd4C67ZUrTiRp1UL9TtH/Untitled?node-id=0-1&t=fvJEcv4jJTA5x6bU-1
+- **File name:** FitQuest
+- **Figma link:** https://www.figma.com/design/Cvsd4C67ZUrTiRp1UL9TtH/FitQuest?node-id=0-1&p=f&t=CL25aBEkkeEQfQw3-0
 - **Purpose:** UX and visual design reference for the FitQuest frontend implementation.
 
 ## Current Figma Structure
