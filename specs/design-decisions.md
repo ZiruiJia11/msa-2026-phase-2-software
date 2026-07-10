@@ -78,3 +78,18 @@ This file records key FitQuest project design decisions and the reasons behind t
 - EF Core InMemory storage was useful for the demo scaffold but data disappeared after backend restarts.
 - SQLite is simple to run locally, works well with EF Core, and does not require external database setup during early development.
 - The local database file is ignored by Git so development data is not committed.
+
+## 13. Why Figma Is Used as the UX Baseline
+
+- The current frontend works functionally, but the app needs a more intentional UX direction before more pages are added.
+- I manually organised the Figma file into clear FitQuest design areas for UX screens and pixel-style assets.
+- The Figma design will act as the visual baseline for future frontend implementation work.
+- AI will help refine and implement the design in React TypeScript, but the UX direction comes from my organised Figma design.
+- This makes the design process clearer for assessment evidence and helps keep future UI changes consistent.
+
+## 14. Why Pixel Assets Are Included
+
+- FitQuest uses gamification, so small pixel-style characters and exercise action frames support the game-like theme.
+- Pixel assets can help represent quest progress, workout categories, achievements, and motivational feedback.
+- The assets are original FitQuest-style characters and should avoid copying specific copyrighted character designs.
+- The first implementation can use the assets as visual inspiration before adding full animation in the frontend.

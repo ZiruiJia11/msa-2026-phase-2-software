@@ -117,3 +117,20 @@ This file tracks FitQuest development progress over time.
 - Update `UserProfile` XP and level after quest completion.
 - Add streak logic after the completion endpoint is stable.
 - Add achievement unlock logic after logs and profile updates work.
+
+### UX Planning Update
+
+- Reviewed the FitQuest Figma direction after the first functional Quest Board frontend slice.
+- Organised the design direction around two main Figma areas:
+  - `FitQuest 01 - Pixel Assets`
+  - `FitQuest 02 - UX Screens`
+- Confirmed that the manually organised Figma UX design should be used as the baseline for future frontend improvements.
+- Recorded that AI will help refine and implement the real React TypeScript frontend based on this UX direction.
+- Kept the project rule that FitQuest should avoid medical advice and focus on quest tracking, XP, streaks, achievements, and progress.
+
+### Updated Next Steps
+
+- Use the Figma UX screens as the reference for improving the actual frontend layout and visual style.
+- Keep UI implementation changes small and commit them in focused steps.
+- Start with shared layout, navigation, colours, and page structure before adding larger gamification features.
+- Continue recording AI prompts and design decisions in `/specs` during development.

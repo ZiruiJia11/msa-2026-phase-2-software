@@ -187,3 +187,37 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This step improved backend reliability and moved the project closer to the assessment requirement for persistent storage.
 - A NuGet warning remains for a transitive SQLite dependency, but the backend builds and SQLite persistence works locally.
+
+## Prompt 007: UX direction and Figma design handoff
+
+### Date
+
+2026-07-10
+
+### Context
+
+- After implementing the first FitQuest Quest Board frontend slice, I wanted to improve the user experience before adding more features.
+- I manually organised the Figma file into a clearer UX design direction, including FitQuest screen designs and pixel-style asset ideas.
+- The goal was to use my own Figma UX direction as the design baseline, then ask AI to help refine and implement it in the actual React frontend.
+
+### Prompt Summary
+
+- I asked AI to help organise the Figma design and prepare the project record.
+- I clarified that the UX direction should be based on my manually designed Figma file.
+- I asked AI to record that the next implementation work should use this UX design as the reference for improving the real frontend.
+
+### AI Output Summary
+
+- AI recommended treating the Figma file as two main design areas: pixel assets and UX screens.
+- AI suggested documenting the design handoff before changing frontend code.
+- AI planned to use the Figma UX direction as the reference when refining the React implementation.
+
+### My Decision
+
+- I decided that the manually organised Figma UX design should become the visual baseline for the next frontend work.
+- I will let AI assist with turning the Figma direction into a more polished and consistent React TypeScript UI.
+
+### Reflection
+
+- This step separates design thinking from implementation.
+- Recording the handoff makes it clear that the frontend design is based on my own UX direction, with AI used to support refinement and implementation.
