@@ -1,5 +1,10 @@
 # Getting Started Demo
 
+## FitQuest Design Reference
+
+- Figma design notes: [`specs/figma-design.md`](specs/figma-design.md)
+- AI prompts, design decisions, and development progress are recorded in the `/specs` folder.
+
 > **This is NOT submission-worthy.**
 > This is a bare-minimum scaffold to show how the pieces fit together. Your real project needs a gamification theme, proper UI design, unit tests, deployment, Scalar docs, and at least 3 advanced features.
 
