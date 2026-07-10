@@ -4,8 +4,8 @@ namespace backend.Dtos;
 
 public class CreateWorkoutQuestRequest
 {
-    public string Title { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
+    public string? Title { get; set; }
+    public string? Description { get; set; }
     public QuestCategory Category { get; set; }
     public QuestDifficulty Difficulty { get; set; }
     public DateOnly? DueDate { get; set; }
@@ -13,8 +13,8 @@ public class CreateWorkoutQuestRequest
 
 public class UpdateWorkoutQuestRequest
 {
-    public string Title { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
+    public string? Title { get; set; }
+    public string? Description { get; set; }
     public QuestCategory Category { get; set; }
     public QuestDifficulty Difficulty { get; set; }
     public DateOnly? DueDate { get; set; }

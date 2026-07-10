@@ -53,7 +53,9 @@ public class WorkoutQuestsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<WorkoutQuestResponse>> Create(CreateWorkoutQuestRequest request)
     {
-        var validationError = ValidateRequest(request.Title, request.Description, request.Category, request.Difficulty);
+        var title = request.Title ?? string.Empty;
+        var description = request.Description ?? string.Empty;
+        var validationError = ValidateRequest(title, description, request.Category, request.Difficulty);
         if (validationError is not null)
         {
             return BadRequest(new { message = validationError });
@@ -62,8 +64,8 @@ public class WorkoutQuestsController : ControllerBase
         var now = DateTime.UtcNow;
         var quest = new WorkoutQuest
         {
-            Title = request.Title.Trim(),
-            Description = request.Description.Trim(),
+            Title = title.Trim(),
+            Description = description.Trim(),
             Category = request.Category,
             Difficulty = request.Difficulty,
             XpReward = GetXpReward(request.Difficulty),
@@ -82,7 +84,9 @@ public class WorkoutQuestsController : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<ActionResult<WorkoutQuestResponse>> Update(int id, UpdateWorkoutQuestRequest request)
     {
-        var validationError = ValidateRequest(request.Title, request.Description, request.Category, request.Difficulty);
+        var title = request.Title ?? string.Empty;
+        var description = request.Description ?? string.Empty;
+        var validationError = ValidateRequest(title, description, request.Category, request.Difficulty);
         if (validationError is not null)
         {
             return BadRequest(new { message = validationError });
@@ -94,8 +98,8 @@ public class WorkoutQuestsController : ControllerBase
             return NotFound();
         }
 
-        quest.Title = request.Title.Trim();
-        quest.Description = request.Description.Trim();
+        quest.Title = title.Trim();
+        quest.Description = description.Trim();
         quest.Category = request.Category;
         quest.Difficulty = request.Difficulty;
         quest.XpReward = GetXpReward(request.Difficulty);
