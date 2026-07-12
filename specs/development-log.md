@@ -134,3 +134,38 @@ This file tracks FitQuest development progress over time.
 - Keep UI implementation changes small and commit them in focused steps.
 - Start with shared layout, navigation, colours, and page structure before adding larger gamification features.
 - Continue recording AI prompts and design decisions in `/specs` during development.
+
+## 2026-07-12
+
+### Completed
+
+- Started a new frontend UX implementation branch: `fitquest-ux-shell`.
+- Added the first FitQuest UX shell based on the Figma design direction.
+- Added frontend routes for:
+  - Dashboard
+  - Quests
+  - Progress
+  - Achievements
+  - Settings
+- Kept the existing Quest Board CRUD functionality connected to the backend.
+- Added placeholder pages for planned sections that will be connected to backend data later.
+- Refreshed the sidebar and app shell styling with a more energetic FitQuest colour direction.
+- Polished Quest Board cards with category pills, XP pills, hover states, and clearer visual hierarchy.
+- Ran `npm run build` successfully after each frontend implementation step.
+- Created commit `7faebfb Add FitQuest page navigation shell`.
+- Created commit `0df0e0f Refresh FitQuest shell styling`.
+- Created commit `dab85e2 Polish quest board cards`.
+
+### Validation
+
+- `npm run build` succeeded after adding the page navigation shell.
+- `npm run build` succeeded after refreshing the app shell styling.
+- `npm run build` succeeded after polishing Quest Board cards.
+
+### Next Steps
+
+- Run the app locally and review the updated UX in the browser.
+- Continue refining the Dashboard page using real backend data after quest completion is implemented.
+- Add backend quest completion functionality.
+- Create workout logs when quests are completed.
+- Update user XP, levels, streaks, and achievement logic in later backend slices.

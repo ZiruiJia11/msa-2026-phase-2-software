@@ -221,3 +221,40 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This step separates design thinking from implementation.
 - Recording the handoff makes it clear that the frontend design is based on my own UX direction, with AI used to support refinement and implementation.
+
+## Prompt 008: Frontend UX shell implementation
+
+### Date
+
+2026-07-12
+
+### Context
+
+- The Figma UX design had been organised and recorded as the visual baseline for FitQuest.
+- The current React frontend only had the working Quest Board and About page.
+- I wanted to begin translating the Figma direction into the real frontend in small commits.
+
+### Prompt Summary
+
+- I asked AI to start the new day's plan and implement the first frontend UX improvements.
+- I also clarified that future branches do not need to use the `codex/` prefix.
+- The requested work was to create the UX shell step by step while keeping commits small.
+
+### AI Output Summary
+
+- AI created a new branch called `fitquest-ux-shell`.
+- AI added page routes for Dashboard, Quests, Progress, Achievements, and Settings.
+- AI added placeholder pages for planned sections that are not fully implemented yet.
+- AI refreshed the FitQuest shell styling with a more energetic colour direction.
+- AI polished Quest Board cards with category pills, XP pills, and clearer visual hierarchy.
+
+### My Decision
+
+- I accepted this as the first implementation step from Figma UX planning into the actual React frontend.
+- I kept the work focused on frontend structure and visual polish only.
+- Backend completion, XP updates, streaks, and achievements will be implemented later.
+
+### Reflection
+
+- This step made the app feel more like the planned FitQuest product instead of a single CRUD page.
+- Keeping the work in small commits made the Git history clearer and easier to review.
