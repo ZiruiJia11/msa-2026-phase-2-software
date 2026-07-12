@@ -12,9 +12,11 @@ export default function App() {
     <BrowserRouter>
       <div className="app-shell">
         <aside className="sidebar">
-          <div>
+          <div className="brand-block">
+            <span className="brand-mark" aria-hidden="true">FQ</span>
             <p className="eyebrow">FitQuest</p>
             <h1>Player Hub</h1>
+            <p className="sidebar-copy">Track quests, earn XP, and build training streaks.</p>
           </div>
           <nav aria-label="Main navigation">
             <NavLink to="/" end>Dashboard</NavLink>

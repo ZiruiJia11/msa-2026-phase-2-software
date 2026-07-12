@@ -4,8 +4,8 @@
 
 :root {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #18211d;
-  background: #edf2ea;
+  color: #121826;
+  background: #eef4ff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -48,8 +48,40 @@ a {
   justify-content: space-between;
   gap: 32px;
   padding: 32px 24px;
-  color: #f7fbf4;
-  background: #18211d;
+  overflow: hidden;
+  color: #f8fbff;
+  background:
+    linear-gradient(155deg, rgba(43, 111, 255, 0.94), rgba(18, 24, 38, 0.98) 54%),
+    #121826;
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+.brand-block {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+}
+
+.brand-mark {
+  display: inline-grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  color: #121826;
+  background: #b7ff4a;
+  box-shadow: 8px 8px 0 #ff6b3d;
+  font-weight: 900;
 }
 
 .sidebar h1,
@@ -66,22 +98,35 @@ a {
   font-size: 42px;
 }
 
+.sidebar-copy {
+  max-width: 210px;
+  margin: 0;
+  color: #c7d7ff;
+  line-height: 1.5;
+}
+
 .sidebar nav {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: 10px;
 }
 
 .sidebar nav a {
+  border: 1px solid transparent;
   padding: 12px 14px;
   border-radius: 8px;
-  color: #cbd8ca;
+  color: #dbe7ff;
   text-decoration: none;
+  font-weight: 800;
 }
 
 .sidebar nav a.active,
 .sidebar nav a:hover {
-  color: #112016;
-  background: #b8f26f;
+  border-color: rgba(183, 255, 74, 0.55);
+  color: #121826;
+  background: #b7ff4a;
+  box-shadow: 5px 5px 0 #ff6b3d;
 }
 
 .main-content {
@@ -103,10 +148,10 @@ a {
   gap: 24px;
   align-items: end;
   padding: 28px;
-  border: 1px solid #d6dfd2;
+  border: 1px solid #d9e4ff;
   border-radius: 8px;
-  background: #fbfdf8;
-  box-shadow: 0 18px 50px rgba(24, 33, 29, 0.08);
+  background: #ffffff;
+  box-shadow: 0 18px 50px rgba(18, 24, 38, 0.08);
 }
 
 .hero-band h2 {
@@ -116,7 +161,7 @@ a {
 
 .eyebrow {
   margin: 0;
-  color: #52705b;
+  color: #2b6fff;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0;
@@ -141,7 +186,7 @@ a {
 }
 
 .metric-row strong {
-  color: #18211d;
+  color: #121826;
   font-size: 22px;
   line-height: 1.1;
 }
@@ -163,8 +208,8 @@ a {
 .panel {
   border: 1px solid #d6dfd2;
   border-radius: 8px;
-  background: #fbfdf8;
-  box-shadow: 0 18px 50px rgba(24, 33, 29, 0.08);
+  background: #ffffff;
+  box-shadow: 0 18px 50px rgba(18, 24, 38, 0.08);
 }
 
 .quest-form,
@@ -220,8 +265,8 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #6a9d46;
-  box-shadow: 0 0 0 3px rgba(184, 242, 111, 0.35);
+  border-color: #2b6fff;
+  box-shadow: 0 0 0 3px rgba(43, 111, 255, 0.16);
 }
 
 .primary-button,
@@ -235,12 +280,13 @@ textarea:focus {
 }
 
 .primary-button {
-  color: #112016;
-  background: #b8f26f;
+  color: #121826;
+  background: #b7ff4a;
+  box-shadow: 4px 4px 0 #ff6b3d;
 }
 
 .primary-button:hover {
-  background: #a6e35c;
+  background: #a9f53c;
 }
 
 .primary-button:disabled {
@@ -249,13 +295,13 @@ textarea:focus {
 }
 
 .ghost-button {
-  color: #26352b;
-  background: #eef4ea;
+  color: #17213a;
+  background: #eef4ff;
 }
 
 .danger-button {
   color: #ffffff;
-  background: #9d4b3f;
+  background: #ff5f57;
 }
 
 .status {
@@ -271,8 +317,8 @@ textarea:focus {
 }
 
 .status.success {
-  color: #23552d;
-  background: #e0f6d8;
+  color: #245019;
+  background: #e9ffd1;
 }
 
 .toggle-row {
