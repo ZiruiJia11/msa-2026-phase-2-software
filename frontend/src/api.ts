@@ -1,4 +1,5 @@
-﻿import type {
+import type {
+  CompleteWorkoutQuestResponse,
   CreateWorkoutQuestRequest,
   UpdateWorkoutQuestRequest,
   WorkoutQuest,
@@ -44,6 +45,16 @@ export async function updateWorkoutQuest(id: number, request: UpdateWorkoutQuest
   })
 
   return parseResponse<WorkoutQuest>(res, 'Failed to update workout quest')
+}
+
+export async function completeWorkoutQuest(id: number): Promise<CompleteWorkoutQuestResponse> {
+  const res = await fetch(`${BASE}/${id}/complete`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ notes: '' }),
+  })
+
+  return parseResponse<CompleteWorkoutQuestResponse>(res, 'Failed to complete workout quest')
 }
 
 export async function archiveWorkoutQuest(id: number): Promise<void> {

@@ -2,6 +2,7 @@
 import type { FormEvent } from 'react'
 import {
   archiveWorkoutQuest,
+  completeWorkoutQuest,
   createWorkoutQuest,
   getWorkoutQuests,
   updateWorkoutQuest,
@@ -154,6 +155,18 @@ export default function Quests() {
     }
   }
 
+  const handleComplete = async (quest: WorkoutQuest) => {
+    try {
+      setError('')
+      setMessage('')
+      const result = await completeWorkoutQuest(quest.id)
+      setMessage(`Quest complete: +${result.xpEarned} XP. Total XP: ${result.totalXp}. Level ${result.level}.`)
+      await loadQuests()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not complete quest')
+    }
+  }
+
   return (
     <div className="quest-page">
       <section className="hero-band">
@@ -290,6 +303,9 @@ export default function Quests() {
                   <span>{quest.isActive ? 'Active' : 'Archived'}</span>
                 </div>
                 <div className="quest-actions">
+                  {quest.isActive && (
+                    <button type="button" className="primary-button" onClick={() => handleComplete(quest)}>Complete</button>
+                  )}
                   <button type="button" className="ghost-button" onClick={() => handleEdit(quest)}>Edit</button>
                   {quest.isActive ? (
                     <button type="button" className="danger-button" onClick={() => handleArchive(quest.id)}>Archive</button>

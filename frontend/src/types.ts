@@ -25,3 +25,13 @@ export interface CreateWorkoutQuestRequest {
 export interface UpdateWorkoutQuestRequest extends CreateWorkoutQuestRequest {
   isActive: boolean
 }
+
+export interface CompleteWorkoutQuestResponse {
+  workoutLogId: number
+  workoutQuestId: number
+  userProfileId: number
+  xpEarned: number
+  totalXp: number
+  level: number
+  completedAt: string
+}
