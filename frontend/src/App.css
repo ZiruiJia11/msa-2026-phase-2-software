@@ -218,6 +218,10 @@ a {
   padding: 22px;
 }
 
+.quest-form {
+  border-top: 5px solid #b7ff4a;
+}
+
 .panel-header,
 .quest-card-main,
 .quest-actions {
@@ -344,9 +348,16 @@ textarea:focus {
   display: grid;
   gap: 14px;
   padding: 18px;
-  border: 1px solid #dce5d8;
+  border: 1px solid #d9e4ff;
   border-radius: 8px;
   background: #ffffff;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.quest-card:hover {
+  border-color: #9bb8ff;
+  box-shadow: 0 16px 36px rgba(43, 111, 255, 0.12);
+  transform: translateY(-2px);
 }
 
 .quest-card.archived {
@@ -362,6 +373,36 @@ textarea:focus {
 .quest-card h4 {
   margin-top: 4px;
   font-size: 20px;
+}
+
+.category-pill {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #121826;
+  font-size: 12px;
+  font-weight: 900;
+  background: #dbe7ff;
+}
+
+.category-pill.cardio,
+.category-pill.endurance {
+  background: #cde6ff;
+}
+
+.category-pill.strength {
+  background: #d8ffd4;
+}
+
+.category-pill.flexibility,
+.category-pill.mobility {
+  background: #eee0ff;
+}
+
+.category-pill.recovery {
+  background: #ffe9c7;
 }
 
 .difficulty {
@@ -397,9 +438,14 @@ textarea:focus {
   border-radius: 999px;
   padding: 7px 10px;
   color: #4c5d51;
-  background: #eef4ea;
+  background: #eef4ff;
   font-size: 13px;
   font-weight: 800;
+}
+
+.quest-meta .xp-pill {
+  color: #121826;
+  background: #b7ff4a;
 }
 
 .empty-state {

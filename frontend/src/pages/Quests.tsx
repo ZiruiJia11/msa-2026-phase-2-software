@@ -278,14 +278,14 @@ export default function Quests() {
               <article className={quest.isActive ? 'quest-card' : 'quest-card archived'} key={quest.id}>
                 <div className="quest-card-main">
                   <div>
-                    <p className="eyebrow">{quest.category}</p>
+                    <p className={`category-pill ${quest.category.toLowerCase()}`}>{quest.category}</p>
                     <h4>{quest.title}</h4>
                   </div>
                   <span className={`difficulty ${quest.difficulty.toLowerCase()}`}>{quest.difficulty}</span>
                 </div>
                 {quest.description && <p>{quest.description}</p>}
                 <div className="quest-meta">
-                  <span>{quest.xpReward} XP</span>
+                  <span className="xp-pill">{quest.xpReward} XP</span>
                   <span>{formatDate(quest.dueDate)}</span>
                   <span>{quest.isActive ? 'Active' : 'Archived'}</span>
                 </div>
