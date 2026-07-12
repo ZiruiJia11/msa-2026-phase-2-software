@@ -128,6 +128,56 @@ public class WorkoutQuestsController : ControllerBase
         return NoContent();
     }
 
+    [HttpPost("{id:int}/complete")]
+    public async Task<ActionResult<CompleteWorkoutQuestResponse>> Complete(int id, CompleteWorkoutQuestRequest request)
+    {
+        var quest = await _db.WorkoutQuests.FindAsync(id);
+        if (quest is null)
+        {
+            return NotFound();
+        }
+
+        if (!quest.IsActive)
+        {
+            return BadRequest(new { message = "Archived quests cannot be completed." });
+        }
+
+        var notes = request.Notes ?? string.Empty;
+        if (notes.Trim().Length > 500)
+        {
+            return BadRequest(new { message = "Notes must be 500 characters or fewer." });
+        }
+
+        var user = await GetOrCreateDefaultUser();
+        var now = DateTime.UtcNow;
+        var log = new WorkoutLog
+        {
+            WorkoutQuestId = quest.Id,
+            UserProfileId = user.Id,
+            CompletedAt = now,
+            XpEarned = quest.XpReward,
+            Notes = notes.Trim()
+        };
+
+        user.TotalXp += quest.XpReward;
+        user.Level = CalculateLevel(user.TotalXp);
+        user.LastCompletedDate = DateOnly.FromDateTime(now);
+
+        _db.WorkoutLogs.Add(log);
+        await _db.SaveChangesAsync();
+
+        return Ok(new CompleteWorkoutQuestResponse
+        {
+            WorkoutLogId = log.Id,
+            WorkoutQuestId = quest.Id,
+            UserProfileId = user.Id,
+            XpEarned = log.XpEarned,
+            TotalXp = user.TotalXp,
+            Level = user.Level,
+            CompletedAt = log.CompletedAt
+        });
+    }
+
     private static WorkoutQuestResponse ToResponse(WorkoutQuest quest)
     {
         return new WorkoutQuestResponse
@@ -184,5 +234,31 @@ public class WorkoutQuestsController : ControllerBase
             QuestDifficulty.Hard => 100,
             _ => 0
         };
+    }
+
+    private async Task<UserProfile> GetOrCreateDefaultUser()
+    {
+        var user = await _db.UserProfiles.FirstOrDefaultAsync(profile => profile.Username == "Player");
+        if (user is not null)
+        {
+            return user;
+        }
+
+        user = new UserProfile
+        {
+            Username = "Player",
+            Level = 1,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        _db.UserProfiles.Add(user);
+        await _db.SaveChangesAsync();
+
+        return user;
+    }
+
+    private static int CalculateLevel(int totalXp)
+    {
+        return Math.Max(1, (totalXp / 100) + 1);
     }
 }

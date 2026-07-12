@@ -34,3 +34,19 @@ public class WorkoutQuestResponse
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 }
+
+public class CompleteWorkoutQuestRequest
+{
+    public string? Notes { get; set; }
+}
+
+public class CompleteWorkoutQuestResponse
+{
+    public int WorkoutLogId { get; set; }
+    public int WorkoutQuestId { get; set; }
+    public int UserProfileId { get; set; }
+    public int XpEarned { get; set; }
+    public int TotalXp { get; set; }
+    public int Level { get; set; }
+    public DateTime CompletedAt { get; set; }
+}
