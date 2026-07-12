@@ -169,3 +169,31 @@ This file tracks FitQuest development progress over time.
 - Add backend quest completion functionality.
 - Create workout logs when quests are completed.
 - Update user XP, levels, streaks, and achievement logic in later backend slices.
+
+### Quest Completion Update
+
+- Created a new branch: `fitquest-quest-completion`.
+- Added `POST /api/workoutquests/{id}/complete`.
+- Added request and response DTOs for quest completion.
+- Added default `Player` profile creation for the MVP completion flow.
+- Created `WorkoutLog` records when quests are completed.
+- Updated `UserProfile.TotalXp` when a quest is completed.
+- Added simple level calculation using 100 XP per level.
+- Added a frontend `completeWorkoutQuest` API function.
+- Added a `Complete` button to active quest cards.
+- Displayed completion feedback with XP earned, total XP, and current level.
+- Created commit `a773890 Add workout quest completion endpoint`.
+- Created commit `fe5ec12 Add quest completion button`.
+
+### Validation
+
+- `dotnet build` succeeded with the existing SQLite dependency warning.
+- `npm run build` succeeded.
+- API smoke testing confirmed that completing a quest returns `workoutLogId`, `xpEarned`, `totalXp`, and `level`.
+
+### Updated Next Steps
+
+- Connect Dashboard to real profile and progress data.
+- Add streak calculation after completion is stable.
+- Add achievement unlock logic after logs and profile updates are working.
+- Consider adding a basic WorkoutLogs endpoint for the Progress page.

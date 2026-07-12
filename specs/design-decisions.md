@@ -93,3 +93,23 @@ This file records key FitQuest project design decisions and the reasons behind t
 - Pixel assets can help represent quest progress, workout categories, achievements, and motivational feedback.
 - The assets are original FitQuest-style characters and should avoid copying specific copyrighted character designs.
 - The first implementation can use the assets as visual inspiration before adding full animation in the frontend.
+
+## 15. Why Quest Completion Creates Workout Logs
+
+- Completing a quest should not only change the quest card in the UI.
+- Each completion is a historical activity event, so it is recorded as a `WorkoutLog`.
+- This allows the same quest to be completed multiple times over time.
+- Workout logs can later support progress history, weekly summaries, streaks, and achievement unlock rules.
+
+## 16. Why the MVP Uses One Default User
+
+- Full authentication and multi-user profile management would increase the project scope.
+- The MVP can still demonstrate XP, levels, logs, streaks, and achievements with one default user profile.
+- The backend creates or reuses a default `Player` profile when a quest is completed.
+- This keeps the gamification loop working while leaving real account support as an optional future improvement.
+
+## 17. Why Level Calculation Is Simple First
+
+- The first level rule is `100 XP per level`.
+- This is easy to explain, test, and demonstrate.
+- More advanced level curves can be added later after quest completion, logs, streaks, and achievements are stable.

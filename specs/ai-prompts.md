@@ -258,3 +258,40 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This step made the app feel more like the planned FitQuest product instead of a single CRUD page.
 - Keeping the work in small commits made the Git history clearer and easier to review.
+
+## Prompt 009: Quest completion feature
+
+### Date
+
+2026-07-12
+
+### Context
+
+- FitQuest already had workout quest CRUD and a polished frontend quest board.
+- The next core gamification feature was letting users complete a quest and earn XP.
+- This needed to create a workout log and update the user's progress data.
+
+### Prompt Summary
+
+- I asked AI to start the Quest Completion Backend Slice.
+- The planned scope was to add a backend completion endpoint, create `WorkoutLog` records, update user XP and level, and then connect the frontend with a Complete button.
+- I also asked AI to keep commits small and leave time between commits.
+
+### AI Output Summary
+
+- AI added `POST /api/workoutquests/{id}/complete`.
+- AI added completion request and response DTOs.
+- AI added a simple default user profile flow for the MVP.
+- AI created a workout log when a quest is completed.
+- AI updated the user's total XP and calculated level using a simple 100 XP per level rule.
+- AI added a frontend API function and Complete button on active quest cards.
+
+### My Decision
+
+- I accepted this as the first full gamification loop after quest CRUD.
+- I kept streak and achievement unlock logic out of this slice so the feature remains small and easier to test.
+
+### Reflection
+
+- This feature connects the app's quest system to real progress tracking.
+- Completing a quest now produces backend data that can later power Dashboard, Progress, Streak, and Achievement pages.
