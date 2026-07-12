@@ -232,13 +232,13 @@ This file records meaningful AI prompts used during planning and development of 
 
 - The Figma UX design had been organised and recorded as the visual baseline for FitQuest.
 - The current React frontend only had the working Quest Board and About page.
-- I wanted to begin translating the Figma direction into the real frontend in small commits.
+- I wanted to begin translating the Figma direction into the real frontend.
 
 ### Prompt Summary
 
 - I asked AI to start the new day's plan and implement the first frontend UX improvements.
 - I also clarified that future branches do not need to use the `codex/` prefix.
-- The requested work was to create the UX shell step by step while keeping commits small.
+- The requested work was to create the UX shell step by step.
 
 ### AI Output Summary
 
@@ -275,7 +275,6 @@ This file records meaningful AI prompts used during planning and development of 
 
 - I asked AI to start the Quest Completion Backend Slice.
 - The planned scope was to add a backend completion endpoint, create `WorkoutLog` records, update user XP and level, and then connect the frontend with a Complete button.
-- I also asked AI to keep commits small and leave time between commits.
 
 ### AI Output Summary
 
