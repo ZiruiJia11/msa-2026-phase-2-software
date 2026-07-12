@@ -1,101 +1,243 @@
-# Getting Started Demo
+# FitQuest
 
-## FitQuest Design Reference
+FitQuest is a gamified fitness quest tracker built for the Microsoft Student Accelerator 2026 Phase 2 Software Stream.
 
-- Figma design notes: [`specs/figma-design.md`](specs/figma-design.md)
-- AI prompts, design decisions, and development progress are recorded in the `/specs` folder.
+The app turns personal workout tasks into quests. Users can create workout quests, complete them, earn XP, level up, and build progress history over time. FitQuest focuses on motivation, habit consistency, and progress tracking. It does not provide medical advice, personalised training plans, calorie recommendations, injury advice, or healthcare guidance.
 
-> **This is NOT submission-worthy.**
-> This is a bare-minimum scaffold to show how the pieces fit together. Your real project needs a gamification theme, proper UI design, unit tests, deployment, Scalar docs, and at least 3 advanced features.
+## Assessment Theme
 
----
+The 2026 software stream theme is **Gamification**.
 
-## What's in Here
+FitQuest connects to this theme through:
 
-```
-demo/
-├── backend/       .NET 10 Web API — CRUD endpoints, EF Core, SQLite
-└── frontend/      React + TypeScript (Vite) — calls the API, React Router
-```
+- Workout quests
+- XP rewards
+- Level progression
+- Workout logs
+- Achievement planning
+- Progress dashboards
+- Pixel-style visual direction and game-inspired UI
 
-The app is a simple leaderboard: add a player name and score, see them ranked, delete entries.
+## Current Features
 
----
+- Workout quest CRUD:
+  - Create quests
+  - View quests
+  - Edit quests
+  - Archive quests
+  - Restore archived quests
+- Quest completion:
+  - Complete active quests
+  - Create workout log records
+  - Award XP
+  - Update total XP
+  - Calculate level using a simple 100 XP per level rule
+- FitQuest frontend shell:
+  - Dashboard
+  - Quests
+  - Progress
+  - Achievements
+  - Settings
+- Responsive React Router navigation
+- SQLite persistent storage
+- Scalar API documentation
+- Figma UX design reference
+- `/specs` documentation for planning, AI usage, design decisions, and development progress
 
-## Running the Backend
+## Tech Stack
 
-Requires [.NET 10 SDK](https://dotnet.microsoft.com/download).
+### Frontend
 
-```bash
-cd backend
-dotnet run
-```
+- React
+- TypeScript
+- Vite
+- React Router
+- Custom CSS
 
-API is available at `http://localhost:5000`
-Scalar API docs at `http://localhost:5000/scalar`
+### Backend
 
-Uses an in-memory database — no setup needed, but data resets every time the backend restarts.
-
----
-
-## Running the Frontend
-
-Requires [Node.js v20+](https://nodejs.org).
-
-```bash
-cd frontend
-npm install   # only needed the first time
-npm run dev
-```
-
-Open `http://localhost:5173` in your browser.
-
-> Make sure the backend is running first, otherwise you'll see an error message on the leaderboard page.
-
----
+- C#
+- .NET 10
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQLite
+- Scalar API documentation
 
 ## Project Structure
 
-**Backend**
+```text
+backend/
+  Controllers/
+  Data/
+  Dtos/
+  Models/
+  Program.cs
 
-| File | Purpose |
-|------|---------|
-| `Program.cs` | App setup — DI, CORS, EF Core, Scalar |
-| `Models/ScoreEntry.cs` | Data model |
-| `Data/AppDbContext.cs` | EF Core database context |
-| `Controllers/ScoresController.cs` | REST endpoints (GET, POST, PUT, DELETE) |
+frontend/
+  src/
+    pages/
+    api.ts
+    App.tsx
+    types.ts
 
-**Frontend**
+specs/
+  agent-instructions.md
+  ai-prompts.md
+  design-decisions.md
+  development-log.md
+  figma-design.md
+  project-plan.md
+```
 
-| File | Purpose |
-|------|---------|
-| `src/types.ts` | Shared TypeScript interfaces |
-| `src/api.ts` | All fetch calls to the backend |
-| `src/App.tsx` | App shell with React Router and nav |
-| `src/pages/Leaderboard.tsx` | Main page — list, add, delete scores |
-| `src/pages/About.tsx` | Second route to show React Router works |
+## Running Locally
 
----
+### Backend
 
-## What to Do Next (for your real submission)
+Requires the .NET 10 SDK.
 
-1. **Pick your gamification idea** — study tracker, habit app, quiz platform, etc.
-2. **Design your data models** — users, points, badges, streaks, levels
-3. **Build proper CRUD endpoints** for all entities
-4. **Build a real UI** — use MUI, Mantine, or Tailwind and design for mobile too
-5. **Add unit tests** — both frontend and backend
-6. **Pick 3 advanced features** and implement them (list them in your README!)
-7. **Deploy** — Render, Railway, Azure, Vercel, Netlify, etc.
-8. **Write your `/specs` folder** — document your AI prompts and design decisions as you go
+```bash
+cd backend
+dotnet run --launch-profile http
+```
 
----
+Backend API:
 
-## Common Problems
+```text
+http://localhost:5000
+```
 
-**`dotnet` not found** — install the [.NET 10 SDK](https://dotnet.microsoft.com/download)
+Scalar API documentation:
 
-**CORS error in browser** — check that `app.UseCors()` is in `Program.cs` before `app.MapControllers()`
+```text
+http://localhost:5000/scalar
+```
 
-**Frontend can't reach backend** — confirm the API URL in `src/api.ts` matches the port in `backend/Properties/launchSettings.json` (default: 5000)
+SQLite database:
 
-**Port already in use** — change `applicationUrl` in `Properties/launchSettings.json`
+```text
+backend/fitquest.db
+```
+
+The local database file is ignored by Git.
+
+### Frontend
+
+Requires Node.js 20 or higher.
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+The frontend currently expects the backend API to run on:
+
+```text
+http://localhost:5000
+```
+
+## API Summary
+
+Current main API endpoints:
+
+- `GET /api/workoutquests`
+- `GET /api/workoutquests/{id}`
+- `POST /api/workoutquests`
+- `PUT /api/workoutquests/{id}`
+- `DELETE /api/workoutquests/{id}`
+- `POST /api/workoutquests/{id}/complete`
+
+## Design Reference
+
+Figma design notes are recorded in:
+
+```text
+specs/figma-design.md
+```
+
+Figma file:
+
+```text
+https://www.figma.com/design/Cvsd4C67ZUrTiRp1UL9TtH/FitQuest?node-id=0-1&p=f&t=CL25aBEkkeEQfQw3-0
+```
+
+## AI Usage and Planning Evidence
+
+The `/specs` folder contains evidence of planning, design decisions, AI-assisted development, and development progress.
+
+Important files:
+
+- `specs/ai-prompts.md`
+- `specs/design-decisions.md`
+- `specs/development-log.md`
+- `specs/project-plan.md`
+- `specs/agent-instructions.md`
+- `specs/figma-design.md`
+
+## Planned Advanced Requirements
+
+The final submission must clearly list the top three implemented advanced requirements. These are currently planned and not yet final:
+
+1. **Security measures**
+   - Input validation and sanitisation
+   - Rate limiting
+2. **State management**
+   - Planned use of Zustand for shared frontend state
+3. **Theme switching**
+   - Planned light/dark mode support
+
+These will be updated to **Implemented** after the features are completed.
+
+## Deployment
+
+Deployment links will be added before final submission.
+
+- Frontend deployment: To be added
+- Backend deployment: To be added
+
+## Testing
+
+Unit tests are planned for both frontend and backend.
+
+Current validation commands:
+
+```bash
+cd backend
+dotnet build
+```
+
+```bash
+cd frontend
+npm run build
+```
+
+## Current Development Status
+
+FitQuest has completed the first real vertical slices:
+
+- FitQuest data models
+- Workout quest CRUD API
+- Quest Board frontend
+- SQLite persistence
+- Figma UX direction
+- Multi-page frontend shell
+- Quest completion with XP and workout logs
+
+Next priorities:
+
+1. Connect Dashboard and Progress pages to real backend data.
+2. Add streak logic.
+3. Add achievement unlock logic.
+4. Add frontend and backend unit tests.
+5. Implement and document three advanced requirements.
+6. Deploy frontend and backend.
+
+## Reflection
+
+If I were to repeat this project, I would replace the starter scaffold README earlier and set up testing infrastructure sooner. The project is now moving from core feature implementation into assessment hardening: tests, deployment, advanced requirements, and final documentation.
