@@ -294,3 +294,38 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This feature connects the app's quest system to real progress tracking.
 - Completing a quest now produces backend data that can later power Dashboard, Progress, Streak, and Achievement pages.
+
+## Prompt 010: Dashboard and Progress data slice
+
+### Date
+
+2026-07-13
+
+### Context
+
+- Quest completion had been implemented and was creating `WorkoutLog` records.
+- The Dashboard and Progress pages still showed placeholder content.
+- The next step was to show real gamification feedback from backend data.
+
+### Prompt Summary
+
+- I asked AI to implement the Dashboard and Progress real data slice.
+- The requested scope was to add profile summary and workout log endpoints, then connect the frontend Dashboard and Progress pages to those endpoints.
+
+### AI Output Summary
+
+- AI added a profile summary endpoint for the default player profile.
+- AI added a workout logs endpoint for recent completion history.
+- AI connected the Dashboard to level, total XP, completed workout count, and recent completions.
+- AI connected the Progress page to workout log history.
+- AI added simple XP progress bar styling and activity card styling.
+
+### My Decision
+
+- I accepted this as the next step because it turns completed quest data into visible user progress.
+- I kept streak and achievement logic out of this slice so the feature stayed focused.
+
+### Reflection
+
+- This made the gamification loop more complete: create quest, complete quest, earn XP, and see progress.
+- The Dashboard and Progress pages are now useful screens instead of placeholders.

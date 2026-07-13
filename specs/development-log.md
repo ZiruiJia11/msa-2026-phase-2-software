@@ -197,3 +197,34 @@ This file tracks FitQuest development progress over time.
 - Add streak calculation after completion is stable.
 - Add achievement unlock logic after logs and profile updates are working.
 - Consider adding a basic WorkoutLogs endpoint for the Progress page.
+
+## 2026-07-13
+
+### Completed
+
+- Confirmed that previous UX shell and quest completion branches were merged into `main`.
+- Replaced the scaffold README with a FitQuest-specific project README.
+- Created a new branch: `fitquest-dashboard-progress`.
+- Added a `GET /api/profile` endpoint for default player profile summary data.
+- Added a `GET /api/workoutlogs` endpoint for recent workout completion history.
+- Connected the Dashboard page to real backend profile and workout log data.
+- Connected the Progress page to real workout log history.
+- Added XP progress bar and activity card styling.
+- Confirmed that the backend profile endpoint returns level, total XP, completed workout count, and XP progress data.
+- Confirmed that the workout logs endpoint returns completed quest history.
+- Created commit `7e39c53 Add profile and workout log endpoints`.
+- Created commit `a29e56d Connect dashboard and progress data`.
+
+### Validation
+
+- `dotnet build` succeeded with the existing SQLite dependency warning.
+- `npm run build` succeeded.
+- API smoke testing confirmed `GET /api/profile` and `GET /api/workoutlogs?limit=3` return data.
+
+### Next Steps
+
+- Add streak calculation to the completion flow.
+- Add achievement unlock logic.
+- Add unit tests for backend endpoints and frontend data loading.
+- Implement and document the three selected advanced requirements.
+- Prepare deployment configuration for frontend and backend.
