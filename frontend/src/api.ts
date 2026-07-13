@@ -1,11 +1,14 @@
 import type {
   CompleteWorkoutQuestResponse,
   CreateWorkoutQuestRequest,
+  ProfileSummary,
   UpdateWorkoutQuestRequest,
+  WorkoutLog,
   WorkoutQuest,
 } from './types'
 
-const BASE = 'http://localhost:5000/api/workoutquests'
+const API_BASE = 'http://localhost:5000/api'
+const QUESTS_BASE = `${API_BASE}/workoutquests`
 
 async function parseResponse<T>(res: Response, fallbackMessage: string): Promise<T> {
   if (!res.ok) {
@@ -23,12 +26,12 @@ async function parseResponse<T>(res: Response, fallbackMessage: string): Promise
 }
 
 export async function getWorkoutQuests(includeInactive = false): Promise<WorkoutQuest[]> {
-  const res = await fetch(`${BASE}?includeInactive=${includeInactive}`)
+  const res = await fetch(`${QUESTS_BASE}?includeInactive=${includeInactive}`)
   return parseResponse<WorkoutQuest[]>(res, 'Failed to fetch workout quests')
 }
 
 export async function createWorkoutQuest(request: CreateWorkoutQuestRequest): Promise<WorkoutQuest> {
-  const res = await fetch(BASE, {
+  const res = await fetch(QUESTS_BASE, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(request),
@@ -38,7 +41,7 @@ export async function createWorkoutQuest(request: CreateWorkoutQuestRequest): Pr
 }
 
 export async function updateWorkoutQuest(id: number, request: UpdateWorkoutQuestRequest): Promise<WorkoutQuest> {
-  const res = await fetch(`${BASE}/${id}`, {
+  const res = await fetch(`${QUESTS_BASE}/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(request),
@@ -48,7 +51,7 @@ export async function updateWorkoutQuest(id: number, request: UpdateWorkoutQuest
 }
 
 export async function completeWorkoutQuest(id: number): Promise<CompleteWorkoutQuestResponse> {
-  const res = await fetch(`${BASE}/${id}/complete`, {
+  const res = await fetch(`${QUESTS_BASE}/${id}/complete`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ notes: '' }),
@@ -58,6 +61,16 @@ export async function completeWorkoutQuest(id: number): Promise<CompleteWorkoutQ
 }
 
 export async function archiveWorkoutQuest(id: number): Promise<void> {
-  const res = await fetch(`${BASE}/${id}`, { method: 'DELETE' })
+  const res = await fetch(`${QUESTS_BASE}/${id}`, { method: 'DELETE' })
   if (!res.ok) throw new Error('Failed to archive workout quest')
+}
+
+export async function getProfileSummary(): Promise<ProfileSummary> {
+  const res = await fetch(`${API_BASE}/profile`)
+  return parseResponse<ProfileSummary>(res, 'Failed to fetch profile summary')
+}
+
+export async function getWorkoutLogs(limit = 20): Promise<WorkoutLog[]> {
+  const res = await fetch(`${API_BASE}/workoutlogs?limit=${limit}`)
+  return parseResponse<WorkoutLog[]>(res, 'Failed to fetch workout logs')
 }

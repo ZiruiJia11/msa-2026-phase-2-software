@@ -35,3 +35,28 @@ export interface CompleteWorkoutQuestResponse {
   level: number
   completedAt: string
 }
+
+export interface ProfileSummary {
+  id: number
+  username: string
+  totalXp: number
+  level: number
+  currentStreak: number
+  longestStreak: number
+  lastCompletedDate: string | null
+  completedWorkoutCount: number
+  xpForCurrentLevel: number
+  xpForNextLevel: number
+  xpIntoCurrentLevel: number
+}
+
+export interface WorkoutLog {
+  id: number
+  workoutQuestId: number
+  questTitle: string
+  category: QuestCategory
+  difficulty: QuestDifficulty
+  xpEarned: number
+  notes: string
+  completedAt: string
+}
