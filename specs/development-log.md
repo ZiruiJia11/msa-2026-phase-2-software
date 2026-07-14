@@ -254,3 +254,30 @@ This file tracks FitQuest development progress over time.
 - Add frontend unit test setup.
 - Add more backend tests for profile and workout log endpoints.
 - Continue implementing the selected advanced requirements.
+
+## 2026-07-15
+
+### Completed
+
+- Confirmed `fitquest-backend-tests` was clean and merged it into `main`.
+- Ran `dotnet test FitQuest.slnx` successfully after merging backend tests.
+- Created a new branch: `fitquest-frontend-tests`.
+- Added Vitest and React Testing Library dependencies.
+- Added frontend test configuration using jsdom.
+- Added a shared frontend test setup file.
+- Added a Dashboard unit test with mocked API data.
+- Confirmed `npm run test` passes.
+- Confirmed `npm run build` passes after adding test configuration.
+- Created commit `8ade7c5 Add frontend unit test setup`.
+
+### Validation
+
+- `dotnet test FitQuest.slnx` passed with 2 backend tests.
+- `npm run test` passed with 1 frontend test.
+- `npm run build` passed.
+
+### Next Steps
+
+- Add more frontend tests for Quest Board interactions.
+- Add backend tests for Profile and WorkoutLogs endpoints.
+- Start implementing selected advanced requirements.

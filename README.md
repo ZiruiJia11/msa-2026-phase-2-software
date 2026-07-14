@@ -203,7 +203,7 @@ Deployment links will be added before final submission.
 
 ## Testing
 
-Backend unit tests have been added with xUnit.
+Backend unit tests have been added with xUnit. Frontend unit tests have been added with Vitest and React Testing Library.
 
 Run backend tests:
 
@@ -223,7 +223,12 @@ cd frontend
 npm run build
 ```
 
-Frontend unit tests are still planned.
+Run frontend tests:
+
+```bash
+cd frontend
+npm run test
+```
 
 ## Current Development Status
 

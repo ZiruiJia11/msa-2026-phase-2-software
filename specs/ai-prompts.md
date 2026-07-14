@@ -364,3 +364,38 @@ This file records meaningful AI prompts used during planning and development of 
 
 - The project now has backend test evidence for the assessment.
 - More tests should be added later for profile, workout logs, and frontend rendering.
+
+## Prompt 012: Frontend unit test setup
+
+### Date
+
+2026-07-15
+
+### Context
+
+- Backend tests had been added and merged into `main`.
+- The assessment also requires frontend unit tests.
+- The Dashboard page was a good first frontend test target because it displays real gamification progress data.
+
+### Prompt Summary
+
+- I asked AI to continue with the next assessment hardening step.
+- AI recommended merging backend tests first, then adding frontend unit test setup.
+
+### AI Output Summary
+
+- AI merged the backend test branch into `main`.
+- AI added Vitest, React Testing Library, jest-dom, user-event, and jsdom.
+- AI configured the frontend test script and Vitest jsdom setup.
+- AI added a Dashboard test that mocks API data and verifies profile progress and recent completion rendering.
+- AI confirmed that `npm run test` and `npm run build` pass.
+
+### My Decision
+
+- I accepted Dashboard rendering as the first frontend unit test slice.
+- I kept the first frontend test focused on user-visible progress data rather than broad UI coverage.
+
+### Reflection
+
+- The project now has both backend and frontend unit test evidence.
+- More frontend tests should be added for Quest Board create/complete behaviour later.
