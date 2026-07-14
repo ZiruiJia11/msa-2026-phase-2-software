@@ -329,3 +329,38 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This made the gamification loop more complete: create quest, complete quest, earn XP, and see progress.
 - The Dashboard and Progress pages are now useful screens instead of placeholders.
+
+## Prompt 011: Backend unit test setup
+
+### Date
+
+2026-07-14
+
+### Context
+
+- The assessment requires unit tests covering key backend and frontend functionality.
+- FitQuest already had quest CRUD, quest completion, profile summary, and progress history features.
+- The next hardening step was to add backend tests for important behaviour.
+
+### Prompt Summary
+
+- I asked AI to start the next assessment hardening task after merging the Dashboard and Progress work.
+- The requested scope was to add a backend test project and cover key backend behaviour.
+
+### AI Output Summary
+
+- AI created a solution file for the backend and test project.
+- AI added an xUnit backend test project.
+- AI added EF Core InMemory for controller-level tests.
+- AI added tests for invalid quest creation and quest completion.
+- AI confirmed that `dotnet test FitQuest.slnx` passes.
+
+### My Decision
+
+- I accepted this as the first testing slice.
+- I kept the test scope small first so the project gains test infrastructure before adding broader coverage.
+
+### Reflection
+
+- The project now has backend test evidence for the assessment.
+- More tests should be added later for profile, workout logs, and frontend rendering.

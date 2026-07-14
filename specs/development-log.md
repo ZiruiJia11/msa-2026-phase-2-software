@@ -228,3 +228,29 @@ This file tracks FitQuest development progress over time.
 - Add unit tests for backend endpoints and frontend data loading.
 - Implement and document the three selected advanced requirements.
 - Prepare deployment configuration for frontend and backend.
+
+## 2026-07-14
+
+### Completed
+
+- Merged `fitquest-dashboard-progress` into `main`.
+- Confirmed `dotnet build` succeeds with the existing SQLite dependency warning.
+- Confirmed `npm run build` succeeds.
+- Created a new branch: `fitquest-backend-tests`.
+- Added `FitQuest.slnx` so backend and backend test projects can be run together.
+- Added an xUnit backend test project: `backend.Tests`.
+- Added EF Core InMemory support for backend controller tests.
+- Added a test for invalid workout quest creation.
+- Added a test that quest completion creates a workout log and updates user XP.
+- Updated README testing instructions.
+- Created commit `c6afe5e Add backend unit tests`.
+
+### Validation
+
+- `dotnet test FitQuest.slnx` passed with 2 tests.
+
+### Next Steps
+
+- Add frontend unit test setup.
+- Add more backend tests for profile and workout log endpoints.
+- Continue implementing the selected advanced requirements.

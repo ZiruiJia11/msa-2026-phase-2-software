@@ -203,7 +203,13 @@ Deployment links will be added before final submission.
 
 ## Testing
 
-Unit tests are planned for both frontend and backend.
+Backend unit tests have been added with xUnit.
+
+Run backend tests:
+
+```bash
+dotnet test FitQuest.slnx
+```
 
 Current validation commands:
 
@@ -216,6 +222,8 @@ dotnet build
 cd frontend
 npm run build
 ```
+
+Frontend unit tests are still planned.
 
 ## Current Development Status
 
