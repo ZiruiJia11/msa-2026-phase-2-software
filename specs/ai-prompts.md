@@ -399,3 +399,39 @@ This file records meaningful AI prompts used during planning and development of 
 
 - The project now has both backend and frontend unit test evidence.
 - More frontend tests should be added for Quest Board create/complete behaviour later.
+
+## Prompt 013: Theme switching advanced requirement
+
+### Date
+
+2026-07-15
+
+### Context
+
+- Backend and frontend unit test setup had been completed.
+- The next assessment step was to begin implementing the selected advanced requirements.
+- Theme switching was chosen as the first advanced requirement because it improves UX and can be clearly demonstrated in the frontend.
+
+### Prompt Summary
+
+- I asked AI to continue step by step and start the next planned assessment task.
+- AI recommended implementing theme switching as a small, testable advanced feature before moving to larger items such as security hardening or state management.
+
+### AI Output Summary
+
+- AI added light and dark theme support using CSS variables.
+- AI added theme state in the React app shell.
+- AI saved the selected theme in `localStorage`.
+- AI replaced the placeholder Settings page with a theme toggle.
+- AI added a frontend unit test for the Settings theme toggle.
+- AI confirmed that frontend tests and build pass.
+
+### My Decision
+
+- I accepted theme switching as the first implemented advanced requirement.
+- I kept the feature simple and understandable instead of introducing a larger state management library at this stage.
+
+### Reflection
+
+- This creates visible progress toward the assessment's advanced feature requirement.
+- The feature is small enough to test and document clearly, while still improving the FitQuest user experience.

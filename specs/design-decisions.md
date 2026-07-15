@@ -113,3 +113,11 @@ This file records key FitQuest project design decisions and the reasons behind t
 - The first level rule is `100 XP per level`.
 - This is easy to explain, test, and demonstrate.
 - More advanced level curves can be added later after quest completion, logs, streaks, and achievements are stable.
+
+## 18. Why Theme Switching Uses CSS Variables First
+
+- Theme switching is one of the selected advanced requirements, so it should be implemented in a clear and demonstrable way.
+- CSS variables keep the light and dark colour systems centralised in one stylesheet.
+- The selected theme is stored in `localStorage` so the user's preference persists after refresh.
+- Zustand is still planned for broader shared frontend state, but theme switching does not need that extra dependency yet.
+- Keeping the first advanced feature simple makes it easier to test, review, and explain in the final submission.

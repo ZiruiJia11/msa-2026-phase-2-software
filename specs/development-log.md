@@ -269,15 +269,29 @@ This file tracks FitQuest development progress over time.
 - Confirmed `npm run test` passes.
 - Confirmed `npm run build` passes after adding test configuration.
 - Created commit `8ade7c5 Add frontend unit test setup`.
+- Merged the frontend test branch into `main`.
+- Created a new branch: `fitquest-theme-switching`.
+- Implemented the first advanced requirement: theme switching.
+- Added light and dark theme variables to the frontend styling.
+- Added React theme state in the app shell.
+- Saved the selected theme to `localStorage`.
+- Replaced the Settings placeholder with a working theme toggle.
+- Added a Settings unit test for switching between light and dark modes.
+- Updated README advanced requirement status to show theme switching as implemented.
+- Created commit `8cb28b5 Add theme switching`.
+- Created commit `f763da2 Test theme switching settings`.
 
 ### Validation
 
 - `dotnet test FitQuest.slnx` passed with 2 backend tests.
 - `npm run test` passed with 1 frontend test.
 - `npm run build` passed.
+- `npm run test` passed with 3 frontend tests after adding the Settings test.
+- `npm run build` passed after adding theme switching.
 
 ### Next Steps
 
 - Add more frontend tests for Quest Board interactions.
 - Add backend tests for Profile and WorkoutLogs endpoints.
-- Start implementing selected advanced requirements.
+- Implement the remaining advanced requirements: security measures and shared state management.
+- Add streak logic and achievement unlock logic.

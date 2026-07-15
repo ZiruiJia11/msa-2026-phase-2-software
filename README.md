@@ -39,6 +39,7 @@ FitQuest connects to this theme through:
   - Achievements
   - Settings
 - Responsive React Router navigation
+- Light and dark theme switching
 - SQLite persistent storage
 - Scalar API documentation
 - Figma UX design reference
@@ -180,19 +181,22 @@ Important files:
 - `specs/agent-instructions.md`
 - `specs/figma-design.md`
 
-## Planned Advanced Requirements
+## Advanced Requirements Status
 
-The final submission must clearly list the top three implemented advanced requirements. These are currently planned and not yet final:
+The final submission must clearly list the top three implemented advanced requirements. Current status:
 
-1. **Security measures**
+1. **Theme switching** - Implemented
+   - Light and dark theme modes
+   - Theme preference saved in local storage
+   - Settings page toggle
+   - Frontend unit test coverage
+2. **Security measures** - Planned
    - Input validation and sanitisation
    - Rate limiting
-2. **State management**
+3. **State management** - Planned
    - Planned use of Zustand for shared frontend state
-3. **Theme switching**
-   - Planned light/dark mode support
 
-These will be updated to **Implemented** after the features are completed.
+The planned items will be updated to **Implemented** after the features are completed.
 
 ## Deployment
 
@@ -241,15 +245,17 @@ FitQuest has completed the first real vertical slices:
 - Figma UX direction
 - Multi-page frontend shell
 - Quest completion with XP and workout logs
+- Dashboard and Progress pages connected to backend data
+- Backend and frontend unit test setup
+- Theme switching advanced requirement
 
 Next priorities:
 
-1. Connect Dashboard and Progress pages to real backend data.
-2. Add streak logic.
-3. Add achievement unlock logic.
-4. Add frontend and backend unit tests.
-5. Implement and document three advanced requirements.
-6. Deploy frontend and backend.
+1. Add streak logic.
+2. Add achievement unlock logic.
+3. Add more backend and frontend unit tests.
+4. Implement the remaining advanced requirements.
+5. Deploy frontend and backend.
 
 ## Reflection
 
