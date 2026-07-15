@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
-import { getProfileSummary, getWorkoutLogs } from '../api'
-import type { ProfileSummary, WorkoutLog } from '../types'
+import { useEffect, useMemo } from 'react'
+import { useDashboardStore } from '../stores/useDashboardStore'
 
 function formatDateTime(value: string) {
   return new Intl.DateTimeFormat(undefined, {
@@ -12,31 +11,15 @@ function formatDateTime(value: string) {
 }
 
 export default function Dashboard() {
-  const [profile, setProfile] = useState<ProfileSummary | null>(null)
-  const [recentLogs, setRecentLogs] = useState<WorkoutLog[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState('')
+  const profile = useDashboardStore(state => state.profile)
+  const recentLogs = useDashboardStore(state => state.recentLogs)
+  const isLoading = useDashboardStore(state => state.isLoading)
+  const error = useDashboardStore(state => state.error)
+  const loadDashboard = useDashboardStore(state => state.loadDashboard)
 
   useEffect(() => {
-    async function loadDashboard() {
-      try {
-        setIsLoading(true)
-        setError('')
-        const [profileResult, logResult] = await Promise.all([
-          getProfileSummary(),
-          getWorkoutLogs(5),
-        ])
-        setProfile(profileResult)
-        setRecentLogs(logResult)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Could not load dashboard')
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
     loadDashboard()
-  }, [])
+  }, [loadDashboard])
 
   const xpProgress = useMemo(() => {
     if (!profile) return 0

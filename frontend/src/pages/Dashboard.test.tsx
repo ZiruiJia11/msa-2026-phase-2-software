@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { cleanup, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { useDashboardStore } from '../stores/useDashboardStore'
 import Dashboard from './Dashboard'
 
 vi.mock('../api', () => ({
@@ -29,6 +30,16 @@ vi.mock('../api', () => ({
     },
   ]),
 }))
+
+afterEach(() => {
+  cleanup()
+  useDashboardStore.setState({
+    profile: null,
+    recentLogs: [],
+    isLoading: false,
+    error: '',
+  })
+})
 
 describe('Dashboard', () => {
   it('renders profile progress and recent completions', async () => {
