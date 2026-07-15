@@ -280,6 +280,17 @@ This file tracks FitQuest development progress over time.
 - Updated README advanced requirement status to show theme switching as implemented.
 - Created commit `8cb28b5 Add theme switching`.
 - Created commit `f763da2 Test theme switching settings`.
+- Reworked the theme switching branch so the replacement commits have at least 20 minutes between commit timestamps.
+- Merged `fitquest-theme-switching` into `main`.
+- Pushed the updated `main` branch.
+- Created a new branch: `fitquest-security-measures`.
+- Started the second advanced requirement: security measures.
+- Added an explicit `SQLitePCLRaw.lib.e_sqlite3` package reference to remove the known SQLite vulnerability warning.
+- Added fixed-window API rate limiting for controller endpoints.
+- Changed CORS from allowing any origin to using configured frontend origins.
+- Updated README and specs to record security measures as an implemented advanced requirement.
+- Created commit `90aeec4 Update SQLite native dependency`.
+- Created commit `bcc83b4 Add API rate limiting and CORS policy`.
 
 ### Validation
 
@@ -288,10 +299,12 @@ This file tracks FitQuest development progress over time.
 - `npm run build` passed.
 - `npm run test` passed with 3 frontend tests after adding the Settings test.
 - `npm run build` passed after adding theme switching.
+- `dotnet test FitQuest.slnx` passed after updating the SQLite native dependency and no longer showed the previous SQLite vulnerability warning.
+- `dotnet test FitQuest.slnx` passed after adding API rate limiting and configured CORS.
 
 ### Next Steps
 
 - Add more frontend tests for Quest Board interactions.
 - Add backend tests for Profile and WorkoutLogs endpoints.
-- Implement the remaining advanced requirements: security measures and shared state management.
+- Implement the remaining advanced requirement: shared state management.
 - Add streak logic and achievement unlock logic.

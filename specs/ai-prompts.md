@@ -435,3 +435,39 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This creates visible progress toward the assessment's advanced feature requirement.
 - The feature is small enough to test and document clearly, while still improving the FitQuest user experience.
+
+## Prompt 014: Security measures advanced requirement
+
+### Date
+
+2026-07-15
+
+### Context
+
+- Theme switching had been implemented and merged into `main`.
+- The next assessment priority was to implement another advanced requirement.
+- The backend still showed a known vulnerability warning for the SQLite native dependency.
+- The API also had fully open CORS during local development.
+
+### Prompt Summary
+
+- I asked AI to start the security measures advanced requirement.
+- AI recommended handling security in small commits: first remove the SQLite dependency warning, then add runtime API protections such as rate limiting and a configured CORS allowlist.
+
+### AI Output Summary
+
+- AI added an explicit safe version of `SQLitePCLRaw.lib.e_sqlite3`.
+- AI confirmed that the previous SQLite vulnerability warning disappeared during `dotnet test`.
+- AI added fixed-window API rate limiting with HTTP 429 responses.
+- AI changed CORS from allowing any origin to using configured local frontend origins.
+- AI updated project documentation to show security measures as an implemented advanced requirement.
+
+### My Decision
+
+- I accepted these security measures because they are practical for the MVP and easy to explain in the final submission.
+- I kept authentication and user accounts out of this security slice because they would increase project scope.
+
+### Reflection
+
+- This security step improves the backend without making the project too complex.
+- The changes also create clear assessment evidence: dependency warning removal, CORS restrictions, rate limiting, and existing request validation.

@@ -121,3 +121,11 @@ This file records key FitQuest project design decisions and the reasons behind t
 - The selected theme is stored in `localStorage` so the user's preference persists after refresh.
 - Zustand is still planned for broader shared frontend state, but theme switching does not need that extra dependency yet.
 - Keeping the first advanced feature simple makes it easier to test, review, and explain in the final submission.
+
+## 19. Why Security Measures Are Kept Practical for the MVP
+
+- FitQuest does not yet include authentication or multi-user account data, so the first security slice focuses on realistic API protections.
+- Updating the SQLite native dependency removes a known vulnerability warning from backend test output.
+- Rate limiting helps protect API endpoints from excessive repeated requests.
+- A configured CORS allowlist is safer than allowing all origins during normal development.
+- Existing backend validation for quest input remains part of the security story because it rejects invalid titles, descriptions, categories, and difficulties.

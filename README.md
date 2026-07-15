@@ -40,6 +40,8 @@ FitQuest connects to this theme through:
   - Settings
 - Responsive React Router navigation
 - Light and dark theme switching
+- API rate limiting
+- Configured CORS origin allowlist
 - SQLite persistent storage
 - Scalar API documentation
 - Figma UX design reference
@@ -190,9 +192,11 @@ The final submission must clearly list the top three implemented advanced requir
    - Theme preference saved in local storage
    - Settings page toggle
    - Frontend unit test coverage
-2. **Security measures** - Planned
-   - Input validation and sanitisation
-   - Rate limiting
+2. **Security measures** - Implemented
+   - Backend request validation for quest creation and updates
+   - Fixed-window API rate limiting
+   - Configured CORS origin allowlist for local frontend origins
+   - Updated SQLite native dependency to remove a known vulnerability warning
 3. **State management** - Planned
    - Planned use of Zustand for shared frontend state
 
@@ -248,13 +252,14 @@ FitQuest has completed the first real vertical slices:
 - Dashboard and Progress pages connected to backend data
 - Backend and frontend unit test setup
 - Theme switching advanced requirement
+- Security measures advanced requirement
 
 Next priorities:
 
 1. Add streak logic.
 2. Add achievement unlock logic.
 3. Add more backend and frontend unit tests.
-4. Implement the remaining advanced requirements.
+4. Implement the remaining state management advanced requirement.
 5. Deploy frontend and backend.
 
 ## Reflection
