@@ -1,11 +1,8 @@
-import type { ThemeMode } from '../App'
+import { useThemeStore } from '../stores/useThemeStore'
 
-interface SettingsProps {
-  theme: ThemeMode
-  onThemeChange: (theme: ThemeMode) => void
-}
-
-export default function Settings({ theme, onThemeChange }: SettingsProps) {
+export default function Settings() {
+  const theme = useThemeStore(state => state.theme)
+  const setTheme = useThemeStore(state => state.setTheme)
   const isDark = theme === 'dark'
 
   return (
@@ -28,7 +25,7 @@ export default function Settings({ theme, onThemeChange }: SettingsProps) {
           <input
             type="checkbox"
             checked={isDark}
-            onChange={event => onThemeChange(event.target.checked ? 'dark' : 'light')}
+            onChange={event => setTheme(event.target.checked ? 'dark' : 'light')}
           />
           <span>{isDark ? 'Dark mode' : 'Light mode'}</span>
         </label>
