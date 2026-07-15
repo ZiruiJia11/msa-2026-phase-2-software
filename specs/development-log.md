@@ -291,6 +291,18 @@ This file tracks FitQuest development progress over time.
 - Updated README and specs to record security measures as an implemented advanced requirement.
 - Created commit `90aeec4 Update SQLite native dependency`.
 - Created commit `bcc83b4 Add API rate limiting and CORS policy`.
+- Merged `fitquest-security-measures` into `main`.
+- Pushed the updated `main` branch.
+- Created a new branch: `fitquest-state-management`.
+- Started the third advanced requirement: state management.
+- Installed Zustand in the frontend.
+- Added a Zustand theme store for light/dark theme state and persistence.
+- Updated Settings to use the theme store instead of props.
+- Added a Zustand Dashboard store for profile summary, recent logs, loading state, and error state.
+- Updated Dashboard and Settings tests to reset shared store state.
+- Updated README and specs to record state management as an implemented advanced requirement.
+- Created commit `aaee74c Add Zustand theme store`.
+- Created commit `b52b04c Add dashboard state store`.
 
 ### Validation
 
@@ -301,10 +313,14 @@ This file tracks FitQuest development progress over time.
 - `npm run build` passed after adding theme switching.
 - `dotnet test FitQuest.slnx` passed after updating the SQLite native dependency and no longer showed the previous SQLite vulnerability warning.
 - `dotnet test FitQuest.slnx` passed after adding API rate limiting and configured CORS.
+- `npm run test` passed after adding the Zustand theme store.
+- `npm run build` passed after adding the Zustand theme store.
+- `npm run test` passed after adding the Dashboard state store.
+- `npm run build` passed after adding the Dashboard state store.
 
 ### Next Steps
 
 - Add more frontend tests for Quest Board interactions.
 - Add backend tests for Profile and WorkoutLogs endpoints.
-- Implement the remaining advanced requirement: shared state management.
 - Add streak logic and achievement unlock logic.
+- Prepare deployment configuration for frontend and backend.

@@ -129,3 +129,11 @@ This file records key FitQuest project design decisions and the reasons behind t
 - Rate limiting helps protect API endpoints from excessive repeated requests.
 - A configured CORS allowlist is safer than allowing all origins during normal development.
 - Existing backend validation for quest input remains part of the security story because it rejects invalid titles, descriptions, categories, and difficulties.
+
+## 20. Why Zustand Was Added for Shared Frontend State
+
+- Zustand is lightweight and easy to understand for a React TypeScript MVP.
+- Theme state is app-level state because it affects the whole UI and needs to persist across refreshes.
+- Dashboard state is shared user progress state that can later be reused by other pages such as Progress, Achievements, or Profile.
+- The first migration keeps state management focused on real needs instead of moving every local form state into a global store.
+- Form state remains local in the Quest Board because it is only used inside that page.

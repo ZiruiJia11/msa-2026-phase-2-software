@@ -471,3 +471,40 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This security step improves the backend without making the project too complex.
 - The changes also create clear assessment evidence: dependency warning removal, CORS restrictions, rate limiting, and existing request validation.
+
+## Prompt 015: State management advanced requirement
+
+### Date
+
+2026-07-15
+
+### Context
+
+- Theme switching and security measures had been implemented and merged into `main`.
+- The remaining selected advanced requirement was shared frontend state management.
+- The app already had app-level theme state and Dashboard profile data that could benefit from centralised state.
+
+### Prompt Summary
+
+- I asked AI to implement the third advanced requirement step by step.
+- AI recommended using Zustand because it had already been selected during planning and fits the app's current size.
+- AI suggested starting with theme state, then moving Dashboard profile and recent activity data into a shared store.
+
+### AI Output Summary
+
+- AI installed Zustand in the frontend.
+- AI created a theme store for light/dark mode state, local storage persistence, and applying the theme to the document.
+- AI updated the Settings page to use the theme store instead of receiving props from `App`.
+- AI created a Dashboard store for profile summary data, recent workout logs, loading state, and error state.
+- AI updated Dashboard tests so shared store state is reset between test runs.
+- AI confirmed that frontend tests and build pass.
+
+### My Decision
+
+- I accepted Zustand as the state management solution because it is simple, understandable, and appropriate for a React TypeScript MVP.
+- I kept the scope focused on theme and Dashboard state rather than moving every page into a store at once.
+
+### Reflection
+
+- This completes the third selected advanced requirement with real app-level state rather than adding a library only for assessment evidence.
+- Keeping the migration small makes the code easier to review and reduces risk before deployment.

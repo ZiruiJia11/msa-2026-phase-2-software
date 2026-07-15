@@ -55,6 +55,7 @@ FitQuest connects to this theme through:
 - TypeScript
 - Vite
 - React Router
+- Zustand
 - Custom CSS
 
 ### Backend
@@ -79,6 +80,7 @@ backend/
 frontend/
   src/
     pages/
+    stores/
     api.ts
     App.tsx
     types.ts
@@ -197,10 +199,10 @@ The final submission must clearly list the top three implemented advanced requir
    - Fixed-window API rate limiting
    - Configured CORS origin allowlist for local frontend origins
    - Updated SQLite native dependency to remove a known vulnerability warning
-3. **State management** - Planned
-   - Planned use of Zustand for shared frontend state
-
-The planned items will be updated to **Implemented** after the features are completed.
+3. **State management** - Implemented
+   - Zustand store for app theme state
+   - Zustand store for Dashboard profile summary and recent workout logs
+   - Frontend tests reset shared store state between runs
 
 ## Deployment
 
@@ -253,14 +255,14 @@ FitQuest has completed the first real vertical slices:
 - Backend and frontend unit test setup
 - Theme switching advanced requirement
 - Security measures advanced requirement
+- State management advanced requirement
 
 Next priorities:
 
 1. Add streak logic.
 2. Add achievement unlock logic.
 3. Add more backend and frontend unit tests.
-4. Implement the remaining state management advanced requirement.
-5. Deploy frontend and backend.
+4. Deploy frontend and backend.
 
 ## Reflection
 
