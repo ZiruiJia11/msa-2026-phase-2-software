@@ -1,4 +1,13 @@
-export default function Settings() {
+import type { ThemeMode } from '../App'
+
+interface SettingsProps {
+  theme: ThemeMode
+  onThemeChange: (theme: ThemeMode) => void
+}
+
+export default function Settings({ theme, onThemeChange }: SettingsProps) {
+  const isDark = theme === 'dark'
+
   return (
     <section className="page-stack">
       <div className="hero-band">
@@ -8,13 +17,21 @@ export default function Settings() {
         </div>
       </div>
 
-      <section className="panel placeholder-panel">
-        <p className="eyebrow">Next Build</p>
-        <h3>Profile and theme controls will appear here</h3>
-        <p>
-          This page will later support profile details and theme switching as part of the planned
-          advanced frontend features.
-        </p>
+      <section className="panel settings-panel">
+        <div>
+          <p className="eyebrow">Appearance</p>
+          <h3>Theme mode</h3>
+          <p>Switch between a bright quest board and a darker focus mode.</p>
+        </div>
+
+        <label className="theme-toggle">
+          <input
+            type="checkbox"
+            checked={isDark}
+            onChange={event => onThemeChange(event.target.checked ? 'dark' : 'light')}
+          />
+          <span>{isDark ? 'Dark mode' : 'Light mode'}</span>
+        </label>
       </section>
     </section>
   )

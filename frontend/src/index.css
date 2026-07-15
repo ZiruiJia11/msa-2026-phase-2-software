@@ -1,6 +1,4 @@
 ﻿:root {
-  color: #18211d;
-  background: #edf2ea;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -8,7 +6,7 @@
 }
 
 html {
-  background: #edf2ea;
+  background: var(--app-bg);
 }
 
 body {

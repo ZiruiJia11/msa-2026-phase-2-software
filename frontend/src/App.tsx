@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
 import Achievements from './pages/Achievements'
 import About from './pages/About'
@@ -7,7 +8,24 @@ import Quests from './pages/Quests'
 import Settings from './pages/Settings'
 import './App.css'
 
+export type ThemeMode = 'light' | 'dark'
+
+const themeStorageKey = 'fitquest-theme'
+
+function getInitialTheme(): ThemeMode {
+  if (typeof window === 'undefined') return 'light'
+
+  return window.localStorage.getItem(themeStorageKey) === 'dark' ? 'dark' : 'light'
+}
+
 export default function App() {
+  const [theme, setTheme] = useState<ThemeMode>(getInitialTheme)
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    window.localStorage.setItem(themeStorageKey, theme)
+  }, [theme])
+
   return (
     <BrowserRouter>
       <div className="app-shell">
@@ -33,7 +51,7 @@ export default function App() {
             <Route path="/quests" element={<Quests />} />
             <Route path="/progress" element={<Progress />} />
             <Route path="/achievements" element={<Achievements />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/settings" element={<Settings theme={theme} onThemeChange={setTheme} />} />
             <Route path="/about" element={<About />} />
           </Routes>
         </main>
