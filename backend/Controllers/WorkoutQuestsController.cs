@@ -161,7 +161,7 @@ public class WorkoutQuestsController : ControllerBase
 
         user.TotalXp += quest.XpReward;
         user.Level = CalculateLevel(user.TotalXp);
-        user.LastCompletedDate = DateOnly.FromDateTime(now);
+        UpdateStreak(user, DateOnly.FromDateTime(now));
 
         _db.WorkoutLogs.Add(log);
         await _db.SaveChangesAsync();
@@ -174,6 +174,8 @@ public class WorkoutQuestsController : ControllerBase
             XpEarned = log.XpEarned,
             TotalXp = user.TotalXp,
             Level = user.Level,
+            CurrentStreak = user.CurrentStreak,
+            LongestStreak = user.LongestStreak,
             CompletedAt = log.CompletedAt
         });
     }
@@ -260,5 +262,25 @@ public class WorkoutQuestsController : ControllerBase
     private static int CalculateLevel(int totalXp)
     {
         return Math.Max(1, (totalXp / 100) + 1);
+    }
+
+    private static void UpdateStreak(UserProfile user, DateOnly completedDate)
+    {
+        if (user.LastCompletedDate == completedDate)
+        {
+            return;
+        }
+
+        if (user.LastCompletedDate == completedDate.AddDays(-1))
+        {
+            user.CurrentStreak += 1;
+        }
+        else
+        {
+            user.CurrentStreak = 1;
+        }
+
+        user.LongestStreak = Math.Max(user.LongestStreak, user.CurrentStreak);
+        user.LastCompletedDate = completedDate;
     }
 }

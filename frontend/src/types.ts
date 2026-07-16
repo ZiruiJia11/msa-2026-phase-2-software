@@ -33,6 +33,8 @@ export interface CompleteWorkoutQuestResponse {
   xpEarned: number
   totalXp: number
   level: number
+  currentStreak: number
+  longestStreak: number
   completedAt: string
 }
 

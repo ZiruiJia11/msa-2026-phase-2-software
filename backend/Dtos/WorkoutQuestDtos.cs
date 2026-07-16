@@ -48,5 +48,7 @@ public class CompleteWorkoutQuestResponse
     public int XpEarned { get; set; }
     public int TotalXp { get; set; }
     public int Level { get; set; }
+    public int CurrentStreak { get; set; }
+    public int LongestStreak { get; set; }
     public DateTime CompletedAt { get; set; }
 }

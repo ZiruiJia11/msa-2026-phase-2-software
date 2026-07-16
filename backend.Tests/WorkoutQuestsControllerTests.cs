@@ -59,6 +59,8 @@ public class WorkoutQuestsControllerTests
         Assert.Equal(50, response.XpEarned);
         Assert.Equal(50, response.TotalXp);
         Assert.Equal(1, response.Level);
+        Assert.Equal(1, response.CurrentStreak);
+        Assert.Equal(1, response.LongestStreak);
 
         var log = await db.WorkoutLogs.SingleAsync();
         Assert.Equal(quest.Id, log.WorkoutQuestId);
@@ -69,7 +71,54 @@ public class WorkoutQuestsControllerTests
         Assert.Equal("Player", user.Username);
         Assert.Equal(50, user.TotalXp);
         Assert.Equal(1, user.Level);
+        Assert.Equal(1, user.CurrentStreak);
+        Assert.Equal(1, user.LongestStreak);
         Assert.NotNull(user.LastCompletedDate);
+    }
+
+    [Fact]
+    public async Task Complete_IncreasesStreak_WhenLastCompletionWasYesterday()
+    {
+        await using var db = CreateDbContext();
+        var quest = new WorkoutQuest
+        {
+            Title = "Run day",
+            Description = "Easy run",
+            Category = QuestCategory.Cardio,
+            Difficulty = QuestDifficulty.Easy,
+            XpReward = 25,
+            IsActive = true,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+        var user = new UserProfile
+        {
+            Username = "Player",
+            TotalXp = 100,
+            Level = 2,
+            CurrentStreak = 1,
+            LongestStreak = 1,
+            LastCompletedDate = DateOnly.FromDateTime(DateTime.UtcNow).AddDays(-1),
+            CreatedAt = DateTime.UtcNow
+        };
+        db.WorkoutQuests.Add(quest);
+        db.UserProfiles.Add(user);
+        await db.SaveChangesAsync();
+
+        var controller = new WorkoutQuestsController(db);
+
+        var result = await controller.Complete(quest.Id, new CompleteWorkoutQuestRequest());
+
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        var response = Assert.IsType<CompleteWorkoutQuestResponse>(okResult.Value);
+
+        Assert.Equal(2, response.CurrentStreak);
+        Assert.Equal(2, response.LongestStreak);
+
+        var updatedUser = await db.UserProfiles.SingleAsync();
+        Assert.Equal(2, updatedUser.CurrentStreak);
+        Assert.Equal(2, updatedUser.LongestStreak);
+        Assert.Equal(DateOnly.FromDateTime(DateTime.UtcNow), updatedUser.LastCompletedDate);
     }
 
     private static AppDbContext CreateDbContext()

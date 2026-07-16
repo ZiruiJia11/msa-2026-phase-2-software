@@ -160,7 +160,7 @@ export default function Quests() {
       setError('')
       setMessage('')
       const result = await completeWorkoutQuest(quest.id)
-      setMessage(`Quest complete: +${result.xpEarned} XP. Total XP: ${result.totalXp}. Level ${result.level}.`)
+      setMessage(`Quest complete: +${result.xpEarned} XP. Total XP: ${result.totalXp}. Level ${result.level}. Streak ${result.currentStreak}.`)
       await loadQuests()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not complete quest')
