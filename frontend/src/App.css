@@ -544,6 +544,33 @@ textarea:focus {
   background: linear-gradient(90deg, #2b6fff, #b7ff4a);
 }
 
+.streak-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.streak-summary div {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--surface-soft);
+}
+
+.streak-summary strong {
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.streak-summary span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .activity-list {
   display: grid;
   gap: 12px;
@@ -639,7 +666,8 @@ textarea:focus {
   }
 
   .metric-row,
-  .summary-grid {
+  .summary-grid,
+  .streak-summary {
     grid-template-columns: 1fr;
     min-width: 0;
   }

@@ -10,6 +10,16 @@ function formatDateTime(value: string) {
   }).format(new Date(value))
 }
 
+function formatDate(value: string | null) {
+  if (!value) return 'No completions yet'
+
+  return new Intl.DateTimeFormat(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(new Date(value))
+}
+
 export default function Dashboard() {
   const profile = useDashboardStore(state => state.profile)
   const recentLogs = useDashboardStore(state => state.recentLogs)
@@ -43,8 +53,8 @@ export default function Dashboard() {
             <span>Total XP</span>
           </div>
           <div>
-            <strong>{profile?.completedWorkoutCount ?? '-'}</strong>
-            <span>Completed</span>
+            <strong>{profile?.currentStreak ?? '-'}</strong>
+            <span>Day streak</span>
           </div>
         </div>
       </div>
@@ -63,6 +73,20 @@ export default function Dashboard() {
             <p>
               {profile.xpIntoCurrentLevel} / 100 XP toward level {profile.level + 1}
             </p>
+            <div className="streak-summary" aria-label="Streak summary">
+              <div>
+                <strong>{profile.currentStreak}</strong>
+                <span>Current streak</span>
+              </div>
+              <div>
+                <strong>{profile.longestStreak}</strong>
+                <span>Best streak</span>
+              </div>
+              <div>
+                <strong>{formatDate(profile.lastCompletedDate)}</strong>
+                <span>Last completed</span>
+              </div>
+            </div>
           </div>
 
           <div className="panel activity-panel">

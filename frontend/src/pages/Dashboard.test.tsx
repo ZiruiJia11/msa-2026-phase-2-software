@@ -9,8 +9,8 @@ vi.mock('../api', () => ({
     username: 'Player',
     totalXp: 125,
     level: 2,
-    currentStreak: 0,
-    longestStreak: 0,
+    currentStreak: 2,
+    longestStreak: 4,
     lastCompletedDate: '2026-07-14',
     completedWorkoutCount: 3,
     xpForCurrentLevel: 100,
@@ -50,5 +50,7 @@ describe('Dashboard', () => {
     expect(screen.getByText('Push day')).toBeInTheDocument()
     expect(screen.getByText('+50 XP')).toBeInTheDocument()
     expect(screen.getByLabelText('XP progress 25%')).toBeInTheDocument()
+    expect(screen.getByLabelText('Streak summary')).toBeInTheDocument()
+    expect(screen.getByText('Best streak')).toBeInTheDocument()
   })
 })
