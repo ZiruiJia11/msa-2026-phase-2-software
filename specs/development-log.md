@@ -324,3 +324,31 @@ This file tracks FitQuest development progress over time.
 - Add backend tests for Profile and WorkoutLogs endpoints.
 - Add streak logic and achievement unlock logic.
 - Prepare deployment configuration for frontend and backend.
+
+## 2026-07-17
+
+### Completed
+
+- Reviewed the current `main` branch and confirmed the three selected advanced requirements are implemented.
+- Created a new branch: `fitquest-streak-logic`.
+- Added workout streak calculation to quest completion.
+- Updated completion responses to include current and longest streak values.
+- Added backend test coverage for first completion streak creation.
+- Added backend test coverage for continuing a streak when the previous completion was yesterday.
+- Updated frontend completion feedback to show the current streak.
+- Updated the Dashboard to show current streak, best streak, and last completed date.
+- Updated Dashboard unit test coverage for the streak summary.
+- Created commit `dc65a36 Add workout streak tracking`.
+- Created commit `e797d3d Show streak summary on dashboard`.
+
+### Validation
+
+- `dotnet test FitQuest.slnx` passed with 3 backend tests after adding streak logic.
+- `npm run test` passed after updating frontend streak types and Dashboard UI.
+- `npm run build` passed after updating frontend streak types and Dashboard UI.
+
+### Next Steps
+
+- Add achievement unlock logic.
+- Add more backend tests for Profile and WorkoutLogs endpoints.
+- Prepare deployment configuration for frontend and backend.

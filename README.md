@@ -32,6 +32,7 @@ FitQuest connects to this theme through:
   - Award XP
   - Update total XP
   - Calculate level using a simple 100 XP per level rule
+  - Track current and longest workout streaks
 - FitQuest frontend shell:
   - Dashboard
   - Quests
@@ -252,6 +253,7 @@ FitQuest has completed the first real vertical slices:
 - Multi-page frontend shell
 - Quest completion with XP and workout logs
 - Dashboard and Progress pages connected to backend data
+- Dashboard streak summary
 - Backend and frontend unit test setup
 - Theme switching advanced requirement
 - Security measures advanced requirement
@@ -259,10 +261,9 @@ FitQuest has completed the first real vertical slices:
 
 Next priorities:
 
-1. Add streak logic.
-2. Add achievement unlock logic.
-3. Add more backend and frontend unit tests.
-4. Deploy frontend and backend.
+1. Add achievement unlock logic.
+2. Add more backend and frontend unit tests.
+3. Deploy frontend and backend.
 
 ## Reflection
 

@@ -2,6 +2,13 @@
 
 This file records meaningful AI prompts used during planning and development of FitQuest. It is intended as evidence of AI-assisted development, so it focuses on important prompts, summaries, decisions, and reflections rather than every small conversation.
 
+## Authorship Note
+
+- I used AI as a planning, coding support, documentation, and review assistant.
+- I made the project decisions, chose the FitQuest concept, confirmed the feature scope, reviewed the output, tested the app locally, managed the Git workflow, and decided when work was ready to commit.
+- AI suggestions were treated as drafts or implementation support, not as automatic final decisions.
+- I kept the project direction aligned with the MSA assessment requirements, my own Figma UX direction, and the rule that FitQuest should avoid medical or personalised fitness advice.
+
 ## Prompt 001: Project concept selection
 
 ### Date
@@ -24,6 +31,12 @@ This file records meaningful AI prompts used during planning and development of 
 ### My Decision
 
 - I chose FitQuest because it is practical, easy to demonstrate, visually clear, and strongly connected to the gamification theme.
+
+### My Contribution
+
+- I chose the final project concept after comparing the options.
+- I judged which idea would be realistic for the MSA timeframe and suitable for a live demo.
+- I set the project boundary that FitQuest should focus on gamified tracking rather than medical or personalised fitness advice.
 
 ### Reflection
 
@@ -50,6 +63,12 @@ This file records meaningful AI prompts used during planning and development of 
 ### My Decision
 
 - I used this to create `/specs/project-plan.md`.
+
+### My Contribution
+
+- I decided what planning sections were needed for the assessment evidence.
+- I reviewed and adapted the suggested structure so it matched FitQuest rather than a generic project.
+- I used the plan to guide later implementation order and feature scope.
 
 ### Reflection
 
@@ -81,6 +100,12 @@ This file records meaningful AI prompts used during planning and development of 
 
 - I decided to implement the data model foundation first before building CRUD endpoints.
 - I kept the old demo score API temporarily so the backend could continue compiling while FitQuest backend features are introduced step by step.
+
+### My Contribution
+
+- I chose which FitQuest entities were necessary for the MVP.
+- I decided to start with backend models before adding controllers or UI changes.
+- I reviewed the model boundaries so quests, logs, users, and achievements could support later gamification work.
 
 ### Reflection
 
@@ -116,6 +141,12 @@ This file records meaningful AI prompts used during planning and development of 
 - I accepted the recommendation to keep this section focused on CRUD only.
 - I decided to leave quest completion, workout logs, XP profile updates, streak logic, achievements, and frontend integration for later commits.
 
+### My Contribution
+
+- I chose CRUD as the first real backend feature after the data model foundation.
+- I controlled the scope by delaying XP, streaks, achievements, and frontend work.
+- I reviewed the API behaviour and kept this as a focused checkpoint in the Git history.
+
 ### Reflection
 
 - Splitting CRUD from completion logic kept the backend easier to test and understand.
@@ -148,6 +179,12 @@ This file records meaningful AI prompts used during planning and development of 
 
 - I accepted this as the first real FitQuest frontend slice.
 - I kept the frontend focused on quest management only, leaving dashboard, progress, achievements, theme switching, and Zustand for later work.
+
+### My Contribution
+
+- I decided that the old demo leaderboard should be replaced with a real FitQuest Quest Board.
+- I reviewed the UI behaviour for creating, editing, archiving, and restoring quests.
+- I kept the first frontend slice focused on quest management instead of mixing in later dashboard or achievement features.
 
 ### Reflection
 
@@ -183,6 +220,13 @@ This file records meaningful AI prompts used during planning and development of 
 - I accepted these as two separate small commits to keep the Git history clear.
 - I kept the generated local SQLite database file out of Git because it is already ignored by `.gitignore`.
 
+### My Contribution
+
+- I identified nullable request handling and persistent storage as quality issues to fix before larger features.
+- I chose SQLite because it satisfies persistence requirements while staying simple for local development.
+- I verified that generated database files should remain out of Git.
+- I treated the remaining dependency warning as follow-up work instead of ignoring it.
+
 ### Reflection
 
 - This step improved backend reliability and moved the project closer to the assessment requirement for persistent storage.
@@ -216,6 +260,12 @@ This file records meaningful AI prompts used during planning and development of 
 
 - I decided that the manually organised Figma UX design should become the visual baseline for the next frontend work.
 - I will let AI assist with turning the Figma direction into a more polished and consistent React TypeScript UI.
+
+### My Contribution
+
+- I manually organised and renamed the Figma design direction before asking AI to record it.
+- I decided which visual direction should become the baseline for the React implementation.
+- I reviewed the documentation to make sure it represented my UX work rather than treating the Figma direction as AI-generated.
 
 ### Reflection
 
@@ -254,6 +304,13 @@ This file records meaningful AI prompts used during planning and development of 
 - I kept the work focused on frontend structure and visual polish only.
 - Backend completion, XP updates, streaks, and achievements will be implemented later.
 
+### My Contribution
+
+- I chose to improve UX before adding more backend complexity.
+- I provided the Figma direction and confirmed that the real frontend should follow it.
+- I reviewed the implemented layout, navigation, and styling and decided it was suitable to keep.
+- I requested small commits and controlled the branch naming convention for the project history.
+
 ### Reflection
 
 - This step made the app feel more like the planned FitQuest product instead of a single CRUD page.
@@ -290,6 +347,12 @@ This file records meaningful AI prompts used during planning and development of 
 - I accepted this as the first full gamification loop after quest CRUD.
 - I kept streak and achievement unlock logic out of this slice so the feature remains small and easier to test.
 
+### My Contribution
+
+- I chose quest completion as the next priority because it makes the app meaningfully gamified.
+- I confirmed that the first loop should include XP and workout logs, but not streaks or achievements yet.
+- I reviewed the behaviour after implementation and kept the feature focused so later work could build on it.
+
 ### Reflection
 
 - This feature connects the app's quest system to real progress tracking.
@@ -324,6 +387,12 @@ This file records meaningful AI prompts used during planning and development of 
 
 - I accepted this as the next step because it turns completed quest data into visible user progress.
 - I kept streak and achievement logic out of this slice so the feature stayed focused.
+
+### My Contribution
+
+- I decided that Dashboard and Progress should show real backend data before adding more placeholder pages.
+- I checked that the work supported the user-visible gamification loop: complete a quest, earn XP, and then see progress.
+- I kept this feature limited to profile and log display so it would remain reviewable.
 
 ### Reflection
 
@@ -360,6 +429,12 @@ This file records meaningful AI prompts used during planning and development of 
 - I accepted this as the first testing slice.
 - I kept the test scope small first so the project gains test infrastructure before adding broader coverage.
 
+### My Contribution
+
+- I prioritised adding backend tests because the assessment requires test evidence.
+- I chose to start with high-value backend behaviour: invalid input and quest completion.
+- I reviewed the test results and used them as a checkpoint before continuing frontend work.
+
 ### Reflection
 
 - The project now has backend test evidence for the assessment.
@@ -394,6 +469,12 @@ This file records meaningful AI prompts used during planning and development of 
 
 - I accepted Dashboard rendering as the first frontend unit test slice.
 - I kept the first frontend test focused on user-visible progress data rather than broad UI coverage.
+
+### My Contribution
+
+- I decided that frontend tests should start with Dashboard because it displays real progress data.
+- I verified the frontend test command and build command after the setup was added.
+- I kept the first frontend test small so the test framework could be introduced safely.
 
 ### Reflection
 
@@ -431,6 +512,13 @@ This file records meaningful AI prompts used during planning and development of 
 - I accepted theme switching as the first implemented advanced requirement.
 - I kept the feature simple and understandable instead of introducing a larger state management library at this stage.
 
+### My Contribution
+
+- I chose theme switching as one of the three advanced requirements during planning.
+- I confirmed the feature should stay simple, visible, and testable for the assessment.
+- I reviewed the Settings page behaviour and asked for commit history to be redone so the commits were spaced more realistically.
+- I decided not to merge the branch until the history, tests, and documentation were ready.
+
 ### Reflection
 
 - This creates visible progress toward the assessment's advanced feature requirement.
@@ -466,6 +554,13 @@ This file records meaningful AI prompts used during planning and development of 
 
 - I accepted these security measures because they are practical for the MVP and easy to explain in the final submission.
 - I kept authentication and user accounts out of this security slice because they would increase project scope.
+
+### My Contribution
+
+- I approved security measures as the second advanced requirement after theme switching was merged.
+- I kept the scope realistic for the MVP by focusing on dependency safety, CORS, rate limiting, and validation.
+- I reviewed the validation output and confirmed that the SQLite vulnerability warning was removed.
+- I decided to merge this work only after backend tests, frontend tests, and build checks passed.
 
 ### Reflection
 
@@ -504,7 +599,57 @@ This file records meaningful AI prompts used during planning and development of 
 - I accepted Zustand as the state management solution because it is simple, understandable, and appropriate for a React TypeScript MVP.
 - I kept the scope focused on theme and Dashboard state rather than moving every page into a store at once.
 
+### My Contribution
+
+- I selected state management as the third advanced requirement based on the earlier project plan.
+- I approved using Zustand because it fits the current app size and is easier to explain than a heavier state framework.
+- I kept Quest Board form state local because it does not need to be shared globally.
+- I reviewed the tests and merged the branch only after the shared store state was reset correctly between test runs.
+
 ### Reflection
 
 - This completes the third selected advanced requirement with real app-level state rather than adding a library only for assessment evidence.
 - Keeping the migration small makes the code easier to review and reduces risk before deployment.
+
+## Prompt 016: Workout streak logic
+
+### Date
+
+2026-07-17
+
+### Context
+
+- The three selected advanced requirements had been implemented and merged into `main`.
+- The next gamification improvement was streak tracking.
+- `UserProfile` already had fields for `CurrentStreak`, `LongestStreak`, and `LastCompletedDate`, but quest completion was not yet calculating streaks.
+
+### Prompt Summary
+
+- I asked AI to start the new day's work and identify the best next feature.
+- AI recommended implementing streak logic because it strongly supports the FitQuest gamification theme and connects existing profile, quest completion, and dashboard features.
+
+### AI Output Summary
+
+- AI added streak calculation to the quest completion endpoint.
+- AI updated completion responses to include current and longest streak values.
+- AI added backend tests for initial streak creation and continuing a streak from yesterday.
+- AI updated frontend completion feedback to include the current streak.
+- AI updated the Dashboard to show current streak, best streak, and last completed date.
+- AI confirmed that backend tests, frontend tests, and frontend build pass.
+
+### My Decision
+
+- I accepted a simple streak rule: same-day completions do not increase the streak, consecutive-day completions increase it, and missed days reset it to 1.
+- I kept streak logic separate from achievement unlocks so each gamification feature remains easy to review and test.
+
+### My Contribution
+
+- I started the new day's work by asking for the next practical task after the advanced requirements were completed.
+- I chose streak logic because it strengthens FitQuest's habit-building and gamification purpose.
+- I reviewed the proposed streak rules and accepted the simple daily consistency model.
+- I asked for the next step during the work, then confirmed the documentation should be updated before merging.
+
+### Reflection
+
+- This makes FitQuest feel more like a habit-building gamified app.
+- The Dashboard now gives clearer feedback after completing quests.

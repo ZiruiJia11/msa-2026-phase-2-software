@@ -137,3 +137,11 @@ This file records key FitQuest project design decisions and the reasons behind t
 - Dashboard state is shared user progress state that can later be reused by other pages such as Progress, Achievements, or Profile.
 - The first migration keeps state management focused on real needs instead of moving every local form state into a global store.
 - Form state remains local in the Quest Board because it is only used inside that page.
+
+## 21. Why Streak Logic Uses Daily Completion Rules
+
+- Streaks support the gamification theme by rewarding consistency instead of only total XP.
+- A same-day completion does not increase the streak because the streak represents daily habit consistency.
+- A completion on the day after the last completion increases the current streak.
+- A completion after a missed day resets the current streak to 1.
+- This rule is simple to explain, test, and demonstrate before adding achievement unlock logic.
