@@ -121,6 +121,54 @@ public class WorkoutQuestsControllerTests
         Assert.Equal(DateOnly.FromDateTime(DateTime.UtcNow), updatedUser.LastCompletedDate);
     }
 
+    [Fact]
+    public async Task Complete_UnlocksFirstWorkoutAchievement_AndAddsBonusXp()
+    {
+        await using var db = CreateDbContext();
+        var quest = new WorkoutQuest
+        {
+            Title = "First badge quest",
+            Description = "Unlock the first badge",
+            Category = QuestCategory.Mobility,
+            Difficulty = QuestDifficulty.Easy,
+            XpReward = 25,
+            IsActive = true,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+        var achievement = new Achievement
+        {
+            Name = "First Quest",
+            Description = "Complete your first workout quest.",
+            Icon = "spark",
+            ConditionType = AchievementConditionType.FirstWorkout,
+            ConditionValue = 1,
+            XpBonus = 25
+        };
+        db.WorkoutQuests.Add(quest);
+        db.Achievements.Add(achievement);
+        await db.SaveChangesAsync();
+
+        var controller = new WorkoutQuestsController(db);
+
+        var result = await controller.Complete(quest.Id, new CompleteWorkoutQuestRequest());
+
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        var response = Assert.IsType<CompleteWorkoutQuestResponse>(okResult.Value);
+
+        var unlockedAchievement = Assert.Single(response.UnlockedAchievements);
+        Assert.Equal("First Quest", unlockedAchievement.Name);
+        Assert.Equal(25, unlockedAchievement.XpBonus);
+        Assert.Equal(50, response.TotalXp);
+
+        var userAchievement = await db.UserAchievements.SingleAsync();
+        Assert.Equal(achievement.Id, userAchievement.AchievementId);
+
+        var user = await db.UserProfiles.SingleAsync();
+        Assert.Equal(50, user.TotalXp);
+        Assert.Equal(1, user.Level);
+    }
+
     private static AppDbContext CreateDbContext()
     {
         var options = new DbContextOptionsBuilder<AppDbContext>()

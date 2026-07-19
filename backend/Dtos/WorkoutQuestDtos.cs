@@ -50,5 +50,6 @@ public class CompleteWorkoutQuestResponse
     public int Level { get; set; }
     public int CurrentStreak { get; set; }
     public int LongestStreak { get; set; }
+    public List<UnlockedAchievementResponse> UnlockedAchievements { get; set; } = [];
     public DateTime CompletedAt { get; set; }
 }

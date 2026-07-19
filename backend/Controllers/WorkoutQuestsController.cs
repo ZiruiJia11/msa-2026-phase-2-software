@@ -165,6 +165,11 @@ public class WorkoutQuestsController : ControllerBase
 
         _db.WorkoutLogs.Add(log);
         await _db.SaveChangesAsync();
+        var unlockedAchievements = await UnlockAchievements(user, now);
+        if (unlockedAchievements.Count > 0)
+        {
+            await _db.SaveChangesAsync();
+        }
 
         return Ok(new CompleteWorkoutQuestResponse
         {
@@ -176,6 +181,7 @@ public class WorkoutQuestsController : ControllerBase
             Level = user.Level,
             CurrentStreak = user.CurrentStreak,
             LongestStreak = user.LongestStreak,
+            UnlockedAchievements = unlockedAchievements,
             CompletedAt = log.CompletedAt
         });
     }
@@ -282,5 +288,64 @@ public class WorkoutQuestsController : ControllerBase
 
         user.LongestStreak = Math.Max(user.LongestStreak, user.CurrentStreak);
         user.LastCompletedDate = completedDate;
+    }
+
+    private async Task<List<UnlockedAchievementResponse>> UnlockAchievements(UserProfile user, DateTime unlockedAt)
+    {
+        var completedWorkoutCount = await _db.WorkoutLogs.CountAsync(log => log.UserProfileId == user.Id);
+        var unlockedAchievementIds = await _db.UserAchievements
+            .Where(userAchievement => userAchievement.UserProfileId == user.Id)
+            .Select(userAchievement => userAchievement.AchievementId)
+            .ToListAsync();
+
+        var availableAchievements = await _db.Achievements
+            .Where(achievement => !unlockedAchievementIds.Contains(achievement.Id))
+            .OrderBy(achievement => achievement.ConditionType)
+            .ThenBy(achievement => achievement.ConditionValue)
+            .ToListAsync();
+
+        var unlocked = new List<UnlockedAchievementResponse>();
+        foreach (var achievement in availableAchievements)
+        {
+            if (!IsAchievementUnlocked(achievement, user, completedWorkoutCount))
+            {
+                continue;
+            }
+
+            _db.UserAchievements.Add(new UserAchievement
+            {
+                UserProfileId = user.Id,
+                AchievementId = achievement.Id,
+                UnlockedAt = unlockedAt
+            });
+
+            user.TotalXp += achievement.XpBonus;
+            unlocked.Add(new UnlockedAchievementResponse
+            {
+                Id = achievement.Id,
+                Name = achievement.Name,
+                Icon = achievement.Icon,
+                XpBonus = achievement.XpBonus
+            });
+        }
+
+        if (unlocked.Count > 0)
+        {
+            user.Level = CalculateLevel(user.TotalXp);
+        }
+
+        return unlocked;
+    }
+
+    private static bool IsAchievementUnlocked(Achievement achievement, UserProfile user, int completedWorkoutCount)
+    {
+        return achievement.ConditionType switch
+        {
+            AchievementConditionType.FirstWorkout => completedWorkoutCount >= achievement.ConditionValue,
+            AchievementConditionType.StreakDays => user.CurrentStreak >= achievement.ConditionValue,
+            AchievementConditionType.TotalCompletions => completedWorkoutCount >= achievement.ConditionValue,
+            AchievementConditionType.TotalXp => user.TotalXp >= achievement.ConditionValue,
+            _ => false
+        };
     }
 }
