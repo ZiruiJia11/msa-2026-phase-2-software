@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   archiveWorkoutQuest,
@@ -93,7 +93,8 @@ describe('Quests', () => {
 
     fireEvent.click(within(questCard as HTMLElement).getByRole('button', { name: 'Complete' }))
 
-    expect(completeWorkoutQuest).toHaveBeenCalledWith(1)
+    expect(within(questCard as HTMLElement).getByRole('button', { name: 'Battling...' })).toBeInTheDocument()
+    await waitFor(() => expect(completeWorkoutQuest).toHaveBeenCalledWith(1))
     expect(await screen.findByText(/Quest complete: \+50 XP/)).toBeInTheDocument()
     expect(screen.getByText(/Logged at/)).toBeInTheDocument()
     expect(screen.getByText(/Streak 3/)).toBeInTheDocument()

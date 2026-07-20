@@ -39,14 +39,16 @@ export default function App() {
       <div className="app-shell">
         <aside className="sidebar">
           <div className="brand-block">
-            <div className="brand-avatar">
-              <span className="brand-mark" aria-hidden="true">FQ</span>
-              <PixelAvatar decorative level={profile?.level ?? 1} />
-            </div>
+            <span className="brand-mark" aria-hidden="true">FQ</span>
             <p className="eyebrow">FitQuest</p>
             <h1>Player Hub</h1>
             <p className="sidebar-copy">Track quests, earn XP, and build training streaks.</p>
           </div>
+
+          <div className="sidebar-avatar-slot" aria-hidden="true">
+            <PixelAvatar decorative level={profile?.level ?? 1} />
+          </div>
+
           <nav aria-label="Main navigation">
             {navItems.map(item => (
               <NavLink key={item.to} to={item.to} end={item.end}>
