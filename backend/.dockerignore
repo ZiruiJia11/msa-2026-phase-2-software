@@ -1,0 +1,7 @@
+bin/
+obj/
+fitquest.db
+*.db
+*.db-shm
+*.db-wal
+.env
