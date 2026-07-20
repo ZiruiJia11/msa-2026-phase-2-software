@@ -1,5 +1,6 @@
 ﻿export type QuestCategory = 'Strength' | 'Cardio' | 'Flexibility' | 'Endurance' | 'Mobility' | 'Recovery'
 export type QuestDifficulty = 'Easy' | 'Medium' | 'Hard'
+export type AchievementConditionType = 'FirstWorkout' | 'StreakDays' | 'CategoryCompletions' | 'TotalCompletions' | 'TotalXp'
 
 export interface WorkoutQuest {
   id: number
@@ -35,7 +36,27 @@ export interface CompleteWorkoutQuestResponse {
   level: number
   currentStreak: number
   longestStreak: number
+  unlockedAchievements: UnlockedAchievement[]
   completedAt: string
+}
+
+export interface UnlockedAchievement {
+  id: number
+  name: string
+  icon: string
+  xpBonus: number
+}
+
+export interface Achievement {
+  id: number
+  name: string
+  description: string
+  icon: string
+  conditionType: AchievementConditionType
+  conditionValue: number
+  xpBonus: number
+  isUnlocked: boolean
+  unlockedAt: string | null
 }
 
 export interface ProfileSummary {

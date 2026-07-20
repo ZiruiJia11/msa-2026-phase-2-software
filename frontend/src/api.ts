@@ -1,4 +1,5 @@
 import type {
+  Achievement,
   CompleteWorkoutQuestResponse,
   CreateWorkoutQuestRequest,
   ProfileSummary,
@@ -73,4 +74,9 @@ export async function getProfileSummary(): Promise<ProfileSummary> {
 export async function getWorkoutLogs(limit = 20): Promise<WorkoutLog[]> {
   const res = await fetch(`${API_BASE}/workoutlogs?limit=${limit}`)
   return parseResponse<WorkoutLog[]>(res, 'Failed to fetch workout logs')
+}
+
+export async function getAchievements(): Promise<Achievement[]> {
+  const res = await fetch(`${API_BASE}/achievements`)
+  return parseResponse<Achievement[]>(res, 'Failed to fetch achievements')
 }

@@ -160,7 +160,10 @@ export default function Quests() {
       setError('')
       setMessage('')
       const result = await completeWorkoutQuest(quest.id)
-      setMessage(`Quest complete: +${result.xpEarned} XP. Total XP: ${result.totalXp}. Level ${result.level}. Streak ${result.currentStreak}.`)
+      const unlockedText = result.unlockedAchievements.length > 0
+        ? ` Unlocked: ${result.unlockedAchievements.map(achievement => `${achievement.name} (+${achievement.xpBonus} XP)`).join(', ')}.`
+        : ''
+      setMessage(`Quest complete: +${result.xpEarned} XP. Total XP: ${result.totalXp}. Level ${result.level}. Streak ${result.currentStreak}.${unlockedText}`)
       await loadQuests()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not complete quest')
