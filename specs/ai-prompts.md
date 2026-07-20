@@ -781,3 +781,90 @@ This file records meaningful AI prompts used during planning and development of 
 
 - The frontend tests now cover the most important user workflow in the app.
 - This gives stronger confidence before moving into deployment and final polish.
+
+## Prompt 020: Local smoke testing and mobile navigation refinement
+
+### Date
+
+2026-07-21
+
+### Context
+
+- The Quest Board frontend tests had been merged into `main`.
+- I wanted to test the whole app and visually check the UI before moving into final documentation and deployment.
+- The app had a responsive sidebar, but the mobile layout still used a large sidebar that took up too much of the first screen.
+
+### Prompt Summary
+
+- I asked AI to test the overall project and UI.
+- After reviewing the screenshots, I chose to improve the mobile navigation because the app should feel more usable on small screens.
+
+### AI Output Summary
+
+- AI ran backend tests, frontend tests, and the frontend production build.
+- AI started the backend and frontend locally and checked key API endpoints.
+- AI used browser screenshots to inspect Dashboard, Quests, Progress, Achievements, desktop layout, and mobile layout.
+- AI found a local CORS issue when the frontend was opened from `127.0.0.1`.
+- AI added `127.0.0.1:5173` and `127.0.0.1:5174` to the backend CORS allowlist.
+- AI updated the mobile layout to use a compact top brand area and a fixed bottom navigation bar.
+- AI shortened mobile navigation labels to avoid text overlap.
+
+### My Decision
+
+- I chose to test the app visually before adding final documentation because UI issues are easier to catch in the browser than from code alone.
+- I accepted the CORS fix because local users may open the frontend through either `localhost` or `127.0.0.1`.
+- I chose the mobile navigation improvement because it directly improves usability while keeping the desktop sidebar unchanged.
+
+### My Contribution
+
+- I asked for full project and UI testing rather than only relying on unit tests.
+- I reviewed the UI issue and agreed that mobile navigation should be improved.
+- I directed the work toward practical UX polish instead of adding new features.
+- I reviewed the test results, screenshots, and final merge into `main`.
+
+### Reflection
+
+- This step made FitQuest feel more polished and easier to demo on mobile.
+- The local smoke test also found a real environment issue that could have confused future testing.
+
+## Prompt 021: README submission readiness
+
+### Date
+
+2026-07-21
+
+### Context
+
+- The app already had core FitQuest functionality, tests, advanced features, and `/specs` documentation.
+- The README existed, but it needed to read more like a final submission overview.
+- Deployment links are still pending, so the README needed to clearly separate completed work from remaining final submission tasks.
+
+### Prompt Summary
+
+- I asked what the next step should be after testing and UI polish.
+- AI recommended refining the README before deployment so the project is easier to assess.
+- I approved this direction.
+
+### AI Output Summary
+
+- AI reviewed the existing README and project structure.
+- AI refined the README to include a clearer project overview, key features, advanced features, tech stack, project structure, data models, API summary, local running instructions, testing instructions, design links, AI documentation links, deployment placeholders, and final submission status.
+- AI kept deployment links as `To be added` because deployment has not been completed yet.
+
+### My Decision
+
+- I chose README refinement as the next task because the implementation work needs to be presented clearly for assessment.
+- I wanted the README to show what has already been completed and what remains before final submission.
+- I kept the README practical and evidence-focused instead of turning it into marketing copy.
+
+### My Contribution
+
+- I reviewed the project status and agreed that documentation should be improved before deployment.
+- I confirmed the README should support assessment review by clearly listing the three advanced features.
+- I kept the project direction focused on React TypeScript, C# .NET, simple code, FitQuest naming, and avoiding medical advice.
+- I made the final call to continue with specs documentation after the README branch was created.
+
+### Reflection
+
+- The README now gives a clearer first impression of the project.
+- It also makes the remaining work easier to track: deployment links, screenshots/demo notes, final specs update, and final assessment checklist review.

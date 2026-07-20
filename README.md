@@ -2,52 +2,59 @@
 
 FitQuest is a gamified fitness quest tracker built for the Microsoft Student Accelerator 2026 Phase 2 Software Stream.
 
-The app turns personal workout tasks into quests. Users can create workout quests, complete them, earn XP, level up, and build progress history over time. FitQuest focuses on motivation, habit consistency, and progress tracking. It does not provide medical advice, personalised training plans, calorie recommendations, injury advice, or healthcare guidance.
+The app turns personal workout tasks into quests. Users can create workout quests, complete them, earn XP, level up, build streaks, and review progress over time. FitQuest focuses on motivation, habit consistency, and progress tracking.
+
+FitQuest does not provide medical advice, personalised training plans, calorie recommendations, injury advice, or healthcare guidance.
 
 ## Assessment Theme
 
 The 2026 software stream theme is **Gamification**.
 
-FitQuest connects to this theme through:
+FitQuest addresses this theme through:
 
 - Workout quests
 - XP rewards
 - Level progression
-- Workout logs
-- Achievement planning
+- Streak tracking
+- Achievement badges
 - Progress dashboards
-- Pixel-style visual direction and game-inspired UI
+- Pixel-inspired game UI direction
 
-## Current Features
+## Key Features
 
-- Workout quest CRUD:
-  - Create quests
-  - View quests
-  - Edit quests
-  - Archive quests
-  - Restore archived quests
-- Quest completion:
-  - Complete active quests
-  - Create workout log records
-  - Award XP
-  - Update total XP
-  - Calculate level using a simple 100 XP per level rule
-  - Track current and longest workout streaks
-  - Unlock achievements and award achievement XP bonuses
-- FitQuest frontend shell:
-  - Dashboard
-  - Quests
-  - Progress
-  - Achievements
-  - Settings
-- Responsive React Router navigation
-- Light and dark theme switching
-- API rate limiting
-- Configured CORS origin allowlist
-- SQLite persistent storage
-- Scalar API documentation
-- Figma UX design reference
-- `/specs` documentation for planning, AI usage, design decisions, and development progress
+- Create, edit, archive, restore, and complete workout quests
+- Award XP when quests are completed
+- Calculate player level from total XP
+- Track current and longest workout streaks
+- Create workout log records from quest completions
+- Unlock achievements from milestone conditions
+- Award achievement XP bonuses once per achievement
+- View a dashboard summary with XP, level, streaks, and recent activity
+- View a progress history page with completed quests
+- View an achievement badge collection
+- Switch between light and dark themes
+- Use responsive navigation on desktop and mobile
+
+## Advanced Features
+
+The three implemented advanced features selected for the final submission are:
+
+1. **Theme switching**
+   - Light and dark mode support
+   - Theme preference stored in local storage
+   - Settings page toggle
+   - Frontend test coverage
+
+2. **Security measures**
+   - Request validation for quest creation and updates
+   - Fixed-window API rate limiting
+   - Configured CORS origin allowlist
+   - Updated SQLite native dependency to remove a known vulnerability warning
+
+3. **State management**
+   - Zustand store for theme state
+   - Zustand store for dashboard profile summary and recent workout logs
+   - Shared store state reset during frontend tests
 
 ## Tech Stack
 
@@ -58,6 +65,8 @@ FitQuest connects to this theme through:
 - Vite
 - React Router
 - Zustand
+- Vitest
+- React Testing Library
 - Custom CSS
 
 ### Backend
@@ -67,6 +76,7 @@ FitQuest connects to this theme through:
 - ASP.NET Core Web API
 - Entity Framework Core
 - SQLite
+- xUnit
 - Scalar API documentation
 
 ## Project Structure
@@ -78,6 +88,12 @@ backend/
   Dtos/
   Models/
   Program.cs
+
+backend.Tests/
+  AchievementsControllerTests.cs
+  ProfileControllerTests.cs
+  WorkoutLogsControllerTests.cs
+  WorkoutQuestsControllerTests.cs
 
 frontend/
   src/
@@ -96,6 +112,41 @@ specs/
   project-plan.md
 ```
 
+## Data Models
+
+FitQuest currently uses these core backend entities:
+
+- `UserProfile`
+  - Stores username, total XP, level, current streak, longest streak, and last completed date.
+- `WorkoutQuest`
+  - Stores quest title, description, category, difficulty, XP reward, due date, active/archive state, and timestamps.
+- `WorkoutLog`
+  - Stores completed quest history, earned XP, completion notes, difficulty, category, and completion time.
+- `Achievement`
+  - Stores badge name, description, icon, unlock condition, threshold, XP bonus, and enabled state.
+- `UserAchievement`
+  - Links unlocked achievements to the user profile and records unlock time.
+
+## API Summary
+
+Main API endpoints:
+
+- `GET /api/profile`
+- `GET /api/workoutlogs`
+- `GET /api/achievements`
+- `GET /api/workoutquests`
+- `GET /api/workoutquests/{id}`
+- `POST /api/workoutquests`
+- `PUT /api/workoutquests/{id}`
+- `DELETE /api/workoutquests/{id}`
+- `POST /api/workoutquests/{id}/complete`
+
+Scalar API documentation is available locally after starting the backend:
+
+```text
+http://localhost:5000/scalar
+```
+
 ## Running Locally
 
 ### Backend
@@ -111,12 +162,6 @@ Backend API:
 
 ```text
 http://localhost:5000
-```
-
-Scalar API documentation:
-
-```text
-http://localhost:5000/scalar
 ```
 
 SQLite database:
@@ -143,27 +188,42 @@ Frontend:
 http://localhost:5173
 ```
 
-The frontend currently expects the backend API to run on:
+The frontend expects the backend API to run on:
 
 ```text
 http://localhost:5000
 ```
 
-## API Summary
+## Testing
 
-Current main API endpoints:
+Run backend tests:
 
-- `GET /api/achievements`
-- `GET /api/workoutquests`
-- `GET /api/workoutquests/{id}`
-- `POST /api/workoutquests`
-- `PUT /api/workoutquests/{id}`
-- `DELETE /api/workoutquests/{id}`
-- `POST /api/workoutquests/{id}/complete`
+```bash
+dotnet test FitQuest.slnx
+```
+
+Run frontend tests:
+
+```bash
+cd frontend
+npm run test
+```
+
+Run frontend production build:
+
+```bash
+cd frontend
+npm run build
+```
+
+Current test coverage includes:
+
+- Backend controller tests for quest validation, quest completion, streak updates, achievement unlocks, profile summary, workout logs, and achievements.
+- Frontend tests for Dashboard rendering, Settings theme switching, Achievements badge rendering, and Quest Board interactions.
 
 ## Design Reference
 
-Figma design notes are recorded in:
+UX planning and Figma notes are recorded in:
 
 ```text
 specs/figma-design.md
@@ -177,7 +237,7 @@ https://www.figma.com/design/Cvsd4C67ZUrTiRp1UL9TtH/FitQuest?node-id=0-1&p=f&t=C
 
 ## AI Usage and Planning Evidence
 
-The `/specs` folder contains evidence of planning, design decisions, AI-assisted development, and development progress.
+The `/specs` folder records planning, design decisions, AI-assisted development prompts, and progress updates.
 
 Important files:
 
@@ -188,24 +248,7 @@ Important files:
 - `specs/agent-instructions.md`
 - `specs/figma-design.md`
 
-## Advanced Requirements Status
-
-The final submission must clearly list the top three implemented advanced requirements. Current status:
-
-1. **Theme switching** - Implemented
-   - Light and dark theme modes
-   - Theme preference saved in local storage
-   - Settings page toggle
-   - Frontend unit test coverage
-2. **Security measures** - Implemented
-   - Backend request validation for quest creation and updates
-   - Fixed-window API rate limiting
-   - Configured CORS origin allowlist for local frontend origins
-   - Updated SQLite native dependency to remove a known vulnerability warning
-3. **State management** - Implemented
-   - Zustand store for app theme state
-   - Zustand store for Dashboard profile summary and recent workout logs
-   - Frontend tests reset shared store state between runs
+These documents describe the project concept, student design decisions, prompt usage, implementation decisions, and development progress.
 
 ## Deployment
 
@@ -214,65 +257,27 @@ Deployment links will be added before final submission.
 - Frontend deployment: To be added
 - Backend deployment: To be added
 
-## Testing
+## Current Submission Status
 
-Backend unit tests have been added with xUnit. Frontend unit tests have been added with Vitest and React Testing Library.
+Implemented:
 
-Current test coverage includes:
-
-- Backend controller tests for quest validation, quest completion, streak updates, achievement unlocks, profile summary, workout logs, and achievements.
-- Frontend tests for Dashboard rendering, Settings theme switching, Achievements badge rendering, and Quest Board interactions.
-
-Run backend tests:
-
-```bash
-dotnet test FitQuest.slnx
-```
-
-Current validation commands:
-
-```bash
-cd backend
-dotnet build
-```
-
-```bash
-cd frontend
-npm run build
-```
-
-Run frontend tests:
-
-```bash
-cd frontend
-npm run test
-```
-
-## Current Development Status
-
-FitQuest has completed the first real vertical slices:
-
-- FitQuest data models
-- Workout quest CRUD API
-- Quest Board frontend
+- FitQuest concept and gamification scope
+- React TypeScript frontend
+- C# .NET backend
 - SQLite persistence
-- Figma UX direction
-- Multi-page frontend shell
-- Quest completion with XP and workout logs
-- Dashboard and Progress pages connected to backend data
-- Dashboard streak summary
-- Real achievement badge collection
-- Backend and frontend unit test setup
-- Theme switching advanced requirement
-- Security measures advanced requirement
-- State management advanced requirement
+- Core data models
+- CRUD endpoints
+- Quest completion flow
+- XP, level, streak, and achievement systems
+- Multi-page responsive UI
+- Frontend and backend tests
+- Three advanced features
+- Planning and AI usage documentation in `/specs`
 
-Next priorities:
+Remaining before final submission:
 
-1. Add more backend and frontend unit tests.
-2. Deploy frontend and backend.
-3. Polish final README, screenshots, and demo notes.
-
-## Reflection
-
-If I were to repeat this project, I would replace the starter scaffold README earlier and set up testing infrastructure sooner. The project is now moving from core feature implementation into assessment hardening: tests, deployment, advanced requirements, and final documentation.
+- Deploy frontend and backend
+- Add final deployment links
+- Add final screenshots or demo notes
+- Complete final `/specs` progress update
+- Perform final assessment checklist review
