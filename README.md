@@ -278,6 +278,24 @@ dotnet backend.dll --urls http://0.0.0.0:${PORT:-8080}
 
 Production CORS must be updated after the frontend deployment URL is available.
 
+### Frontend Vercel Setup
+
+The frontend is prepared for Vercel using the existing Vite build.
+
+Recommended Vercel settings:
+
+- Framework preset: Vite
+- Root directory: `frontend`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Environment variable:
+
+```text
+VITE_API_BASE_URL=https://msa-2026-phase-2-software.onrender.com/api
+```
+
+The frontend falls back to `http://localhost:5000/api` during local development when `VITE_API_BASE_URL` is not set.
+
 ## Current Submission Status
 
 Implemented:
