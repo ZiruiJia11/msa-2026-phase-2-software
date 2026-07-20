@@ -254,8 +254,8 @@ These documents describe the project concept, student design decisions, prompt u
 
 Deployment links will be added before final submission.
 
-- Frontend deployment: To be added
-- Backend deployment: To be added
+- Frontend deployment: https://msa-2026-phase-2-software.vercel.app/
+- Backend deployment: https://msa-2026-phase-2-software.onrender.com/
 
 ### Backend Render Setup
 
