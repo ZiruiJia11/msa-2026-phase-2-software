@@ -73,7 +73,7 @@ function getBossName(quest: WorkoutQuest) {
 
 function waitForBattleAnimation() {
   return new Promise(resolve => {
-    window.setTimeout(resolve, 820)
+    window.setTimeout(resolve, 920)
   })
 }
 
@@ -359,6 +359,11 @@ export default function Quests() {
                       <span className="boss-eye left" />
                       <span className="boss-eye right" />
                       <span className="boss-mouth" />
+                    </div>
+                    <div className="hit-effect" aria-hidden="true">
+                      <span />
+                      <span />
+                      <span />
                     </div>
                     <div className="xp-burst">+{quest.xpReward} XP</div>
                   </div>
