@@ -95,6 +95,7 @@ describe('Quests', () => {
 
     expect(completeWorkoutQuest).toHaveBeenCalledWith(1)
     expect(await screen.findByText(/Quest complete: \+50 XP/)).toBeInTheDocument()
+    expect(screen.getByText(/Logged at/)).toBeInTheDocument()
     expect(screen.getByText(/Streak 3/)).toBeInTheDocument()
     expect(screen.getByText(/Unlocked: 3-Day Streak \(\+75 XP\)/)).toBeInTheDocument()
     expect(getWorkoutQuests).toHaveBeenCalledTimes(2)

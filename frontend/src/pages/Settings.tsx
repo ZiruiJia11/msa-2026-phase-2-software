@@ -1,3 +1,5 @@
+import { API_BASE } from '../api'
+import PixelAvatar from '../components/PixelAvatar'
 import { useThemeStore } from '../stores/useThemeStore'
 
 export default function Settings() {
@@ -18,7 +20,7 @@ export default function Settings() {
         <div>
           <p className="eyebrow">Appearance</p>
           <h3>Theme mode</h3>
-          <p>Switch between a bright quest board and a darker focus mode.</p>
+          <p>Current palette: {isDark ? 'Dark focus' : 'Bright quest board'}.</p>
         </div>
 
         <label className="theme-toggle">
@@ -29,6 +31,35 @@ export default function Settings() {
           />
           <span>{isDark ? 'Dark mode' : 'Light mode'}</span>
         </label>
+      </section>
+
+      <section className="settings-grid">
+        <article className="panel settings-panel avatar-panel">
+          <PixelAvatar />
+          <div>
+            <p className="eyebrow">Player</p>
+            <h3>FitQuest avatar</h3>
+            <p>Original pixel-style player character for the quest dashboard.</p>
+          </div>
+        </article>
+
+        <article className="panel settings-panel">
+          <div>
+            <p className="eyebrow">Records</p>
+            <h3>Completion time</h3>
+            <p>Workout logs use the current completion time automatically.</p>
+          </div>
+          <div className="settings-value">Current time</div>
+        </article>
+
+        <article className="panel settings-panel">
+          <div>
+            <p className="eyebrow">Connection</p>
+            <h3>API endpoint</h3>
+            <p>{API_BASE}</p>
+          </div>
+          <div className="settings-value">Active</div>
+        </article>
       </section>
     </section>
   )
