@@ -1,6 +1,7 @@
 ﻿using backend.Data;
 using backend.Models;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using System.Text.Json.Serialization;
@@ -26,8 +27,12 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? "Data Source=fitquest.db";
+EnsureSqliteDirectoryExists(connectionString);
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(connectionString));
 
 var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
     ?? ["http://localhost:5173"];
@@ -108,4 +113,20 @@ static void SeedAchievements(AppDbContext db)
         });
 
     db.SaveChanges();
+}
+
+static void EnsureSqliteDirectoryExists(string connectionString)
+{
+    var dataSource = new SqliteConnectionStringBuilder(connectionString).DataSource;
+
+    if (string.IsNullOrWhiteSpace(dataSource) || dataSource.Equals(":memory:", StringComparison.OrdinalIgnoreCase))
+    {
+        return;
+    }
+
+    var directory = Path.GetDirectoryName(Path.GetFullPath(dataSource));
+    if (!string.IsNullOrWhiteSpace(directory))
+    {
+        Directory.CreateDirectory(directory);
+    }
 }
