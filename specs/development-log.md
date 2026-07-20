@@ -374,16 +374,25 @@ This file tracks FitQuest development progress over time.
 - Added frontend test coverage for locked and unlocked achievement badges.
 - Created commit `8d5aa89 Add achievement unlock backend`.
 - Created commit `5175bf8 Connect achievement badges frontend`.
+- Merged `fitquest-achievement-unlocks` into `main`.
+- Pushed the updated `main` branch.
+- Created a new branch: `fitquest-backend-coverage`.
+- Added `ProfileController` tests for default profile creation and existing profile summary values.
+- Added `WorkoutLogsController` tests for newest-first ordering and safe limit clamping.
+- Added `AchievementsController` tests for locked and unlocked achievement states.
+- Created commit `ca3498b Add profile and workout log tests`.
+- Created commit `38daa93 Add achievement controller tests`.
 
 ### Validation
 
 - `dotnet test FitQuest.slnx` passed with 4 backend tests after adding achievement unlock logic.
 - `npm run test` passed with 4 frontend tests after connecting the Achievements page.
 - `npm run build` passed after adding achievement frontend types and UI.
+- `dotnet test FitQuest.slnx` passed with 8 backend tests after adding profile and workout log tests.
+- `dotnet test FitQuest.slnx` passed with 10 backend tests after adding achievement controller tests.
 
 ### Next Steps
 
-- Add more backend tests for Profile and WorkoutLogs endpoints.
 - Add more frontend tests for Quest Board interactions.
 - Prepare deployment configuration for frontend and backend.
 - Polish final README, screenshots, and demo notes.

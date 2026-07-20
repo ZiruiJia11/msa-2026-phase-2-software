@@ -698,3 +698,44 @@ This file records meaningful AI prompts used during planning and development of 
 
 - Achievement unlocks make the FitQuest loop more complete: complete quests, gain XP, build streaks, and unlock badges.
 - The Achievements page now shows real app state instead of placeholder content.
+
+## Prompt 018: Backend test coverage improvement
+
+### Date
+
+2026-07-20
+
+### Context
+
+- Achievement unlock logic had been merged into `main`.
+- The project had core backend features working, but test coverage was still concentrated mainly around quest creation and completion.
+- Before deployment, I wanted stronger evidence that the main backend read endpoints behave correctly.
+
+### Prompt Summary
+
+- I asked AI for the next step after completing achievement unlocks.
+- AI recommended improving backend test coverage before deployment because the app already had enough core features and needed stronger assessment evidence.
+
+### AI Output Summary
+
+- AI added `ProfileController` tests for default profile creation and existing profile summary values.
+- AI added `WorkoutLogsController` tests for newest-first ordering and safe limit clamping.
+- AI added `AchievementsController` tests for locked and unlocked achievement states.
+- AI confirmed that `dotnet test FitQuest.slnx` passes with 10 backend tests.
+
+### My Decision
+
+- I chose backend coverage as the next task because deployment should happen after the main API behaviour is better protected by tests.
+- I prioritised controller tests that cover user-visible data: profile summary, workout history, and achievement badge state.
+
+### My Contribution
+
+- I reviewed the self-check and agreed that tests were weaker than the implemented feature set.
+- I chose to improve backend coverage before starting deployment.
+- I kept the work split into focused commits: profile/workout log tests, achievement controller tests, and documentation.
+- I reviewed the test results and confirmed the backend test count increased from 4 to 10.
+
+### Reflection
+
+- This makes the project more reliable before deployment.
+- The test evidence now better matches the number of backend features implemented in FitQuest.

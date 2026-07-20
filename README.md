@@ -218,6 +218,11 @@ Deployment links will be added before final submission.
 
 Backend unit tests have been added with xUnit. Frontend unit tests have been added with Vitest and React Testing Library.
 
+Current test coverage includes:
+
+- Backend controller tests for quest validation, quest completion, streak updates, achievement unlocks, profile summary, workout logs, and achievements.
+- Frontend tests for Dashboard rendering, Settings theme switching, and Achievements badge rendering.
+
 Run backend tests:
 
 ```bash
