@@ -407,3 +407,63 @@ This file tracks FitQuest development progress over time.
 
 - Prepare deployment configuration for frontend and backend.
 - Polish final README, screenshots, and demo notes.
+
+## 2026-07-21
+
+### Completed
+
+- Reviewed the project after the Quest Board frontend test branch was merged into `main`.
+- Ran a full local smoke test:
+  - backend unit tests
+  - frontend unit tests
+  - frontend production build
+  - backend API endpoint checks
+  - browser screenshot checks for desktop and mobile UI
+- Found that the frontend worked from `localhost:5173` but showed `Failed to fetch` from `127.0.0.1:5173`.
+- Added `127.0.0.1:5173` and `127.0.0.1:5174` to the backend CORS allowlist.
+- Improved the mobile layout:
+  - compact top FitQuest brand area
+  - fixed bottom navigation bar
+  - shortened mobile labels: Home, Quests, Logs, Badges, Set
+  - desktop sidebar kept unchanged
+- Created branch `fitquest-local-cors-smoke-test`.
+- Created commit `e57db54 Allow local frontend loopback origins`.
+- Created commit `4f6cd2c Improve mobile navigation layout`.
+- Merged `fitquest-local-cors-smoke-test` into `main`.
+- Pushed the updated `main` branch.
+- Created branch `fitquest-final-readme`.
+- Refined the root README for submission readiness.
+- Added clearer README sections for:
+  - project overview
+  - key features
+  - three advanced features
+  - tech stack
+  - project structure
+  - data models
+  - API summary
+  - local running instructions
+  - testing instructions
+  - design and AI documentation links
+  - deployment placeholders
+  - current submission status
+- Created commit `04de898 Refine README for submission readiness`.
+
+### Validation
+
+- `dotnet test FitQuest.slnx` passed with 10 backend tests during the smoke test.
+- `npm run test` passed with 8 frontend tests during the smoke test.
+- `npm run build` passed during the smoke test.
+- Browser screenshots confirmed Dashboard, Quests, Progress, Achievements, desktop layout, and mobile layout rendered correctly.
+- After restarting the backend, the `127.0.0.1:5173` frontend path loaded real dashboard data instead of showing `Failed to fetch`.
+- `npm run test` passed after the mobile navigation update.
+- `npm run build` passed after the mobile navigation update.
+- `dotnet test FitQuest.slnx` passed after merging into `main`.
+- `npm run build` passed after the README-only update.
+
+### Next Steps
+
+- Push the README/specs branch.
+- Deploy the backend and frontend.
+- Add final deployment links to README.
+- Add final screenshots or demo notes.
+- Perform final assessment checklist review.

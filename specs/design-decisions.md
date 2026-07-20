@@ -153,3 +153,19 @@ This file records key FitQuest project design decisions and the reasons behind t
 - The first badges focus on behaviours already tracked by the MVP: first workout, streak days, total completions, and total XP.
 - Achievement XP bonuses reward milestone progress but still use the existing level calculation rule.
 - Category-specific achievements are left for later because the current model has a condition type but no category target field.
+
+## 23. Why Mobile Navigation Uses a Bottom Tab Bar
+
+- The desktop sidebar works well on larger screens, but it took too much space on mobile.
+- A compact top brand area keeps FitQuest identity visible without pushing the main content too far down.
+- A fixed bottom navigation bar is easier to reach on a phone and keeps the main pages available at all times.
+- Mobile labels are shortened to Home, Quests, Logs, Badges, and Set to prevent text overlap on narrow screens.
+- The desktop sidebar remains unchanged because it still provides good scanning and navigation on larger screens.
+
+## 24. Why the README Was Refined Before Deployment
+
+- The project already has core features, tests, advanced features, and planning documents, so the README should clearly present that work.
+- A submission-focused README helps assessors quickly understand the purpose, stack, features, data models, API endpoints, tests, and remaining deployment work.
+- Deployment links are still pending, so the README uses placeholders instead of implying deployment is complete.
+- The README links to `/specs` so the project evidence includes planning, AI prompts, design decisions, and development progress.
+- Keeping the README factual and practical fits the assessment better than using promotional language.
