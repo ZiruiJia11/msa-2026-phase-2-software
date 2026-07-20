@@ -382,6 +382,15 @@ This file tracks FitQuest development progress over time.
 - Added `AchievementsController` tests for locked and unlocked achievement states.
 - Created commit `ca3498b Add profile and workout log tests`.
 - Created commit `38daa93 Add achievement controller tests`.
+- Merged `fitquest-backend-coverage` into `main`.
+- Pushed the updated `main` branch.
+- Created a new branch: `fitquest-questboard-tests`.
+- Added Quest Board tests for loading active quests and summary metrics.
+- Added Quest Board tests for completing a quest and showing XP, streak, and unlocked achievement feedback.
+- Added Quest Board tests for creating a quest from the form.
+- Added Quest Board tests for archiving and restoring a quest.
+- Created commit `55510bb Add quest board completion tests`.
+- Created commit `cbad9f7 Add quest board form tests`.
 
 ### Validation
 
@@ -390,9 +399,11 @@ This file tracks FitQuest development progress over time.
 - `npm run build` passed after adding achievement frontend types and UI.
 - `dotnet test FitQuest.slnx` passed with 8 backend tests after adding profile and workout log tests.
 - `dotnet test FitQuest.slnx` passed with 10 backend tests after adding achievement controller tests.
+- `npm run test` passed with 6 frontend tests after adding Quest Board completion tests.
+- `npm run test` passed with 8 frontend tests after adding Quest Board form, archive, and restore tests.
+- `npm run build` passed after adding Quest Board interaction tests.
 
 ### Next Steps
 
-- Add more frontend tests for Quest Board interactions.
 - Prepare deployment configuration for frontend and backend.
 - Polish final README, screenshots, and demo notes.

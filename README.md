@@ -221,7 +221,7 @@ Backend unit tests have been added with xUnit. Frontend unit tests have been add
 Current test coverage includes:
 
 - Backend controller tests for quest validation, quest completion, streak updates, achievement unlocks, profile summary, workout logs, and achievements.
-- Frontend tests for Dashboard rendering, Settings theme switching, and Achievements badge rendering.
+- Frontend tests for Dashboard rendering, Settings theme switching, Achievements badge rendering, and Quest Board interactions.
 
 Run backend tests:
 

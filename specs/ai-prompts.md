@@ -739,3 +739,45 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This makes the project more reliable before deployment.
 - The test evidence now better matches the number of backend features implemented in FitQuest.
+
+## Prompt 019: Quest Board frontend interaction tests
+
+### Date
+
+2026-07-20
+
+### Context
+
+- Backend test coverage had been improved and merged into `main`.
+- The frontend had tests for Dashboard, Settings, and Achievements, but the Quest Board was still missing interaction coverage.
+- Quest Board is the main user workflow for creating, completing, archiving, and restoring quests.
+
+### Prompt Summary
+
+- I asked AI to continue with the next testing task.
+- AI recommended adding Quest Board interaction tests because they cover the app's main user-facing workflow before deployment.
+
+### AI Output Summary
+
+- AI added tests for loading active quests and rendering summary metrics.
+- AI added a test for completing a quest and showing XP, streak, and unlocked achievement feedback.
+- AI added tests for creating a quest from the form.
+- AI added tests for archiving and restoring a quest.
+- AI confirmed that frontend tests pass with 8 tests and that the frontend build passes.
+
+### My Decision
+
+- I chose Quest Board interaction tests because this is the most important frontend workflow in FitQuest.
+- I prioritised tests that match demo actions: view quests, create a quest, complete a quest, archive, and restore.
+
+### My Contribution
+
+- I reviewed the current frontend test gap and agreed that Quest Board needed coverage before deployment.
+- I kept the tests focused on user-visible behaviour instead of testing implementation details.
+- I reviewed the test and build results and confirmed the frontend test count increased from 4 to 8.
+- I kept the work split into completion tests, form/archive tests, and documentation.
+
+### Reflection
+
+- The frontend tests now cover the most important user workflow in the app.
+- This gives stronger confidence before moving into deployment and final polish.
