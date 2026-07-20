@@ -47,7 +47,11 @@ using (var scope = app.Services.CreateScope())
     SeedAchievements(db);
 }
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsProduction())
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseCors();
 app.UseRateLimiter();
 app.UseAuthorization();
