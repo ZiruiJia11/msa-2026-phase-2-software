@@ -33,6 +33,7 @@ FitQuest connects to this theme through:
   - Update total XP
   - Calculate level using a simple 100 XP per level rule
   - Track current and longest workout streaks
+  - Unlock achievements and award achievement XP bonuses
 - FitQuest frontend shell:
   - Dashboard
   - Quests
@@ -152,6 +153,7 @@ http://localhost:5000
 
 Current main API endpoints:
 
+- `GET /api/achievements`
 - `GET /api/workoutquests`
 - `GET /api/workoutquests/{id}`
 - `POST /api/workoutquests`
@@ -254,6 +256,7 @@ FitQuest has completed the first real vertical slices:
 - Quest completion with XP and workout logs
 - Dashboard and Progress pages connected to backend data
 - Dashboard streak summary
+- Real achievement badge collection
 - Backend and frontend unit test setup
 - Theme switching advanced requirement
 - Security measures advanced requirement
@@ -261,9 +264,9 @@ FitQuest has completed the first real vertical slices:
 
 Next priorities:
 
-1. Add achievement unlock logic.
-2. Add more backend and frontend unit tests.
-3. Deploy frontend and backend.
+1. Add more backend and frontend unit tests.
+2. Deploy frontend and backend.
+3. Polish final README, screenshots, and demo notes.
 
 ## Reflection
 

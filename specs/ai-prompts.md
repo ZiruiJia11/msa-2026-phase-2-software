@@ -653,3 +653,48 @@ This file records meaningful AI prompts used during planning and development of 
 
 - This makes FitQuest feel more like a habit-building gamified app.
 - The Dashboard now gives clearer feedback after completing quests.
+
+## Prompt 017: Achievement unlock logic
+
+### Date
+
+2026-07-20
+
+### Context
+
+- Streak logic had been implemented and merged into `main`.
+- The Achievements page still showed static planned badges.
+- The backend already had `Achievement` and `UserAchievement` models, but they were not seeded, exposed through an API, or connected to quest completion.
+
+### Prompt Summary
+
+- I asked AI for the next step after reviewing completed and incomplete project features.
+- AI recommended implementing achievement unlock logic because it completes the gamification loop after XP, levels, and streaks.
+
+### AI Output Summary
+
+- AI added backend achievement DTOs and an achievements API endpoint.
+- AI added default achievement seed data for First Quest, 3-Day Streak, Quest Regular, and XP Climber.
+- AI updated quest completion so eligible achievements unlock once and award XP bonuses.
+- AI added backend test coverage for unlocking the First Quest achievement.
+- AI connected the frontend Achievements page to real backend data.
+- AI updated quest completion feedback to show newly unlocked achievements.
+- AI added a frontend test for locked and unlocked achievement badge rendering.
+
+### My Decision
+
+- I chose achievement unlocks as the next feature because it was the biggest missing gamification piece.
+- I accepted a small initial badge set instead of building a large badge catalogue immediately.
+- I kept category-specific achievements out of this slice because the current achievement model does not yet store a category target.
+
+### My Contribution
+
+- I reviewed the self-check and agreed that achievements should be the next priority before deployment.
+- I kept the work split into backend unlock logic, frontend badge display, and documentation commits.
+- I confirmed the unlock rules should stay simple enough to demo and test.
+- I kept the project documentation focused on my decisions and review process, with AI recorded as implementation support.
+
+### Reflection
+
+- Achievement unlocks make the FitQuest loop more complete: complete quests, gain XP, build streaks, and unlock badges.
+- The Achievements page now shows real app state instead of placeholder content.

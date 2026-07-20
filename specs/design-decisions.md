@@ -145,3 +145,11 @@ This file records key FitQuest project design decisions and the reasons behind t
 - A completion on the day after the last completion increases the current streak.
 - A completion after a missed day resets the current streak to 1.
 - This rule is simple to explain, test, and demonstrate before adding achievement unlock logic.
+
+## 22. Why Achievements Start With a Small Default Badge Set
+
+- Achievement unlocks complete the main gamification loop without requiring user accounts or complex configuration.
+- A small seeded badge set is easier to demo, test, and explain than a large catalogue.
+- The first badges focus on behaviours already tracked by the MVP: first workout, streak days, total completions, and total XP.
+- Achievement XP bonuses reward milestone progress but still use the existing level calculation rule.
+- Category-specific achievements are left for later because the current model has a condition type but no category target field.

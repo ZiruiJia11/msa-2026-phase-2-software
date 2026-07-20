@@ -352,3 +352,38 @@ This file tracks FitQuest development progress over time.
 - Add achievement unlock logic.
 - Add more backend tests for Profile and WorkoutLogs endpoints.
 - Prepare deployment configuration for frontend and backend.
+
+## 2026-07-20
+
+### Completed
+
+- Reviewed the current `main` branch and confirmed achievements were the biggest remaining gamification gap.
+- Created a new branch: `fitquest-achievement-unlocks`.
+- Added achievement DTOs and an achievements API endpoint.
+- Added default seeded achievements:
+  - First Quest
+  - 3-Day Streak
+  - Quest Regular
+  - XP Climber
+- Updated quest completion to unlock eligible achievements.
+- Added achievement XP bonuses to the user's total XP.
+- Updated completion responses to include newly unlocked achievements.
+- Added backend test coverage for unlocking the First Quest achievement.
+- Connected the frontend Achievements page to real backend achievement data.
+- Updated quest completion feedback to show newly unlocked achievements.
+- Added frontend test coverage for locked and unlocked achievement badges.
+- Created commit `8d5aa89 Add achievement unlock backend`.
+- Created commit `5175bf8 Connect achievement badges frontend`.
+
+### Validation
+
+- `dotnet test FitQuest.slnx` passed with 4 backend tests after adding achievement unlock logic.
+- `npm run test` passed with 4 frontend tests after connecting the Achievements page.
+- `npm run build` passed after adding achievement frontend types and UI.
+
+### Next Steps
+
+- Add more backend tests for Profile and WorkoutLogs endpoints.
+- Add more frontend tests for Quest Board interactions.
+- Prepare deployment configuration for frontend and backend.
+- Polish final README, screenshots, and demo notes.
