@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom'
+import PixelAvatar from './components/PixelAvatar'
 import Achievements from './pages/Achievements'
 import About from './pages/About'
 import Dashboard from './pages/Dashboard'
@@ -29,7 +30,10 @@ export default function App() {
       <div className="app-shell">
         <aside className="sidebar">
           <div className="brand-block">
-            <span className="brand-mark" aria-hidden="true">FQ</span>
+            <div className="brand-avatar">
+              <span className="brand-mark" aria-hidden="true">FQ</span>
+              <PixelAvatar decorative />
+            </div>
             <p className="eyebrow">FitQuest</p>
             <h1>Player Hub</h1>
             <p className="sidebar-copy">Track quests, earn XP, and build training streaks.</p>

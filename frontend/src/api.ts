@@ -8,7 +8,7 @@ import type {
   WorkoutQuest,
 } from './types'
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5000/api'
+export const API_BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:5000/api'
 const QUESTS_BASE = `${API_BASE}/workoutquests`
 
 async function parseResponse<T>(res: Response, fallbackMessage: string): Promise<T> {

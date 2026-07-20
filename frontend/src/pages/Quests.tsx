@@ -33,6 +33,15 @@ function formatDate(value: string | null) {
   return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(value))
 }
 
+function formatDateTime(value: string) {
+  return new Intl.DateTimeFormat(undefined, {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  }).format(new Date(value))
+}
+
 function toFormState(quest: WorkoutQuest): QuestFormState {
   return {
     title: quest.title,
@@ -163,7 +172,7 @@ export default function Quests() {
       const unlockedText = result.unlockedAchievements.length > 0
         ? ` Unlocked: ${result.unlockedAchievements.map(achievement => `${achievement.name} (+${achievement.xpBonus} XP)`).join(', ')}.`
         : ''
-      setMessage(`Quest complete: +${result.xpEarned} XP. Total XP: ${result.totalXp}. Level ${result.level}. Streak ${result.currentStreak}.${unlockedText}`)
+      setMessage(`Quest complete: +${result.xpEarned} XP. Logged at ${formatDateTime(result.completedAt)}. Total XP: ${result.totalXp}. Level ${result.level}. Streak ${result.currentStreak}.${unlockedText}`)
       await loadQuests()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not complete quest')
@@ -248,7 +257,7 @@ export default function Quests() {
           </div>
 
           <label>
-            Due date
+            Planning date (optional)
             <input
               type="date"
               value={form.dueDate}
