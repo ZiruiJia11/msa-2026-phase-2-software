@@ -39,7 +39,7 @@ export default function Settings() {
           <div>
             <p className="eyebrow">Player</p>
             <h3>FitQuest avatar</h3>
-            <p>Original pixel-style player character for the quest dashboard.</p>
+            <p>Figma-designed Wild Power Champion avatar for the quest dashboard.</p>
           </div>
         </article>
 
