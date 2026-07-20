@@ -566,9 +566,9 @@ textarea:focus {
 .battle-lane {
   position: relative;
   display: flex;
-  --strike-distance: clamp(88px, 16vw, 154px);
-  --impact-distance: clamp(96px, 18vw, 170px);
-  --boss-approach-distance: clamp(54px, 10vw, 104px);
+  --strike-distance: clamp(104px, 19vw, 178px);
+  --impact-distance: clamp(112px, 21vw, 190px);
+  --boss-approach-distance: clamp(72px, 13vw, 128px);
   min-height: 122px;
   align-items: end;
   justify-content: space-between;
@@ -842,7 +842,7 @@ textarea:focus {
   }
 
   42% {
-    transform: translateX(calc(var(--strike-distance) * 0.82)) translateY(-5px) scale(1.04);
+    transform: translateX(calc(var(--strike-distance) * 0.88)) translateY(-5px) scale(1.04);
   }
 
   54% {
@@ -850,7 +850,7 @@ textarea:focus {
   }
 
   64% {
-    transform: translateX(calc(var(--strike-distance) * 0.95)) translateY(-7px) scale(1.04);
+    transform: translateX(calc(var(--strike-distance) * 0.98)) translateY(-7px) scale(1.04);
   }
 
   100% {
@@ -876,7 +876,7 @@ textarea:focus {
 
   54% {
     opacity: 1;
-    transform: translateX(calc(var(--boss-approach-distance) * -0.95)) translateY(-8px) rotate(3deg);
+    transform: translateX(calc(var(--boss-approach-distance) * -1.05)) translateY(-8px) rotate(3deg);
   }
 
   64% {
