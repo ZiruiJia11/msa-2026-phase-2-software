@@ -122,6 +122,12 @@ a {
   font-weight: 900;
 }
 
+.pixel-avatar-group {
+  display: inline-grid;
+  gap: 8px;
+  justify-items: center;
+}
+
 .pixel-avatar-wrap {
   position: relative;
   display: block;
@@ -131,9 +137,72 @@ a {
   animation: avatar-idle 1.8s steps(2, end) infinite;
 }
 
+.pixel-avatar-wrap::before,
+.pixel-avatar-wrap::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.pixel-avatar-wrap::before {
+  inset: 8px 4px 18px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: skew(-4deg);
+}
+
+.pixel-avatar-wrap::after {
+  right: 18px;
+  bottom: 17px;
+  width: 46px;
+  height: 8px;
+  opacity: 0;
+}
+
+.pixel-avatar-group--rookie .pixel-avatar {
+  filter: saturate(0.9) brightness(0.96);
+}
+
+.pixel-avatar-group--champion .pixel-avatar-wrap::before {
+  border: 2px solid rgba(183, 255, 74, 0.64);
+  background: rgba(255, 107, 61, 0.18);
+  box-shadow: 5px 5px 0 rgba(183, 255, 74, 0.78);
+  opacity: 1;
+}
+
+.pixel-avatar-group--champion .pixel-avatar-wrap::after {
+  background: var(--accent-lime);
+  box-shadow: 0 -14px 0 var(--accent-coral);
+  opacity: 0.72;
+}
+
+.pixel-avatar-group--ascendant .pixel-avatar-wrap::before {
+  inset: 2px -3px 15px;
+  border: 2px solid #ffe36e;
+  background:
+    linear-gradient(135deg, rgba(255, 227, 110, 0.28), rgba(43, 111, 255, 0.22)),
+    rgba(255, 255, 255, 0.1);
+  box-shadow:
+    6px 6px 0 rgba(255, 107, 61, 0.72),
+    -5px -5px 0 rgba(183, 255, 74, 0.58);
+  opacity: 1;
+}
+
+.pixel-avatar-group--ascendant .pixel-avatar-wrap::after {
+  right: 12px;
+  bottom: 13px;
+  width: 58px;
+  height: 10px;
+  background: #ffe36e;
+  box-shadow:
+    0 -18px 0 rgba(120, 167, 255, 0.95),
+    0 -34px 0 rgba(183, 255, 74, 0.85);
+  opacity: 0.86;
+}
+
 .pixel-avatar {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: block;
   width: 84px;
   height: 94px;
@@ -153,6 +222,30 @@ a {
   background: rgba(18, 24, 38, 0.24);
   transform-origin: 50% 50%;
   animation: avatar-shadow 1.8s steps(2, end) infinite;
+}
+
+.avatar-stage-label {
+  display: grid;
+  gap: 2px;
+  min-width: 120px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--surface-soft);
+  text-align: center;
+  box-shadow: 3px 3px 0 rgba(255, 107, 61, 0.24);
+}
+
+.avatar-stage-label strong {
+  font-size: 12px;
+  line-height: 1.1;
+}
+
+.avatar-stage-label span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
 }
 
 @keyframes avatar-idle {
@@ -608,6 +701,13 @@ textarea:focus {
   margin: 0;
 }
 
+.dashboard-avatar-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: start;
+}
+
 .progress-bar {
   height: 14px;
   overflow: hidden;
@@ -759,6 +859,52 @@ textarea:focus {
   flex: 0 0 auto;
 }
 
+.avatar-evolution-panel {
+  gap: 18px;
+}
+
+.avatar-stage-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.avatar-stage-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  min-height: 148px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  background: var(--surface);
+}
+
+.avatar-stage-card.active {
+  border-color: var(--accent-lime);
+  box-shadow: 5px 5px 0 var(--accent-coral);
+}
+
+.avatar-stage-card.locked {
+  opacity: 0.58;
+}
+
+.avatar-stage-card h4,
+.avatar-stage-card p {
+  margin: 8px 0 0;
+}
+
+.avatar-stage-card h4 {
+  color: var(--text);
+  font-size: 18px;
+}
+
+.avatar-stage-card p {
+  color: var(--subtle-text);
+  line-height: 1.45;
+}
+
 .settings-value {
   width: fit-content;
   border-radius: 999px;
@@ -856,7 +1002,8 @@ textarea:focus {
   .summary-grid,
   .streak-summary,
   .achievement-grid,
-  .settings-grid {
+  .settings-grid,
+  .avatar-stage-list {
     grid-template-columns: 1fr;
     min-width: 0;
   }
@@ -926,6 +1073,15 @@ textarea:focus {
 
   .avatar-panel {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-avatar-row,
+  .avatar-stage-card {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-avatar-row {
+    display: grid;
   }
 
   .settings-grid {

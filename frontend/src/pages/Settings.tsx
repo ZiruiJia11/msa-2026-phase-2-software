@@ -1,11 +1,15 @@
 import { API_BASE } from '../api'
-import PixelAvatar from '../components/PixelAvatar'
+import PixelAvatar, { avatarStages, getAvatarStage } from '../components/PixelAvatar'
+import { useDashboardStore } from '../stores/useDashboardStore'
 import { useThemeStore } from '../stores/useThemeStore'
 
 export default function Settings() {
   const theme = useThemeStore(state => state.theme)
   const setTheme = useThemeStore(state => state.setTheme)
+  const profile = useDashboardStore(state => state.profile)
   const isDark = theme === 'dark'
+  const currentLevel = profile?.level ?? 1
+  const currentStage = getAvatarStage(currentLevel)
 
   return (
     <section className="page-stack">
@@ -35,11 +39,11 @@ export default function Settings() {
 
       <section className="settings-grid">
         <article className="panel settings-panel avatar-panel">
-          <PixelAvatar />
+          <PixelAvatar level={currentLevel} showStage />
           <div>
             <p className="eyebrow">Player</p>
-            <h3>FitQuest avatar</h3>
-            <p>Figma-designed Wild Power Champion avatar for the quest dashboard.</p>
+            <h3>{currentStage.name}</h3>
+            <p>Avatar appearance upgrades automatically as the player reaches higher levels.</p>
           </div>
         </article>
 
@@ -60,6 +64,33 @@ export default function Settings() {
           </div>
           <div className="settings-value">Active</div>
         </article>
+      </section>
+
+      <section className="panel settings-panel avatar-evolution-panel">
+        <div>
+          <p className="eyebrow">Avatar Evolution</p>
+          <h3>Level-based forms</h3>
+        </div>
+        <div className="avatar-stage-list">
+          {avatarStages.map(stage => {
+            const isUnlocked = currentLevel >= stage.minLevel
+            const isActive = currentStage.id === stage.id
+
+            return (
+              <article
+                className={`avatar-stage-card ${isUnlocked ? 'unlocked' : 'locked'} ${isActive ? 'active' : ''}`}
+                key={stage.id}
+              >
+                <PixelAvatar level={stage.minLevel} decorative />
+                <div>
+                  <span className="settings-value">Level {stage.minLevel}</span>
+                  <h4>{stage.name}</h4>
+                  <p>{stage.description}</p>
+                </div>
+              </article>
+            )
+          })}
+        </div>
       </section>
     </section>
   )
