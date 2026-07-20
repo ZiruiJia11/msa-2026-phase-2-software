@@ -7,6 +7,7 @@ import {
   getWorkoutQuests,
   updateWorkoutQuest,
 } from '../api'
+import PixelAvatar from '../components/PixelAvatar'
 import type { QuestCategory, QuestDifficulty, WorkoutQuest } from '../types'
 
 const categories: QuestCategory[] = ['Strength', 'Cardio', 'Flexibility', 'Endurance', 'Mobility', 'Recovery']
@@ -52,10 +53,34 @@ function toFormState(quest: WorkoutQuest): QuestFormState {
   }
 }
 
+function getBossClass(quest: WorkoutQuest) {
+  return `quest-boss quest-boss--${quest.category.toLowerCase()} quest-boss--${quest.difficulty.toLowerCase()}`
+}
+
+function getBossName(quest: WorkoutQuest) {
+  const categoryNames: Record<QuestCategory, string> = {
+    Strength: 'Iron Brute',
+    Cardio: 'Sprint Wraith',
+    Flexibility: 'Twist Shade',
+    Endurance: 'Longhaul Titan',
+    Mobility: 'Joint Impulse',
+    Recovery: 'Rest Warden',
+  }
+
+  return categoryNames[quest.category]
+}
+
+function waitForBattleAnimation() {
+  return new Promise(resolve => {
+    window.setTimeout(resolve, 820)
+  })
+}
+
 export default function Quests() {
   const [quests, setQuests] = useState<WorkoutQuest[]>([])
   const [form, setForm] = useState<QuestFormState>(initialForm)
   const [editingId, setEditingId] = useState<number | null>(null)
+  const [battleQuestId, setBattleQuestId] = useState<number | null>(null)
   const [includeInactive, setIncludeInactive] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
@@ -168,6 +193,8 @@ export default function Quests() {
     try {
       setError('')
       setMessage('')
+      setBattleQuestId(quest.id)
+      await waitForBattleAnimation()
       const result = await completeWorkoutQuest(quest.id)
       const unlockedText = result.unlockedAchievements.length > 0
         ? ` Unlocked: ${result.unlockedAchievements.map(achievement => `${achievement.name} (+${achievement.xpBonus} XP)`).join(', ')}.`
@@ -176,6 +203,8 @@ export default function Quests() {
       await loadQuests()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not complete quest')
+    } finally {
+      window.setTimeout(() => setBattleQuestId(current => (current === quest.id ? null : current)), 420)
     }
   }
 
@@ -299,34 +328,64 @@ export default function Quests() {
           )}
 
           <div className="quest-list">
-            {quests.map(quest => (
-              <article className={quest.isActive ? 'quest-card' : 'quest-card archived'} key={quest.id}>
-                <div className="quest-card-main">
-                  <div>
-                    <p className={`category-pill ${quest.category.toLowerCase()}`}>{quest.category}</p>
-                    <h4>{quest.title}</h4>
+            {quests.map(quest => {
+              const isBattling = battleQuestId === quest.id
+              const bossName = getBossName(quest)
+
+              return (
+                <article
+                  className={`${quest.isActive ? 'quest-card' : 'quest-card archived'} ${isBattling ? 'battle-active' : ''}`}
+                  key={quest.id}
+                >
+                  <div className="quest-card-main">
+                    <div>
+                      <p className={`category-pill ${quest.category.toLowerCase()}`}>{quest.category}</p>
+                      <h4>{quest.title}</h4>
+                    </div>
+                    <span className={`difficulty ${quest.difficulty.toLowerCase()}`}>{quest.difficulty}</span>
                   </div>
-                  <span className={`difficulty ${quest.difficulty.toLowerCase()}`}>{quest.difficulty}</span>
-                </div>
-                {quest.description && <p>{quest.description}</p>}
-                <div className="quest-meta">
-                  <span className="xp-pill">{quest.xpReward} XP</span>
-                  <span>{formatDate(quest.dueDate)}</span>
-                  <span>{quest.isActive ? 'Active' : 'Archived'}</span>
-                </div>
-                <div className="quest-actions">
-                  {quest.isActive && (
-                    <button type="button" className="primary-button" onClick={() => handleComplete(quest)}>Complete</button>
-                  )}
-                  <button type="button" className="ghost-button" onClick={() => handleEdit(quest)}>Edit</button>
-                  {quest.isActive ? (
-                    <button type="button" className="danger-button" onClick={() => handleArchive(quest.id)}>Archive</button>
-                  ) : (
-                    <button type="button" className="ghost-button" onClick={() => handleRestore(quest)}>Restore</button>
-                  )}
-                </div>
-              </article>
-            ))}
+
+                  <div className="battle-lane" aria-label={`${bossName} battle preview`}>
+                    <div className="battle-hero">
+                      <PixelAvatar decorative />
+                    </div>
+                    <div className={getBossClass(quest)} aria-hidden="true">
+                      <span className="boss-horn left" />
+                      <span className="boss-horn right" />
+                      <span className="boss-eye left" />
+                      <span className="boss-eye right" />
+                      <span className="boss-mouth" />
+                    </div>
+                    <div className="xp-burst">+{quest.xpReward} XP</div>
+                  </div>
+
+                  {quest.description && <p>{quest.description}</p>}
+                  <div className="quest-meta">
+                    <span className="xp-pill">{quest.xpReward} XP</span>
+                    <span>{formatDate(quest.dueDate)}</span>
+                    <span>{quest.isActive ? bossName : 'Archived'}</span>
+                  </div>
+                  <div className="quest-actions">
+                    {quest.isActive && (
+                      <button
+                        type="button"
+                        className="primary-button"
+                        disabled={battleQuestId !== null}
+                        onClick={() => handleComplete(quest)}
+                      >
+                        {isBattling ? 'Battling...' : 'Complete'}
+                      </button>
+                    )}
+                    <button type="button" className="ghost-button" onClick={() => handleEdit(quest)}>Edit</button>
+                    {quest.isActive ? (
+                      <button type="button" className="danger-button" onClick={() => handleArchive(quest.id)}>Archive</button>
+                    ) : (
+                      <button type="button" className="ghost-button" onClick={() => handleRestore(quest)}>Restore</button>
+                    )}
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </section>
       </section>
