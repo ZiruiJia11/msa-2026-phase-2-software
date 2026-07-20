@@ -9,6 +9,14 @@ import Settings from './pages/Settings'
 import { useThemeStore } from './stores/useThemeStore'
 import './App.css'
 
+const navItems = [
+  { to: '/', label: 'Dashboard', mobileLabel: 'Home', end: true },
+  { to: '/quests', label: 'Quests', mobileLabel: 'Quests' },
+  { to: '/progress', label: 'Progress', mobileLabel: 'Logs' },
+  { to: '/achievements', label: 'Achievements', mobileLabel: 'Badges' },
+  { to: '/settings', label: 'Settings', mobileLabel: 'Set' },
+]
+
 export default function App() {
   const applyTheme = useThemeStore(state => state.applyTheme)
 
@@ -27,11 +35,11 @@ export default function App() {
             <p className="sidebar-copy">Track quests, earn XP, and build training streaks.</p>
           </div>
           <nav aria-label="Main navigation">
-            <NavLink to="/" end>Dashboard</NavLink>
-            <NavLink to="/quests">Quests</NavLink>
-            <NavLink to="/progress">Progress</NavLink>
-            <NavLink to="/achievements">Achievements</NavLink>
-            <NavLink to="/settings">Settings</NavLink>
+            {navItems.map(item => (
+              <NavLink key={item.to} to={item.to} end={item.end}>
+                {item.label}
+              </NavLink>
+            ))}
           </nav>
         </aside>
 
@@ -45,6 +53,14 @@ export default function App() {
             <Route path="/about" element={<About />} />
           </Routes>
         </main>
+
+        <nav className="mobile-tabbar" aria-label="Mobile navigation">
+          {navItems.map(item => (
+            <NavLink key={item.to} to={item.to} end={item.end}>
+              {item.mobileLabel}
+            </NavLink>
+          ))}
+        </nav>
       </div>
     </BrowserRouter>
   )
