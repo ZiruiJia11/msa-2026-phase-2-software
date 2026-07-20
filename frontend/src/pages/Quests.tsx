@@ -54,8 +54,25 @@ function toFormState(quest: WorkoutQuest): QuestFormState {
   }
 }
 
+const monsterVariants = [
+  { id: 'brute', name: 'Brute' },
+  { id: 'wraith', name: 'Wraith' },
+  { id: 'crawler', name: 'Crawler' },
+  { id: 'golem', name: 'Golem' },
+  { id: 'sprite', name: 'Sprite' },
+] as const
+
+function getMonsterVariant(quest: WorkoutQuest) {
+  const seed = `${quest.id}-${quest.category}-${quest.difficulty}`
+    .split('')
+    .reduce((sum, char) => sum + char.charCodeAt(0), 0)
+
+  return monsterVariants[seed % monsterVariants.length]
+}
+
 function getBossClass(quest: WorkoutQuest) {
-  return `quest-boss quest-boss--${quest.category.toLowerCase()} quest-boss--${quest.difficulty.toLowerCase()}`
+  const variant = getMonsterVariant(quest)
+  return `quest-boss quest-boss--${variant.id} quest-boss--${quest.category.toLowerCase()} quest-boss--${quest.difficulty.toLowerCase()}`
 }
 
 function getBossName(quest: WorkoutQuest) {
@@ -68,7 +85,8 @@ function getBossName(quest: WorkoutQuest) {
     Recovery: 'Rest Warden',
   }
 
-  return categoryNames[quest.category]
+  const variant = getMonsterVariant(quest)
+  return `${categoryNames[quest.category]} ${variant.name}`
 }
 
 function waitForBattleAnimation() {

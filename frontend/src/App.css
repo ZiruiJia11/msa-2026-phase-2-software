@@ -721,14 +721,123 @@ textarea:focus {
   background: #ffb74a;
 }
 
+.quest-boss--brute {
+  border-radius: 8px 8px 4px 4px;
+}
+
+.quest-boss--brute .boss-mouth {
+  height: 8px;
+}
+
+.quest-boss--wraith {
+  height: 74px;
+  border-radius: 26px 26px 8px 8px;
+  box-shadow:
+    0 8px 0 rgba(18, 24, 38, 0.1),
+    inset 0 -22px 0 rgba(255, 255, 255, 0.16);
+}
+
+.quest-boss--wraith::before,
+.quest-boss--wraith::after {
+  bottom: -10px;
+  width: 14px;
+  height: 18px;
+  background: currentColor;
+}
+
+.quest-boss--wraith .boss-horn {
+  display: none;
+}
+
+.quest-boss--wraith .boss-eye {
+  border-radius: 999px;
+}
+
+.quest-boss--crawler {
+  width: 88px;
+  height: 48px;
+  align-self: center;
+  border-radius: 8px 18px 6px 16px;
+}
+
+.quest-boss--crawler::before,
+.quest-boss--crawler::after {
+  bottom: -9px;
+  width: 12px;
+  height: 9px;
+}
+
+.quest-boss--crawler .boss-horn {
+  top: -9px;
+  width: 14px;
+  height: 14px;
+}
+
+.quest-boss--crawler .boss-eye {
+  top: 14px;
+}
+
+.quest-boss--crawler .boss-mouth {
+  bottom: 11px;
+}
+
+.quest-boss--golem {
+  width: 84px;
+  height: 76px;
+  border-width: 6px;
+  border-radius: 3px;
+  box-shadow:
+    0 8px 0 rgba(18, 24, 38, 0.18),
+    inset 12px 0 0 rgba(255, 255, 255, 0.14),
+    inset 0 -16px 0 rgba(18, 24, 38, 0.2);
+}
+
+.quest-boss--golem .boss-horn {
+  width: 20px;
+  height: 12px;
+  clip-path: none;
+}
+
+.quest-boss--golem .boss-mouth {
+  right: 16px;
+  left: 16px;
+}
+
+.quest-boss--sprite {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px 8px 18px 8px;
+  transform: translateY(-8px);
+}
+
+.quest-boss--sprite::before,
+.quest-boss--sprite::after {
+  bottom: -8px;
+  width: 10px;
+  height: 8px;
+}
+
+.quest-boss--sprite .boss-horn {
+  background: #ffe36e;
+}
+
+.quest-boss--sprite .boss-eye {
+  top: 17px;
+  width: 10px;
+  height: 14px;
+}
+
+.quest-boss--sprite .boss-mouth {
+  bottom: 13px;
+  height: 5px;
+}
+
 .quest-boss--medium {
-  width: 82px;
-  height: 70px;
+  scale: 1.08;
 }
 
 .quest-boss--hard {
-  width: 92px;
-  height: 78px;
+  scale: 1.18;
   border-width: 5px;
 }
 
