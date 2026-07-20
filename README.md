@@ -257,6 +257,27 @@ Deployment links will be added before final submission.
 - Frontend deployment: To be added
 - Backend deployment: To be added
 
+### Backend Render Setup
+
+The backend is prepared for Render using `backend/Dockerfile`.
+
+Recommended Render settings:
+
+- Service type: Web Service
+- Runtime: Docker
+- Root directory: `backend`
+- Dockerfile path: `Dockerfile`
+- Persistent disk mount path: `/var/data`
+- SQLite connection string: `Data Source=/var/data/fitquest.db`
+
+The Dockerfile starts the API with Render's `PORT` environment variable:
+
+```text
+dotnet backend.dll --urls http://0.0.0.0:${PORT:-8080}
+```
+
+Production CORS must be updated after the frontend deployment URL is available.
+
 ## Current Submission Status
 
 Implemented:
