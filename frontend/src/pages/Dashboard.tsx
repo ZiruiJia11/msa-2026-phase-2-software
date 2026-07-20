@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react'
+import PixelAvatar from '../components/PixelAvatar'
 import { useDashboardStore } from '../stores/useDashboardStore'
 
 function formatDateTime(value: string) {
@@ -65,8 +66,13 @@ export default function Dashboard() {
       {profile && (
         <section className="content-grid">
           <div className="panel progress-panel">
-            <p className="eyebrow">XP Progress</p>
-            <h3>{profile.username}</h3>
+            <div className="dashboard-avatar-row">
+              <div>
+                <p className="eyebrow">XP Progress</p>
+                <h3>{profile.username}</h3>
+              </div>
+              <PixelAvatar level={profile.level} showStage />
+            </div>
             <div className="progress-bar" aria-label={`XP progress ${xpProgress}%`}>
               <span style={{ width: `${xpProgress}%` }} />
             </div>

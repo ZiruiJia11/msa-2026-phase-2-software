@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Progress from './pages/Progress'
 import Quests from './pages/Quests'
 import Settings from './pages/Settings'
+import { useDashboardStore } from './stores/useDashboardStore'
 import { useThemeStore } from './stores/useThemeStore'
 import './App.css'
 
@@ -19,11 +20,19 @@ const navItems = [
 ]
 
 export default function App() {
+  const profile = useDashboardStore(state => state.profile)
+  const loadDashboard = useDashboardStore(state => state.loadDashboard)
   const applyTheme = useThemeStore(state => state.applyTheme)
 
   useEffect(() => {
     applyTheme()
   }, [applyTheme])
+
+  useEffect(() => {
+    if (!profile) {
+      loadDashboard()
+    }
+  }, [loadDashboard, profile])
 
   return (
     <BrowserRouter>
@@ -32,7 +41,7 @@ export default function App() {
           <div className="brand-block">
             <div className="brand-avatar">
               <span className="brand-mark" aria-hidden="true">FQ</span>
-              <PixelAvatar decorative />
+              <PixelAvatar decorative level={profile?.level ?? 1} />
             </div>
             <p className="eyebrow">FitQuest</p>
             <h1>Player Hub</h1>
