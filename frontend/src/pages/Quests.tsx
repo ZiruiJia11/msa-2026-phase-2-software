@@ -8,6 +8,7 @@ import {
   updateWorkoutQuest,
 } from '../api'
 import PixelAvatar from '../components/PixelAvatar'
+import { useDashboardStore } from '../stores/useDashboardStore'
 import type { QuestCategory, QuestDifficulty, WorkoutQuest } from '../types'
 
 const categories: QuestCategory[] = ['Strength', 'Cardio', 'Flexibility', 'Endurance', 'Mobility', 'Recovery']
@@ -86,6 +87,8 @@ export default function Quests() {
   const [isSaving, setIsSaving] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+  const profile = useDashboardStore(state => state.profile)
+  const applyQuestCompletion = useDashboardStore(state => state.applyQuestCompletion)
 
   const activeQuests = useMemo(() => quests.filter(quest => quest.isActive), [quests])
   const totalXp = useMemo(() => activeQuests.reduce((sum, quest) => sum + quest.xpReward, 0), [activeQuests])
@@ -196,6 +199,7 @@ export default function Quests() {
       setBattleQuestId(quest.id)
       await waitForBattleAnimation()
       const result = await completeWorkoutQuest(quest.id)
+      applyQuestCompletion(result)
       const unlockedText = result.unlockedAchievements.length > 0
         ? ` Unlocked: ${result.unlockedAchievements.map(achievement => `${achievement.name} (+${achievement.xpBonus} XP)`).join(', ')}.`
         : ''
@@ -347,7 +351,7 @@ export default function Quests() {
 
                   <div className="battle-lane" aria-label={`${bossName} battle preview`}>
                     <div className="battle-hero">
-                      <PixelAvatar decorative />
+                      <PixelAvatar decorative level={profile?.level ?? 1} />
                     </div>
                     <div className={getBossClass(quest)} aria-hidden="true">
                       <span className="boss-horn left" />

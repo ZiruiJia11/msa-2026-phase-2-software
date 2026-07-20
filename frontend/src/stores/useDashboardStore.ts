@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { getProfileSummary, getWorkoutLogs } from '../api'
-import type { ProfileSummary, WorkoutLog } from '../types'
+import type { CompleteWorkoutQuestResponse, ProfileSummary, WorkoutLog } from '../types'
 
 interface DashboardState {
   profile: ProfileSummary | null
@@ -8,6 +8,7 @@ interface DashboardState {
   isLoading: boolean
   error: string
   loadDashboard: () => Promise<void>
+  applyQuestCompletion: (result: CompleteWorkoutQuestResponse) => void
 }
 
 export const useDashboardStore = create<DashboardState>(set => ({
@@ -28,5 +29,23 @@ export const useDashboardStore = create<DashboardState>(set => ({
     } finally {
       set({ isLoading: false })
     }
+  },
+  applyQuestCompletion: result => {
+    set(state => {
+      if (!state.profile) return state
+
+      return {
+        profile: {
+          ...state.profile,
+          totalXp: result.totalXp,
+          level: result.level,
+          currentStreak: result.currentStreak,
+          longestStreak: result.longestStreak,
+          lastCompletedDate: result.completedAt,
+          completedWorkoutCount: state.profile.completedWorkoutCount + 1,
+          xpIntoCurrentLevel: result.totalXp % 100,
+        },
+      }
+    })
   },
 }))
