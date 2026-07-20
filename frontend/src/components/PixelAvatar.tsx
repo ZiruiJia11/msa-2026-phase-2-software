@@ -6,11 +6,14 @@ interface PixelAvatarProps {
 
 export default function PixelAvatar({ decorative = false }: PixelAvatarProps) {
   return (
-    <img
-      className="pixel-avatar"
-      src={wildPowerChampion}
-      alt={decorative ? '' : 'FitQuest Wild Power Champion pixel avatar'}
-      aria-hidden={decorative}
-    />
+    <span className="pixel-avatar-wrap">
+      <img
+        className="pixel-avatar"
+        src={wildPowerChampion}
+        alt={decorative ? '' : 'FitQuest Wild Power Champion pixel avatar'}
+        aria-hidden={decorative}
+      />
+      <span className="pixel-avatar-shadow" aria-hidden="true" />
+    </span>
   )
 }

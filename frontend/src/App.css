@@ -122,12 +122,72 @@ a {
   font-weight: 900;
 }
 
+.pixel-avatar-wrap {
+  position: relative;
+  display: block;
+  width: 84px;
+  height: 104px;
+  transform-origin: 50% 100%;
+  animation: avatar-idle 1.8s steps(2, end) infinite;
+}
+
 .pixel-avatar {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 84px;
   height: 94px;
   object-fit: contain;
   image-rendering: pixelated;
+  transform-origin: 50% 100%;
+  animation: avatar-sway 900ms steps(2, end) infinite;
+}
+
+.pixel-avatar-shadow {
+  position: absolute;
+  right: 14px;
+  bottom: 0;
+  left: 14px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(18, 24, 38, 0.24);
+  transform-origin: 50% 50%;
+  animation: avatar-shadow 1.8s steps(2, end) infinite;
+}
+
+@keyframes avatar-idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes avatar-sway {
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes avatar-shadow {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: scaleX(1);
+  }
+
+  50% {
+    opacity: 0.14;
+    transform: scaleX(0.82);
+  }
 }
 
 .sidebar h1,
@@ -695,7 +755,7 @@ textarea:focus {
   align-items: center;
 }
 
-.avatar-panel .pixel-avatar {
+.avatar-panel .pixel-avatar-wrap {
   flex: 0 0 auto;
 }
 
@@ -764,7 +824,7 @@ textarea:focus {
     grid-row: 1 / 3;
   }
 
-  .brand-avatar .pixel-avatar {
+  .brand-avatar .pixel-avatar-wrap {
     display: none;
   }
 
@@ -835,6 +895,14 @@ textarea:focus {
     color: #121826;
     background: var(--accent-lime);
     box-shadow: 3px 3px 0 var(--accent-coral);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-avatar-wrap,
+  .pixel-avatar,
+  .pixel-avatar-shadow {
+    animation: none;
   }
 }
 
