@@ -166,6 +166,31 @@ This file records key FitQuest project design decisions and the reasons behind t
 
 - The project already has core features, tests, advanced features, and planning documents, so the README should clearly present that work.
 - A submission-focused README helps assessors quickly understand the purpose, stack, features, data models, API endpoints, tests, and remaining deployment work.
-- Deployment links are still pending, so the README uses placeholders instead of implying deployment is complete.
+- At that stage, deployment links had not yet been added, so the README used placeholders instead of implying deployment was complete.
 - The README links to `/specs` so the project evidence includes planning, AI prompts, design decisions, and development progress.
 - Keeping the README factual and practical fits the assessment better than using promotional language.
+
+## 25. Why the Final Deployment Uses Vercel and Render
+
+- The frontend is a Vite React app, so Vercel is a simple deployment target for the static frontend build.
+- The backend is a .NET Web API, so Render Docker deployment keeps the backend runtime separate from the frontend.
+- SQLite uses a Render persistent disk path so production data can survive service restarts.
+- The frontend uses `VITE_API_BASE_URL` to call the deployed Render API instead of local development URLs.
+- Keeping the deployment setup simple makes it easier to explain and maintain for an assessment project.
+
+## 26. Why Avatar Evolution Is Level-Based
+
+- FitQuest already calculates XP and levels, so the avatar should visually reflect that progression.
+- Showing avatar evolution makes leveling feel like a visible reward instead of only a number on the dashboard.
+- The first implementation uses three clear states rather than many small variations, keeping the feature easy to understand and demo.
+- The Quest Board battle avatar also reads the current player level so the gameplay UI stays consistent after leveling up.
+- The avatar assets come from the project Figma direction and avoid providing fitness or medical advice.
+
+## 27. Why Quest Completion Uses Monster Battle Feedback
+
+- Completing a quest is the core interaction in FitQuest, so it should feel more rewarding than a standard form action.
+- Monster battles support the gamification theme and make the Quest Board easier to demo visually.
+- Monster variants are generated from quest data so each quest feels different without adding extra backend fields.
+- Difficulty affects monster size to make harder quests feel more challenging.
+- The animation is CSS-based to keep the implementation simple, testable, and lightweight.
+- The final timing was adjusted through user feedback so the player and monster approach, touch, and then trigger the attack effect.

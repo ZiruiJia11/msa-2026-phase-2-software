@@ -467,3 +467,56 @@ This file tracks FitQuest development progress over time.
 - Add final deployment links to README.
 - Add final screenshots or demo notes.
 - Perform final assessment checklist review.
+
+## 2026-07-21 Continued
+
+### Completed
+
+- Deployed the backend to Render:
+  - https://msa-2026-phase-2-software.onrender.com/
+- Deployed the frontend to Vercel:
+  - https://msa-2026-phase-2-software.vercel.app/
+- Fixed the Render SQLite path issue by using the persistent disk path.
+- Confirmed the frontend Vercel deployment can connect to the Render backend after environment/CORS setup.
+- Added the Figma-designed pixel avatar asset to the frontend.
+- Removed the exported avatar image backgrounds so only the character pixels show.
+- Added level-based avatar evolution:
+  - Rookie Challenger
+  - Wild Power Champion
+  - Iron Will Ascendant
+- Moved the desktop sidebar avatar into the central sidebar space.
+- Added Quest Board monster battle feedback:
+  - monster shown on each quest card
+  - player and monster approach each other
+  - contact point before attack
+  - pixel hit effect
+  - monster knock-away animation
+  - XP burst feedback
+- Added stable quest monster variants:
+  - Brute
+  - Wraith
+  - Crawler
+  - Golem
+  - Sprite
+- Synced the Quest Board battle avatar with the current player level after quest completion.
+- Updated the README with deployment links, gameplay UI notes, demo notes, and current submission status.
+
+### Validation
+
+- `npm run test` passed with 8 frontend tests after the final gameplay UI updates.
+- `npm run build` passed after the final gameplay UI updates.
+- `dotnet test FitQuest.slnx` initially failed because a local backend process was still running and locking `backend.exe`.
+- Stopped the local backend process and reran `dotnet test FitQuest.slnx`.
+- `dotnet test FitQuest.slnx` passed with 10 backend tests after the process lock was cleared.
+
+### User Design Direction
+
+- The user chose the FitQuest concept and asked for a more game-like UX.
+- The user manually refined the Figma file and directed the implementation to follow that design direction.
+- The user requested the sidebar avatar placement, level-based avatar changes, quest boss battles, monster variety, and repeated animation timing adjustments.
+- AI assisted with implementation, testing, and documentation, while the visual direction and acceptance decisions came from the user.
+
+### Next Steps
+
+- Perform one final assessment checklist review against the PDF.
+- Capture final screenshots or demo notes if needed for the submission package.
