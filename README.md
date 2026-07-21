@@ -34,6 +34,10 @@ FitQuest addresses this theme through:
 - View an achievement badge collection
 - Switch between light and dark themes
 - Use responsive navigation on desktop and mobile
+- Display a Figma-inspired pixel player avatar in the sidebar
+- Upgrade the avatar appearance based on player level
+- Show quest boss battle feedback when a quest is completed
+- Generate different monster variants for quest cards based on quest data and difficulty
 
 ## Advanced Features
 
@@ -55,6 +59,7 @@ The three implemented advanced features selected for the final submission are:
    - Zustand store for theme state
    - Zustand store for dashboard profile summary and recent workout logs
    - Shared store state reset during frontend tests
+   - Quest completion updates shared profile state so level-based avatar UI stays in sync
 
 ## Tech Stack
 
@@ -108,6 +113,7 @@ specs/
   ai-prompts.md
   design-decisions.md
   development-log.md
+  final-assessment-checklist.md
   figma-design.md
   project-plan.md
 ```
@@ -235,6 +241,13 @@ Figma file:
 https://www.figma.com/design/Cvsd4C67ZUrTiRp1UL9TtH/FitQuest?node-id=0-1&p=f&t=CL25aBEkkeEQfQw3-0
 ```
 
+Recent UI refinements include:
+
+- A sidebar player avatar moved into the central sidebar space on desktop
+- Pixel avatar evolution states from early level to higher-level form
+- Quest cards with monster variants and animated completion feedback
+- A lightweight battle animation where the player and monster approach each other, collide, and the monster is knocked away
+
 ## AI Usage and Planning Evidence
 
 The `/specs` folder records planning, design decisions, AI-assisted development prompts, and progress updates.
@@ -244,6 +257,7 @@ Important files:
 - `specs/ai-prompts.md`
 - `specs/design-decisions.md`
 - `specs/development-log.md`
+- `specs/final-assessment-checklist.md`
 - `specs/project-plan.md`
 - `specs/agent-instructions.md`
 - `specs/figma-design.md`
@@ -252,7 +266,7 @@ These documents describe the project concept, student design decisions, prompt u
 
 ## Deployment
 
-Deployment links will be added before final submission.
+FitQuest is deployed with a Vercel frontend and Render backend.
 
 - Frontend deployment: https://msa-2026-phase-2-software.vercel.app/
 - Backend deployment: https://msa-2026-phase-2-software.onrender.com/
@@ -276,7 +290,7 @@ The Dockerfile starts the API with Render's `PORT` environment variable:
 dotnet backend.dll --urls http://0.0.0.0:${PORT:-8080}
 ```
 
-Production CORS must be updated after the frontend deployment URL is available.
+Production CORS includes the deployed Vercel frontend origin.
 
 ### Frontend Vercel Setup
 
@@ -296,6 +310,17 @@ VITE_API_BASE_URL=https://msa-2026-phase-2-software.onrender.com/api
 
 The frontend falls back to `http://localhost:5000/api` during local development when `VITE_API_BASE_URL` is not set.
 
+## Demo Notes
+
+Suggested demo flow:
+
+1. Open the Dashboard to show the player level, total XP, streaks, and current avatar form.
+2. Open Quests to create, edit, archive, restore, and complete workout quests.
+3. Complete a quest to show the monster battle animation, XP reward, streak update, and level feedback.
+4. Open Achievements to show locked and unlocked badges.
+5. Open Progress to show workout log history.
+6. Open Settings to show theme switching and avatar evolution states.
+
 ## Current Submission Status
 
 Implemented:
@@ -312,11 +337,10 @@ Implemented:
 - Frontend and backend tests
 - Three advanced features
 - Planning and AI usage documentation in `/specs`
+- Deployed frontend and backend
+- Figma-inspired UI polish, avatar evolution, and quest battle feedback
 
 Remaining before final submission:
 
-- Deploy frontend and backend
-- Add final deployment links
-- Add final screenshots or demo notes
-- Complete final `/specs` progress update
 - Perform final assessment checklist review
+- Capture final screenshots or short demo evidence if required by submission instructions

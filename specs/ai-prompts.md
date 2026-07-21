@@ -837,7 +837,7 @@ This file records meaningful AI prompts used during planning and development of 
 
 - The app already had core FitQuest functionality, tests, advanced features, and `/specs` documentation.
 - The README existed, but it needed to read more like a final submission overview.
-- Deployment links are still pending, so the README needed to clearly separate completed work from remaining final submission tasks.
+- At that time, deployment links had not yet been added, so the README needed to clearly separate completed work from remaining final submission tasks.
 
 ### Prompt Summary
 
@@ -849,7 +849,7 @@ This file records meaningful AI prompts used during planning and development of 
 
 - AI reviewed the existing README and project structure.
 - AI refined the README to include a clearer project overview, key features, advanced features, tech stack, project structure, data models, API summary, local running instructions, testing instructions, design links, AI documentation links, deployment placeholders, and final submission status.
-- AI kept deployment links as `To be added` because deployment has not been completed yet.
+- AI kept deployment links as `To be added` because deployment had not been completed at that point. This was later updated after Render and Vercel deployment.
 
 ### My Decision
 
@@ -868,3 +868,195 @@ This file records meaningful AI prompts used during planning and development of 
 
 - The README now gives a clearer first impression of the project.
 - It also makes the remaining work easier to track: deployment links, screenshots/demo notes, final specs update, and final assessment checklist review.
+
+## Prompt 022: Deployment setup and production connection fixes
+
+### Date
+
+2026-07-21
+
+### Context
+
+- The project had core frontend and backend functionality working locally.
+- I needed to deploy the backend and frontend for the final submission.
+- The frontend and backend needed to connect correctly in production.
+
+### Prompt Summary
+
+- I asked AI to help with deployment, first using Render for the backend and then Vercel for the frontend.
+- I reported production errors such as SQLite being unable to open the database file and frontend `Failed to fetch`.
+
+### AI Output Summary
+
+- AI helped adjust the Render SQLite setup to use a persistent disk path.
+- AI helped confirm the backend deployment URL.
+- AI helped configure the frontend deployment to call the Render API through `VITE_API_BASE_URL`.
+- AI helped identify that production CORS/environment setup was the likely cause of the frontend fetch issue.
+
+### My Decision
+
+- I chose Render for the C# .NET backend and Vercel for the React TypeScript frontend.
+- I confirmed the deployed URLs once both services were working.
+- I chose to keep the deployment setup simple and explainable for the assessment.
+
+### My Contribution
+
+- I provided the live Render and Vercel URLs.
+- I checked the deployed app and reported the production errors.
+- I confirmed when the production connection was working.
+- I directed the project to move on only after the deployed frontend could reach the backend.
+
+### Reflection
+
+- Deployment exposed environment issues that local development did not show.
+- Fixing these issues made the project stronger because the final submission can be tested from public URLs.
+
+## Prompt 023: Figma avatar and level-based player evolution
+
+### Date
+
+2026-07-21
+
+### Context
+
+- I had manually updated the Figma file with a FitQuest UX direction and pixel-style character assets.
+- The app needed to use the character design more visibly.
+- I wanted the player avatar to change as the user levels up.
+
+### Prompt Summary
+
+- I asked AI to use the Figma-designed character assets in the actual frontend.
+- I then asked AI to make the character dynamic and create several states from basic to ultimate based on player level.
+- I also asked AI to remove the white exported background around the character.
+
+### AI Output Summary
+
+- AI exported the Figma avatar assets into the frontend.
+- AI added `PixelAvatar` support for multiple avatar stages.
+- AI added level-based avatar evolution:
+  - Rookie Challenger
+  - Wild Power Champion
+  - Iron Will Ascendant
+- AI processed the avatar PNG files so the background is transparent.
+
+### My Decision
+
+- I chose to use my Figma design as the UX baseline.
+- I chose level-based avatar evolution because it makes XP and levels more visible.
+- I requested the white frame removal because the character should appear as a sprite, not as a boxed image.
+
+### My Contribution
+
+- I manually refined the Figma design and renamed the file to FitQuest.
+- I asked for the character to be included in the actual app.
+- I reviewed the visual output and identified the white frame problem.
+- I directed the avatar to evolve by player level.
+
+### Reflection
+
+- The avatar makes the app feel more like FitQuest and less like a generic CRUD app.
+- The level-based visual progression strengthens the gamification theme.
+
+## Prompt 024: Quest boss battle feedback and monster variants
+
+### Date
+
+2026-07-21
+
+### Context
+
+- The Quest Board already supported completing quests, XP rewards, streaks, and achievements.
+- I wanted quest completion to feel more fun and game-like.
+- The app needed stronger visual evidence of gamification.
+
+### Prompt Summary
+
+- I asked AI to make the page more interesting by adding monsters as bosses.
+- I asked for a completion animation where the player character attacks and knocks the monster away.
+- I repeatedly adjusted the animation direction:
+  - make the player and monster move closer
+  - make both sides contact before the attack
+  - make the contact point even closer
+  - add more monster variety
+
+### AI Output Summary
+
+- AI added a CSS-based monster boss to each quest card.
+- AI added a battle animation when a quest is completed:
+  - player approach
+  - monster approach
+  - contact point
+  - attack effect
+  - XP burst
+  - monster knock-away
+- AI added stable monster variants generated from quest data:
+  - Brute
+  - Wraith
+  - Crawler
+  - Golem
+  - Sprite
+- AI made difficulty affect monster size.
+- AI synced the battle avatar with the player's current level.
+
+### My Decision
+
+- I chose to add boss battle feedback because it makes the main Quest Board workflow more memorable.
+- I chose stable randomisation instead of fully random monsters so the UI does not change unpredictably every refresh.
+- I approved using CSS-based pixel monsters because it keeps the code simple and avoids extra asset complexity.
+
+### My Contribution
+
+- I proposed the boss battle idea.
+- I gave repeated visual direction on the animation timing and contact distance.
+- I asked for more monster variety and difficulty-based monster changes.
+- I approved the final version after reviewing the local UI.
+
+### Reflection
+
+- This was a user-led UX refinement where AI implemented the details.
+- The final Quest Board now better demonstrates gamification through interaction, not only through numbers.
+
+## Prompt 025: Final paperwork and submission status update
+
+### Date
+
+2026-07-21
+
+### Context
+
+- The core app, deployment, tests, avatar evolution, and quest battle UI had been completed.
+- The README and `/specs` files needed to be updated so the documentation matched the current project.
+
+### Prompt Summary
+
+- I asked AI what was still missing.
+- AI identified final paperwork, final testing records, deployment review, screenshots/demo notes, and checklist review.
+- I asked AI to do the paperwork update.
+
+### AI Output Summary
+
+- AI updated the README with the latest feature list, deployment links, gameplay UI notes, and demo notes.
+- AI updated the development log with deployment, avatar, monster battle, and final validation progress.
+- AI updated design decisions to explain deployment, avatar evolution, and monster battle feedback.
+- AI ran final validation:
+  - frontend tests passed
+  - frontend build passed
+  - backend tests passed after stopping a local backend process that was locking `backend.exe`
+
+### My Decision
+
+- I chose to update documentation after the latest gameplay UI was merged and pushed.
+- I wanted the documentation to clearly show that my design decisions guided the UX direction.
+- I chose to keep the remaining work focused on final checklist review and optional screenshots/demo evidence.
+
+### My Contribution
+
+- I asked for the final gap review.
+- I approved the paperwork update.
+- I required the records to describe my own design contribution rather than presenting the project as fully AI-designed.
+- I kept the documentation in English for submission consistency.
+
+### Reflection
+
+- The documentation now better matches the actual state of the project.
+- The project is close to final submission review, with the main remaining task being an assessment checklist pass.
