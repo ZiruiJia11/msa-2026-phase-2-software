@@ -193,22 +193,23 @@
 
 ## Development Order
 
-- Set up `/specs` documentation.
-- Replace the demo score model with FitQuest data models.
-- Build backend CRUD endpoints for WorkoutQuest.
-- Add WorkoutLog and complete quest functionality.
-- Add XP and level calculation.
-- Add streak tracking logic.
-- Add achievement unlock logic.
-- Build the frontend quests page.
-- Build the dashboard page.
-- Build the achievements page.
-- Add theme switching.
-- Add Zustand state management.
-- Add input validation and rate limiting.
-- Add unit tests for key frontend and backend functionality.
-- Deploy frontend and backend.
-- Polish UI and update README for final submission.
+- Completed `/specs` documentation baseline.
+- Replaced the demo score model with FitQuest data models.
+- Built backend CRUD endpoints for WorkoutQuest.
+- Added WorkoutLog and complete quest functionality.
+- Added XP and level calculation.
+- Added streak tracking logic.
+- Added achievement unlock logic.
+- Built the frontend quests page.
+- Built the dashboard page.
+- Built the achievements page.
+- Added theme switching.
+- Added Zustand state management.
+- Added input validation and rate limiting.
+- Added unit tests for key frontend and backend functionality.
+- Deployed the frontend to Vercel and backend to Render.
+- Polished the UI with Figma-inspired avatar evolution and quest battle feedback.
+- Updated README and `/specs` records for final submission review.
 
 ## Design Direction
 
@@ -243,3 +244,5 @@
 - The frontend is responsive and visually polished.
 - The README clearly lists the top three advanced features.
 - The `/specs` folder documents planning, AI usage, and design decisions.
+- Public frontend and backend deployment links are available.
+- Final assessment checklist is recorded in `/specs/final-assessment-checklist.md`.
