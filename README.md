@@ -39,6 +39,15 @@ FitQuest addresses this theme through:
 - Show quest boss battle feedback when a quest is completed
 - Generate different monster variants for quest cards based on quest data and difficulty
 
+## Highlighted Unique Features
+
+FitQuest is designed to make a normal workout tracker feel more like a small quest RPG.
+
+- **Quest boss battles:** each active quest shows a pixel monster. When the quest is completed, the player avatar and monster move toward each other, collide, and the monster is knocked away with an XP burst.
+- **Level-based avatar evolution:** the player's avatar changes form as the player levels up, making XP progression visible across the Dashboard, Settings, sidebar, and Quest Board.
+- **Stable monster variants:** quest monsters are generated from quest data and difficulty, so different quests feel visually distinct without requiring extra backend fields.
+- **Assessment-focused documentation:** the `/specs` folder records planning, AI prompts, design decisions, and development progress so the implementation process can be reviewed alongside the final code.
+
 ## Advanced Features
 
 The three implemented advanced features selected for the final submission are:
@@ -320,6 +329,14 @@ Suggested demo flow:
 4. Open Achievements to show locked and unlocked badges.
 5. Open Progress to show workout log history.
 6. Open Settings to show theme switching and avatar evolution states.
+
+## Self-Reflection
+
+If I were to do this project again, I would define the final deployment and production routing requirements earlier. The app worked locally, but deployment revealed issues such as Render SQLite path configuration and Vercel single-page app route refreshes. Handling those earlier would reduce final-stage debugging.
+
+I would also separate the visual game layer into smaller reusable frontend components sooner. The boss battle UI and avatar evolution were added after the core CRUD and XP systems were stable, which kept the MVP simple, but extracting monster and battle components earlier would make future polish easier.
+
+Finally, I would plan demo data management more deliberately. The deployed backend can start with an empty database, so a small seeded demo dataset or admin reset endpoint would make final presentations more reliable while still keeping the app simple.
 
 ## Current Submission Status
 
